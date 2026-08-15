@@ -278,3 +278,35 @@ Vor dem jeweiligen Meilenstein: **#5, #6** (M2) · **#7, #8, #10, #11** (M5/M6).
 Die Punkte 13–19 können in einem Durchgang beim Feinschliff (M7) abgeräumt
 werden, mit Ausnahme von **#13**, der in `dates.ts` von Anfang an mitgedacht
 werden sollte.
+
+---
+
+## Erledigungsstand (Nachtrag, 2026-08-15)
+
+Alle Befunde wurden in `planning/PLAN.md` Revision 2 und `CLAUDE.md`
+eingearbeitet. Drei Punkte hat der Nutzer entschieden.
+
+| # | Befund | Ergebnis |
+|---|---|---|
+| 1 | Offline-Versprechen | **Übernommen.** `localService`-Auswertung in §7, Abnahmekriterium in §12 präzisiert |
+| 2 | Selbstbewertung bei Aussprache | **Nutzerentscheidung: Aufnahme-Funktion nicht im MVP.** Risiko als eigenes Kapitel §13.1 dokumentiert, Milderungen umgesetzt (konkrete Bewertungsfrage, Panel über den Knöpfen), MediaRecorder als erster v2-Kandidat in §14 |
+| 3 | Session terminiert nicht | **Übernommen.** Max. 2 Wiederholungen pro Karte/Session, Sessionziel zählt präsentierte Karten (§6) |
+| 4 | „Unsicher" in Fach 5 | **Übernommen.** „Unsicher" = Fach − 1; Fälligkeit jetzt durchgehend `heute + Intervall(neuesFach)` mit einer einzigen Ausnahme |
+| 5 | `Pos` vs. Wortliste | **Übernommen.** `appropriate`/`deliberate` als Adjektiv, `purchase` als Nomen, Zweitvariante in `note`; `pos` wird validiert |
+| 6 | `stressIndex` ↔ IPA | **Übernommen.** Zwei automatische Prüfungen (genau ein `ˈ`, Silbenzahl-Abgleich), Silben phonetisch geschnitten |
+| 7 | Zustand „nichts fällig" | **Übernommen.** Eigener Abschnitt in §6, freier Übungsdurchlauf ohne Leitner-Wirkung, Abnahmekriterium ergänzt |
+| 8 | Export/Import-Widerspruch | **Übernommen.** Fest in M6 aufgenommen und als Abnahmekriterium |
+| 9 | Abfragerichtung | **Nutzerentscheidung: DE → EN als Standard, am Sessionstart umschaltbar.** Zwei Kartentypen in §8, `SessionSetup`-Screen, M4 auf L hochgestuft. Folgeproblem der produktiven Richtung (mehrdeutige Übersetzung) über Lückensatz gelöst |
+| 10 | Autoplay zu streng | **Übernommen.** Einstellung, Standard an, freigeschaltet durch Session-Start-Tap; im Modus `de-en` erst beim Aufdecken |
+| 11 | `unlockedLevels` totes Feld | **Übernommen.** Fest `[1]`, Vorhaltung begründet; mildere Freischaltschwelle als Prüfauftrag für M8 |
+| 12 | Kuration ist kritischer Pfad | **Nutzerentscheidung: Cambridge Dictionary** als verbindliche Quelle. Schreibkonvention `-ise` festgelegt, M2 läuft parallel zu M1 und ist als **L** ausgewiesen |
+| 13 | Tagesgrenze Mitternacht | **Übernommen.** Tagesbeginn einstellbar, Standard 04:00 |
+| 14 | IPA und Screenreader | **Übernommen.** `aria-hidden`, auch als Regel in CLAUDE.md |
+| 15 | `history` unbegrenzt | **Übernommen.** Auf 90 Einträge gedeckelt |
+| 16 | Kriterium „keine Stimme" | **Übernommen.** Als Abnahmekriterium in §12 |
+| 17 | Level 1 bricht das Themenschema | **Übernommen.** Level 1 heißt jetzt ausdrücklich „Grundlagen-Level" |
+| 18 | Keine Aufwandsgrößen | **Übernommen.** Relative Größen S/M/L je Meilenstein, ausdrücklich keine Zeitzusage |
+| 19 | `persist` schreibt vollständig | **Übernommen** als bewusst akzeptiertes Risiko in §13.2 |
+
+Offen bleibt bewusst nur **#2**. Das ist die wichtigste Einschränkung des MVP und
+steht deshalb als eigenes Kapitel im Plan, nicht als Zeile in einer Risikotabelle.

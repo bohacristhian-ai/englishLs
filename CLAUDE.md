@@ -9,9 +9,10 @@ auf **Aussprache**; der Wiederholungsmotor ist ein **Leitner-System** mit fünf
 Fächern. Ziel im Vollausbau: 10 Level à 50 Wörter. **Aktueller Umfang: MVP mit
 Level 1 (50 Wörter).**
 
-Der maßgebliche Plan steht in `planning/PLAN.md`. Bei Widersprüchen zwischen
-diesem Dokument und dem Plan gilt der Plan — und sag Bescheid, damit wir es
-angleichen.
+Der maßgebliche Plan steht in `planning/PLAN.md` (Revision 2). Bei Widersprüchen
+zwischen diesem Dokument und dem Plan gilt der Plan — und sag Bescheid, damit wir
+es angleichen. `planning/REVIEW.md` hält fest, warum einzelne Regeln so aussehen,
+wie sie aussehen; es ist Historie, keine Anweisung.
 
 **Status: Planungsphase.** Außer diesen beiden Dokumenten existiert noch kein
 Code. Die unten genannten Befehle greifen ab Meilenstein M0.
@@ -53,7 +54,9 @@ Vor jedem Commit: `npm run test:run` **und** `npm run typecheck` müssen grün s
    Intervalle, Fachbewegungen und Fälligkeiten werden nirgendwo sonst berechnet
    oder dupliziert — auch nicht „kurz" in einer Komponente.
 3. **Die Web Speech API wird nur in `src/speech/tts.ts` angefasst.** Komponenten
-   rufen `speechSynthesis` niemals direkt auf.
+   rufen `speechSynthesis` niemals direkt auf. `tts.ts` wertet `localService`
+   aus und bevorzugt offline eine lokale Stimme — viele gute EN-Stimmen sind
+   netzgebunden.
 4. **Wort-IDs sind unveränderlich.** Der Lernfortschritt referenziert sie. Eine
    ID zu ändern bedeutet, den Fortschritt für dieses Wort zu löschen.
 5. **Datumsarithmetik nur über `src/domain/dates.ts`**, immer auf lokale
@@ -65,18 +68,45 @@ Vor jedem Commit: `npm run test:run` **und** `npm run typecheck` müssen grün s
 ## Leitner-Regeln (verbindlich)
 
 Fächer 1–5, Wiederholintervalle in Tagen: **1 → 0 · 2 → 1 · 3 → 3 · 4 → 7 ·
-5 → 16** (nach Fach 5 dauerhaft 30 = „gefestigt").
+5 → 16**.
 
-Bewertung ist dreistufig:
+Bewertung ist dreistufig und wirkt **ausschließlich** über das Fach:
 
-| Eingabe | Fach | Nächste Fälligkeit |
-|---|---|---|
-| Nochmal | zurück auf 1 | heute (erneut in derselben Session) |
-| Unsicher | unverändert | morgen |
-| Sicher | + 1 (max. 5) | nach Fach-Intervall |
+| Eingabe | Neues Fach |
+|---|---|
+| Nochmal | zurück auf 1, `correctStreak = 0` |
+| Unsicher | − 1 (min. 1) |
+| Sicher | + 1 (max. 5) |
+
+Daraus folgt die Fälligkeit über eine einzige Regel:
+
+```
+dueOn = heute + Intervall(neuesFach)
+```
+
+Genau eine Ausnahme: „Sicher" in Fach 5 bleibt Fach 5 und ergibt **30 Tage**
+(„gefestigt"). Es gibt **keine** weitere Sonderregel für Fälligkeiten — kein
+„morgen", kein Sonderfall pro Bewertung. Wenn beim Implementieren eine zweite
+Ausnahme nötig scheint, ist das ein Anlass zur Rückfrage, keine stille Ergänzung.
 
 Session: 20 Karten Standard, höchstens 10 neue Wörter pro Tag; fällige Karten
-zuerst (niedriges Fach vor hohem), dann mit neuen auffüllen.
+zuerst (niedriges Fach vor hohem), dann mit neuen auffüllen. Karten, die in Fach 1
+landen, kommen **höchstens zweimal pro Session** erneut dran — sonst terminiert
+die Session nicht. Das Sessionziel zählt präsentierte Karten inklusive
+Wiederholungen.
+
+Tagesgrenze: lokal, Tagesbeginn einstellbar, **Standard 04:00** (nicht
+Mitternacht), damit späte Sessions nicht in zwei Lerntage zerfallen.
+
+## Abfragerichtung
+
+Zwei Modi, am Sessionstart wählbar: **`de-en` (Standard, produktiv)** und
+`en-de` (rezeptiv). Die Richtung ist eine Darstellungsentscheidung der Session —
+es gibt **einen `CardState` pro Wort, nicht pro Richtung**.
+
+Im Modus `de-en` darf die Vorderseite die Antwort nicht verraten: kein englisches
+Wort, **kein Ton**, keine IPA. Die Eindeutigkeit stellt der Beispielsatz mit
+Lücke her.
 
 ## Wortdaten
 
@@ -85,11 +115,19 @@ Ein JSON pro Level unter `src/data/levels/level-NN.json`. Pflichtfelder pro Wort
 `example`, `exampleDe`. Optional: `ipaUs`, `note`.
 
 Beim Ergänzen von Wörtern:
-- IPA gegen ein Wörterbuch gegenprüfen (Standard: **British English**), nicht aus dem Gedächtnis schreiben
-- `stressIndex` ist 0-basiert und muss innerhalb von `syllables` liegen
-- Beispielsätze auf B2-Niveau, ein Satz, mit dem Zielwort im natürlichen Kontext
+- IPA **immer gegen das Cambridge Dictionary** prüfen (British English), nie aus dem Gedächtnis schreiben. Eine Quelle für alle Wörter — gemischte Quellen ergeben inkonsistente Lautschrift.
+- Schreibkonvention **`-ise`** (`emphasise`, `recognise`); `-ize` ist im britischen Gebrauch ebenfalls korrekt und gehört bei betroffenen Wörtern in `note`
+- `syllables` **phonetisch** schneiden, nicht orthografisch
+- `stressIndex` ist 0-basiert, muss innerhalb von `syllables` liegen und mit der Position des `ˈ` in `ipaGb` übereinstimmen
+- `pos` ist **genau ein** Wert. Wörter mit wortartabhängiger Aussprache (`appropriate`, `deliberate`) bekommen eine Wortart und die dazu passende IPA; die andere Variante in `note`. Eine Aussprache-App darf nicht offenlassen, welches Ziel gerade gilt.
+- `translation` muss spezifisch genug sein, um das englische Wort zu identifizieren — im Modus `de-en` ist sie die Fragestellung
+- Beispielsätze auf B2-Niveau, ein Satz, mit dem Zielwort im natürlichen Kontext. Der Satz dient im Modus `de-en` als Lückensatz und muss das Zielwort eindeutig machen.
 - `note` für Aussprachefallen und False Friends aus deutscher Perspektive nutzen
 - IDs fortlaufend und lückenlos: `l01-w001` … `l01-w050`
+
+Die Schema-Validierung prüft automatisch: eindeutige IDs, Pflichtfelder, `pos`
+aus der erlaubten Liste, `stressIndex` in Reichweite, genau ein `ˈ` in `ipaGb`,
+und Silbenzahl IPA ↔ `syllables`.
 
 ## Tests
 
@@ -104,13 +142,26 @@ Rest wird nicht auf Verdacht testabgedeckt.
 - Eine Komponente pro Datei, Dateiname = Komponentenname
 - Kommentare erklären das *Warum*; was der Code tut, soll der Code zeigen
 - Deutsche UI-Texte gehören in die Komponente, nicht in eine i18n-Struktur (fest einsprachig, siehe Nicht-Ziele im Plan)
-- Kein Autoplay von Sprachausgabe — immer knopfgebunden (iOS Safari verlangt das, und es ist auch respektvoller)
+- Sprachausgabe wird **nie** ohne vorausgegangene Nutzergeste ausgelöst (iOS Safari blockt das sonst). Autoplay beim Kartenwechsel ist erlaubt und standardmäßig an, freigeschaltet durch den Tap auf „Session starten"; die Knopfbedienung bleibt zusätzlich erhalten.
+- IPA-Zeichenketten `aria-hidden` setzen — Screenreader lesen sie als Zeichensalat vor; Betonung und `note` bleiben als Text zugänglich
 
 ## Ausdrücklich außerhalb des Umfangs
 
-Backend, Accounts, Cloud-Sync, Mikrofon-Spracherkennung, Level 2–10, Gamification
-über Streak und Fortschritt hinaus, Grammatik- oder Schreibübungen. Wenn etwas
-davon sinnvoll erscheint: vorschlagen, nicht einfach bauen.
+Backend, Accounts, Cloud-Sync, Mikrofon-Spracherkennung, **Aufnahme-/Abhörfunktion
+(MediaRecorder)**, Level 2–10, Gamification über Streak und Fortschritt hinaus,
+Grammatik- oder Schreibübungen. Wenn etwas davon sinnvoll erscheint: vorschlagen,
+nicht einfach bauen.
+
+## Bekannte Schwäche
+
+Die Selbstbewertung ist bei *Aussprache* ein systematisch verzerrtes Signal —
+Lernende hören eigene Fehler in der Zielsprache oft nicht und bewerten zu
+großzügig. Das ist bekannt und im MVP bewusst nicht gelöst (§13.1 im Plan). Die
+Gegenmaßnahmen, die drin sind: Die Bewertungsfrage ist konkret formuliert
+(„Betonung auf der richtigen Silbe? Endungen reduziert?"), und das
+Aussprache-Panel steht direkt über den Bewertungsknöpfen. Diese beiden Punkte
+beim Bauen nicht wegoptimieren — sie sind alles, was die Verzerrung derzeit
+bremst.
 
 ## Git
 
