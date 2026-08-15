@@ -1,0 +1,82 @@
+/*
+ * Design tokens. Every colour, space and font in the app resolves to one of
+ * these — components never hard-code a raw value.
+ */
+
+:root {
+  /* Type. --font-ipa is separate on purpose: the default UI stack renders
+     several IPA glyphs (ɒ ʃ ð ɜː) poorly or not at all on some systems. */
+  --font-ui:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-ipa:
+    'Charis SIL', 'Doulos SIL', 'Gentium Plus', 'Lucida Sans Unicode',
+    'Segoe UI', 'DejaVu Sans', system-ui, sans-serif;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.375rem;
+  --text-xl: 1.875rem;
+  --text-2xl: 2.5rem;
+
+  --leading-tight: 1.25;
+  --leading-normal: 1.55;
+
+  /* Space — 4px base */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Hit targets — the whole session must be thumb-operable */
+  --tap-min: 44px;
+
+  --border-width: 1px;
+  --transition-fast: 120ms ease;
+
+  /* Light palette (default) */
+  --color-bg: #fdfdfc;
+  --color-surface: #ffffff;
+  --color-surface-raised: #f4f4f2;
+  --color-border: #dcdcd8;
+  --color-text: #1a1c1e;
+  --color-text-muted: #5f6368;
+  --color-accent: #2f5d50;
+  --color-accent-text: #ffffff;
+
+  /* Rating buttons — meaning-bearing, so they get their own tokens */
+  --color-again: #a63d40;
+  --color-unsure: #9a6b2f;
+  --color-sure: #2f6b45;
+
+  --color-focus: #2f5d50;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 6%), 0 8px 24px rgb(0 0 0 / 6%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #111418;
+    --color-surface: #1a1e23;
+    --color-surface-raised: #232830;
+    --color-border: #333941;
+    --color-text: #e8eaed;
+    --color-text-muted: #9aa0a6;
+    --color-accent: #7fc8ae;
+    --color-accent-text: #10201b;
+
+    --color-again: #e08b8d;
+    --color-unsure: #dfb271;
+    --color-sure: #8ecfa6;
+
+    --color-focus: #7fc8ae;
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 40%), 0 8px 24px rgb(0 0 0 / 30%);
+  }
+}

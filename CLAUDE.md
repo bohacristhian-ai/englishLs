@@ -14,8 +14,11 @@ zwischen diesem Dokument und dem Plan gilt der Plan — und sag Bescheid, damit 
 es angleichen. `planning/REVIEW.md` hält fest, warum einzelne Regeln so aussehen,
 wie sie aussehen; es ist Historie, keine Anweisung.
 
-**Status: Planungsphase.** Außer diesen beiden Dokumenten existiert noch kein
-Code. Die unten genannten Befehle greifen ab Meilenstein M0.
+**Status: M0 fertig** (Gerüst steht, Befehle laufen). Als Nächstes M1
+(Domain-Kern) und M2 (Wortdaten, läuft parallel).
+
+`src/App.tsx` ist bis M4/M6 nur eine Platzhalter-Hülle. Die Ordner unter `src/`
+sind angelegt, aber bis auf `styles/` und `test/` noch leer.
 
 ## Sprache
 
