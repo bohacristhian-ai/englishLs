@@ -94,9 +94,18 @@ Ablage: `src/data/levels/level-01.json` … `level-10.json`, ein Array pro Datei
 - `pos` ist einer der erlaubten Werte
 - `stressIndex` liegt innerhalb von `syllables`
 - `ipaGb` enthält **genau ein** `ˈ` (Hauptbetonung)
-- Anzahl der Vokalkerne in `ipaGb` stimmt mit `syllables.length` überein
+- Silbenzahl aus `ipaGb` stimmt mit `syllables.length` überein
+- `stressIndex` stimmt mit der Position von `ˈ` in `ipaGb` überein
 
-Die letzten beiden Prüfungen adressieren Review-Befund #6: Die Betonung steht
+`ipaGb` wird in **Cambridge-Notation mit Silbenpunkten** erfasst: `əkˈnɒl.ɪdʒ`.
+Der Punkt trennt Silben, das `ˈ` ersetzt den Punkt an der betonten Silbe. Das
+war ursprünglich nicht so geplant (Revision 2 wollte Vokalkerne zählen), hat sich
+bei der Umsetzung aber als klar überlegen erwiesen: Der Silbenschnitt wird
+maschinell **exakt** prüfbar statt heuristisch, und die Zeichenkette lässt sich
+eins zu eins mit dem Wörterbucheintrag vergleichen. Für die Anzeige liefert
+`plainIpa()` die Form ohne Trennzeichen.
+
+Die letzten drei Prüfungen adressieren Review-Befund #6: Die Betonung steht
 zwangsläufig doppelt im Datensatz (als `stressIndex` und als `ˈ` in der IPA), und
 zwei Quellen für dieselbe Information driften bei Handkuration auseinander. Die
 Validierung fängt das automatisch ab, statt sich auf Sorgfalt zu verlassen.
@@ -113,10 +122,12 @@ interface CardState {
   wordId: string;
   box: 1 | 2 | 3 | 4 | 5;
   dueOn: string;          // "2026-08-15", lokale Tagesgrenze
+  introducedOn: string;   // Lerntag der Einführung — deckelt neue Wörter pro Tag
   lastReviewedAt: string | null;  // ISO-Timestamp
   correctStreak: number;
   totalCorrect: number;
   totalWrong: number;
+  consolidated: boolean;  // in Fach 5 mit „Sicher" bestätigt
 }
 
 interface ProgressState {
@@ -131,6 +142,14 @@ interface ProgressState {
 Neue Wörter werden **lazy** angelegt: Ein Wort ohne `CardState` gilt als „noch nie
 gesehen" und wird von der Session als neue Karte in Fach 1 eingeführt. Das macht
 das Hinzufügen von Level 2–10 später zu einem reinen Daten-Commit ohne Migration.
+
+Zwei Felder sind bei der Umsetzung von M1 hinzugekommen, weil die dokumentierten
+Regeln ohne sie nicht implementierbar waren: `introducedOn` — ohne das Datum der
+Einführung lässt sich „höchstens 10 neue Wörter pro Tag" über mehrere Sessions
+eines Tages hinweg nicht durchsetzen. `consolidated` — der Statusschirm zeigt
+„gefestigte Wörter", und der Zustand ist aus Fach und Streak nicht zuverlässig
+ableitbar (eine Karte kann Fach 5 mit hohem Streak erreichen, ohne dort je
+bestätigt worden zu sein).
 
 **Ein `CardState` pro Wort, nicht pro Richtung.** Die Abfragerichtung ist eine
 Darstellungsentscheidung der Session, kein eigener Lernpfad: **50 Wörter pro
@@ -425,7 +444,7 @@ Zuschnitt des MVP verhandelbar zu machen.
 |---|---|---|---|---|
 | M0 | Gerüst | S | Vite + TS + React, Vitest, Ordnerstruktur, CSS-Tokens | `npm run dev` und `npm test` laufen |
 | M1 | Domain-Kern | M | `types.ts`, `leitner.ts`, `scheduler.ts`, `dates.ts` + Unit-Tests | Fachlogik, Wiederholungsdeckel und Session-Auswahl vollständig getestet, kein UI-Bezug |
-| M2 | Wortdaten ⟂ | **L** | 50 Wörter Level 1 gegen Cambridge kuratiert, Loader + Schema-Validierung | Validierungstest grün, 50 eindeutige IDs, IPA geprüft |
+| M2 | Wortdaten ⟂ | **L** | 50 Wörter Level 1 gegen Cambridge kuratiert, Loader + Schema-Validierung | Validierungstest grün, 50 eindeutige IDs, **IPA gegen Cambridge geprüft** — offen, siehe `planning/M2-IPA-VERIFICATION.md` |
 | M3 | Sprachausgabe | M | `tts.ts` mit Stimmenwahl, Tempo, `localService`, Fallback-Hinweis | Wort & Satz hörbar, Verhalten ohne EN-Stimme und offline sauber |
 | M4 | Karten-Flow | **L** | `Flashcard` mit **beiden Richtungen**, `PronunciationPanel`, `RatingBar`, `SessionSetup`, Session-Screen | Eine Session in beiden Richtungen durchspielbar |
 | M5 | Persistenz | M | Zustand-Stores, localStorage, Schema-Version, Tagesbeginn 04:00 | Fortschritt überlebt Reload und Browser-Neustart |

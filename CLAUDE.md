@@ -14,11 +14,17 @@ zwischen diesem Dokument und dem Plan gilt der Plan — und sag Bescheid, damit 
 es angleichen. `planning/REVIEW.md` hält fest, warum einzelne Regeln so aussehen,
 wie sie aussehen; es ist Historie, keine Anweisung.
 
-**Status: M0 fertig** (Gerüst steht, Befehle laufen). Als Nächstes M1
-(Domain-Kern) und M2 (Wortdaten, läuft parallel).
+**Status: M0 und M1 fertig, M2 bis auf einen Punkt.**
 
-`src/App.tsx` ist bis M4/M6 nur eine Platzhalter-Hülle. Die Ordner unter `src/`
-sind angelegt, aber bis auf `styles/` und `test/` noch leer.
+- M0 Gerüst · M1 Domain-Kern (`dates`, `leitner`, `scheduler`) mit Tests
+- M2 Wortdaten: 50 Wörter, Loader und Schema-Validierung stehen — **aber die
+  IPA ist noch nicht gegen Cambridge geprüft**, siehe
+  `planning/M2-IPA-VERIFICATION.md`. Bis diese Liste abgehakt ist, gilt M2 als
+  offen und der Build nicht als lernfertig.
+
+Als Nächstes M3 (Sprachausgabe). `src/App.tsx` ist bis M4/M6 nur eine
+Platzhalter-Hülle; `components/`, `screens/`, `store/` und `speech/` sind noch
+leer.
 
 ## Sprache
 
