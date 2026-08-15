@@ -133,11 +133,16 @@ gesehen" und wird von der Session als neue Karte in Fach 1 eingeführt. Das mach
 das Hinzufügen von Level 2–10 später zu einem reinen Daten-Commit ohne Migration.
 
 **Ein `CardState` pro Wort, nicht pro Richtung.** Die Abfragerichtung ist eine
-Darstellungsentscheidung der Session, kein eigener Lernpfad. Der bewusst in Kauf
-genommene Nachteil: Wer ein Wort rezeptiv sicher kann, produktiv aber nicht,
-sieht das im Fach nicht getrennt. Der Vorteil ist erheblich — 50 statt 100 Karten
-pro Level, eine Fälligkeitsrechnung, keine doppelte Statistik. Getrennte Pfade
-sind ein v2-Thema, falls sich die Vermischung im Gebrauch als störend erweist.
+Darstellungsentscheidung der Session, kein eigener Lernpfad: **50 Wörter pro
+Level ergeben 50 Lernkarten**, unabhängig davon, in welcher Richtung abgefragt
+wird. Die Alternative — je Richtung ein eigener Lernstand — hätte denselben
+50 Wörtern 100 Lernkarten mit getrennten Fächern und Fälligkeiten gegeben und ist
+bewusst verworfen.
+
+Der in Kauf genommene Nachteil: Wer ein Wort rezeptiv sicher kann, produktiv aber
+nicht, sieht das im Fach nicht getrennt. Dafür bleibt es bei einer
+Fälligkeitsrechnung und einer Statistik. Getrennte Pfade sind ein v2-Thema, falls
+sich die Vermischung im Gebrauch als störend erweist.
 
 `unlockedLevels` wird im MVP fest mit `[1]` initialisiert und von keinem Code
 fortgeschrieben — das Feld wird bewusst vorgehalten, damit die Freischaltung
