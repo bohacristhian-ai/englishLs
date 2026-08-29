@@ -13,7 +13,7 @@ zwischen diesem Dokument und dem Plan gilt der Plan — und sag Bescheid, damit 
 es angleichen. `planning/REVIEW.md` hält fest, warum einzelne Regeln so aussehen,
 wie sie aussehen; es ist Historie, keine Anweisung.
 
-**Status: M0, M1, M3 fertig; M2 bis auf die IPA-Prüfung.**
+**Status: M0, M1, M3, M4 fertig; M2 bis auf die IPA-Prüfung.**
 
 - M0 Gerüst · M1 Domain-Kern (`dates`, `leitner`, `scheduler`) mit Tests
 - M2 Wortdaten: **alle 10 Level à 50 Wörter (500 gesamt)**, Loader und
@@ -21,9 +21,11 @@ wie sie aussehen; es ist Historie, keine Anweisung.
   geprüft**, siehe `planning/IPA-VERIFICATION.md`. Bis diese Liste abgehakt ist,
   gilt der Build nicht als lernfertig.
 - M3 Sprachausgabe: `speech/tts.ts` mit Stimmenwahl, Offline-Verhalten und Tests
+- M4 Karten-Flow: beide Abfragerichtungen, Aussprache-Panel, Bewertung,
+  Sessionsteuerung und Tastaturbedienung
 
-Als Nächstes M4 (Karten-Flow). `src/App.tsx` ist bis M4/M6 nur eine
-Platzhalter-Hülle; `components/`, `screens/` und `store/` sind noch leer.
+Als Nächstes M5 (Persistenz) — der Fortschritt liegt derzeit nur im
+Arbeitsspeicher und ist nach einem Reload weg. `store/` ist noch leer.
 
 **Alle 10 Level sind freigeschaltet** — auf Nutzerwunsch, damit der Wortbestand
 durchgesehen und geprüft werden kann. Die fortschrittsabhängige Freischaltung ist
