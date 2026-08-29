@@ -13,7 +13,7 @@ zwischen diesem Dokument und dem Plan gilt der Plan — und sag Bescheid, damit 
 es angleichen. `planning/REVIEW.md` hält fest, warum einzelne Regeln so aussehen,
 wie sie aussehen; es ist Historie, keine Anweisung.
 
-**Status: M0, M1, M3, M4, M4b fertig; M2 bis auf die IPA-Prüfung.**
+**Status: M0, M1, M3, M4, M4b, M5 fertig; M2 bis auf die IPA-Prüfung.**
 
 - M0 Gerüst · M1 Domain-Kern (`dates`, `leitner`, `scheduler`) mit Tests
 - M2 Wortdaten: **alle 10 Level à 50 Wörter (500 gesamt)**, Loader und
@@ -25,9 +25,10 @@ wie sie aussehen; es ist Historie, keine Anweisung.
   Sessionsteuerung und Tastaturbedienung
 - M4b Ausspracheprüfung: Mikrofon-Check gegen Azure Pronunciation Assessment,
   hinter der Schnittstelle `speech/assessment.ts`
+- M5 Persistenz: Fortschritt und Einstellungen in localStorage, Streak,
+  Tageshistorie, Migration bei kaputtem Speicher
 
-Als Nächstes M5 (Persistenz) — der Fortschritt liegt derzeit nur im
-Arbeitsspeicher und ist nach einem Reload weg. `store/` ist noch leer.
+Als Nächstes M7 (PWA, aufs Handy installierbar) und M6 (Rahmen-Screens).
 
 **Alle 10 Level sind freigeschaltet** — auf Nutzerwunsch, damit der Wortbestand
 durchgesehen und geprüft werden kann. Die fortschrittsabhängige Freischaltung ist
@@ -79,7 +80,11 @@ Vor jedem Commit: `npm run test:run` **und** `npm run typecheck` müssen grün s
    Tagesgrenze als `YYYY-MM-DD` normalisiert, nie über rohe UTC-Timestamps.
 6. **Persistierte Struktur nur mit `schemaVersion`-Erhöhung + Migration ändern.**
    Der Fortschritt des Nutzers liegt ausschließlich lokal und darf nicht
-   stillschweigend kaputtgehen.
+   stillschweigend kaputtgehen. `migrateProgress` in `domain/progress.ts`
+   **rettet, was zu retten ist**, statt bei einem kaputten Eintrag alles zu
+   verwerfen — und wirft nie, weil ein Absturz beim Start schlimmer wäre.
+7. **Die Stores in `store/` bleiben dünn.** Jede Zustandsänderung ist eine reine
+   Funktion in `domain/progress.ts`; der Store hält nur und ruft auf.
 
 ## Leitner-Regeln (verbindlich)
 

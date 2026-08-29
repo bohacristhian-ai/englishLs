@@ -11,7 +11,9 @@ import {
   recordAnswer,
   startSession,
 } from '../domain/scheduler';
-import type { CardState, Direction, Rating, Word } from '../domain/types';
+import type { Direction, Rating, Word } from '../domain/types';
+import { useProgressStore } from '../store/progressStore';
+import { useSettingsStore } from '../store/settingsStore';
 import { AzurePronunciationAssessor } from '../speech/azureAssessor';
 import { speak } from '../speech/tts';
 import type { SessionResult } from './Summary';
@@ -20,8 +22,6 @@ interface SessionProps {
   level: number;
   direction: Direction;
   targetCards: number;
-  cards: Record<string, CardState>;
-  onCardsChange: (cards: Record<string, CardState>) => void;
   onFinish: (result: SessionResult) => void;
   onQuit: () => void;
 }
@@ -35,16 +35,23 @@ export default function Session({
   level,
   direction,
   targetCards,
-  cards,
-  onCardsChange,
   onFinish,
   onQuit,
 }: SessionProps) {
+  const cards = useProgressStore((state) => state.cards);
+  const rate = useProgressStore((state) => state.rate);
+  const dayStartHour = useSettingsStore((state) => state.dayStartHour);
+
   const words = useMemo(() => getLevel(level), [level]);
   const wordsById = useMemo(() => new Map(words.map((word) => [word.id, word])), [words]);
 
   const [session, setSession] = useState(() =>
-    startSession(planSession(words, cards, learningDay(new Date()), { targetCards }), targetCards),
+    startSession(
+      planSession(words, useProgressStore.getState().cards, learningDay(new Date(), dayStartHour), {
+        targetCards,
+      }),
+      targetCards,
+    ),
   );
   const [revealed, setRevealed] = useState(false);
   const [tally, setTally] = useState<SessionResult>(EMPTY_TALLY);
@@ -85,11 +92,11 @@ export default function Session({
     (rating: Rating) => {
       if (!word) return;
 
-      const today = learningDay(new Date());
+      const today = learningDay(new Date(), dayStartHour);
       const existing = cards[word.id] ?? createCardState(word.id, today);
       const updated = review(existing, rating, today, new Date());
 
-      onCardsChange({ ...cards, [word.id]: updated });
+      rate(word.id, rating, today, new Date());
 
       const next = recordAnswer(session, landsInDrillBox(updated));
       const nextTally: SessionResult = {
@@ -105,7 +112,7 @@ export default function Session({
 
       if (isSessionFinished(next)) onFinish(nextTally);
     },
-    [word, cards, onCardsChange, session, tally, onFinish],
+    [word, cards, rate, dayStartHour, session, tally, onFinish],
   );
 
   useEffect(() => {

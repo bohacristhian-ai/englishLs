@@ -1,10 +1,21 @@
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import App from '../App';
 import { getLevel } from '../data/words';
+import { emptyProgress } from '../domain/progress';
+import { useProgressStore } from '../store/progressStore';
+import { DEFAULT_SETTINGS, useSettingsStore } from '../store/settingsStore';
 
 const FIRST = getLevel(1)[0]!;
+
+// The stores are module singletons and now genuinely persist, so without this
+// one test's progress would decide which card the next test sees.
+beforeEach(() => {
+  localStorage.clear();
+  useProgressStore.setState(emptyProgress());
+  useSettingsStore.setState(DEFAULT_SETTINGS);
+});
 
 async function startSession(direction: 'de-en' | 'en-de' = 'de-en') {
   const user = userEvent.setup();
@@ -143,5 +154,56 @@ describe('card flow', () => {
     await user.click(screen.getByRole('button', { name: 'Beenden' }));
 
     expect(screen.getByRole('button', { name: 'Session starten' })).toBeInTheDocument();
+  });
+});
+
+describe('persistence', () => {
+  it('remembers a rated card after the app is torn down and rebuilt', async () => {
+    const user = await startSession();
+
+    await user.click(screen.getByRole('button', { name: 'Auflösen' }));
+    await user.click(screen.getByRole('button', { name: /Sicher/ }));
+
+    cleanup();
+    render(<App />);
+
+    expect(screen.getByText(/von 500 Wörtern begonnen/)).toBeInTheDocument();
+  });
+
+  it('writes the progress to localStorage', async () => {
+    const user = await startSession();
+
+    await user.click(screen.getByRole('button', { name: 'Auflösen' }));
+    await user.click(screen.getByRole('button', { name: /Sicher/ }));
+
+    const stored = localStorage.getItem('englishls.progress');
+
+    expect(stored).not.toBeNull();
+    expect(stored).toContain(FIRST.id);
+  });
+
+  it('counts the day as studied from the first rating, not only on completion', async () => {
+    // Stopping after a few cards is still studying; the streak must not punish it.
+    const user = await startSession();
+
+    await user.click(screen.getByRole('button', { name: 'Auflösen' }));
+    await user.click(screen.getByRole('button', { name: /Sicher/ }));
+    await user.click(screen.getByRole('button', { name: 'Beenden' }));
+
+    expect(screen.getByText(/Streak 1 Tag/)).toBeInTheDocument();
+  });
+
+  it('starts with an empty progress on a fresh device', () => {
+    render(<App />);
+
+    expect(screen.getByText('Noch keine Wörter begonnen.')).toBeInTheDocument();
+  });
+
+  it('remembers the chosen direction for the next session', async () => {
+    const user = await startSession('en-de');
+
+    await user.click(screen.getByRole('button', { name: 'Beenden' }));
+
+    expect(screen.getByRole('radio', { name: /Englisch → Deutsch/ })).toBeChecked();
   });
 });
