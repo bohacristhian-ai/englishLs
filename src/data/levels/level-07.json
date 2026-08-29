@@ -1,0 +1,803 @@
+[
+  {
+    "id": "l07-w001",
+    "level": 7,
+    "term": "algorithm",
+    "pos": "noun",
+    "ipaGb": "ˈæl.ɡə.rɪ.ðəm",
+    "syllables": [
+      "al",
+      "go",
+      "ri",
+      "thm"
+    ],
+    "stressIndex": 0,
+    "translation": "Algorithmus",
+    "example": "The algorithm decides what appears at the top.",
+    "exampleDe": "Der Algorithmus entscheidet, was oben erscheint.",
+    "note": "Endung mit stimmhaftem /ðəm/ — die letzte Silbe wird oft verschluckt."
+  },
+  {
+    "id": "l07-w002",
+    "level": 7,
+    "term": "analogue",
+    "pos": "adjective",
+    "ipaGb": "ˈæn.ə.lɒɡ",
+    "syllables": [
+      "an",
+      "a",
+      "logue"
+    ],
+    "stressIndex": 0,
+    "translation": "analog",
+    "example": "He still prefers an analogue watch.",
+    "exampleDe": "Er bevorzugt noch immer eine analoge Uhr.",
+    "note": "Betonung vorn — anders als im deutschen „analog“."
+  },
+  {
+    "id": "l07-w003",
+    "level": 7,
+    "term": "artificial",
+    "pos": "adjective",
+    "ipaGb": "ˌɑː.tɪˈfɪʃ.əl",
+    "syllables": [
+      "ar",
+      "ti",
+      "fi",
+      "cial"
+    ],
+    "stressIndex": 2,
+    "translation": "künstlich",
+    "example": "Artificial light confuses migrating birds.",
+    "exampleDe": "Künstliches Licht verwirrt Zugvögel."
+  },
+  {
+    "id": "l07-w004",
+    "level": 7,
+    "term": "bandwidth",
+    "pos": "noun",
+    "ipaGb": "ˈbænd.wɪdθ",
+    "syllables": [
+      "band",
+      "width"
+    ],
+    "stressIndex": 0,
+    "translation": "Bandbreite",
+    "example": "Video calls eat most of the available bandwidth.",
+    "exampleDe": "Videoanrufe verbrauchen den Großteil der verfügbaren Bandbreite.",
+    "note": "Endet auf /dθ/ — eine ungewohnte Konsonantenfolge."
+  },
+  {
+    "id": "l07-w005",
+    "level": 7,
+    "term": "broadcast",
+    "pos": "verb",
+    "ipaGb": "ˈbrɔːd.kɑːst",
+    "syllables": [
+      "broad",
+      "cast"
+    ],
+    "stressIndex": 0,
+    "translation": "senden, übertragen",
+    "example": "They broadcast the debate live from the town hall.",
+    "exampleDe": "Sie übertrugen die Debatte live aus dem Rathaus."
+  },
+  {
+    "id": "l07-w006",
+    "level": 7,
+    "term": "browser",
+    "pos": "noun",
+    "ipaGb": "ˈbraʊ.zər",
+    "syllables": [
+      "brow",
+      "ser"
+    ],
+    "stressIndex": 0,
+    "translation": "Browser",
+    "example": "Clear the browser cache and try again.",
+    "exampleDe": "Leere den Browser-Cache und versuch es erneut."
+  },
+  {
+    "id": "l07-w007",
+    "level": 7,
+    "term": "circuit",
+    "pos": "noun",
+    "ipaGb": "ˈsɜː.kɪt",
+    "syllables": [
+      "cir",
+      "cuit"
+    ],
+    "stressIndex": 0,
+    "translation": "Schaltkreis",
+    "example": "A single broken circuit stopped the whole machine.",
+    "exampleDe": "Ein einziger unterbrochener Schaltkreis legte die ganze Maschine lahm.",
+    "note": "Endung klingt wie /kɪt/, das „u“ ist stumm."
+  },
+  {
+    "id": "l07-w008",
+    "level": 7,
+    "term": "compatible",
+    "pos": "adjective",
+    "ipaGb": "kəmˈpæt.ə.bəl",
+    "syllables": [
+      "com",
+      "pat",
+      "i",
+      "ble"
+    ],
+    "stressIndex": 1,
+    "translation": "kompatibel, verträglich",
+    "example": "The file is not compatible with the older version.",
+    "exampleDe": "Die Datei ist mit der älteren Version nicht kompatibel."
+  },
+  {
+    "id": "l07-w009",
+    "level": 7,
+    "term": "component",
+    "pos": "noun",
+    "ipaGb": "kəmˈpəʊ.nənt",
+    "syllables": [
+      "com",
+      "po",
+      "nent"
+    ],
+    "stressIndex": 1,
+    "translation": "Bauteil, Komponente",
+    "example": "One component failed after only six months.",
+    "exampleDe": "Ein Bauteil versagte schon nach sechs Monaten."
+  },
+  {
+    "id": "l07-w010",
+    "level": 7,
+    "term": "credible",
+    "pos": "adjective",
+    "ipaGb": "ˈkred.ə.bəl",
+    "syllables": [
+      "cred",
+      "i",
+      "ble"
+    ],
+    "stressIndex": 0,
+    "translation": "glaubwürdig",
+    "example": "Check whether the source is credible before sharing.",
+    "exampleDe": "Prüfe, ob die Quelle glaubwürdig ist, bevor du sie teilst."
+  },
+  {
+    "id": "l07-w011",
+    "level": 7,
+    "term": "cybersecurity",
+    "pos": "noun",
+    "ipaGb": "ˌsaɪ.bə.sɪˈkjʊə.rə.ti",
+    "syllables": [
+      "cy",
+      "ber",
+      "se",
+      "cu",
+      "ri",
+      "ty"
+    ],
+    "stressIndex": 3,
+    "translation": "Cybersicherheit",
+    "example": "Cybersecurity training is now mandatory for staff.",
+    "exampleDe": "Schulungen zur Cybersicherheit sind für Mitarbeitende jetzt Pflicht."
+  },
+  {
+    "id": "l07-w012",
+    "level": 7,
+    "term": "database",
+    "pos": "noun",
+    "ipaGb": "ˈdeɪ.tə.beɪs",
+    "syllables": [
+      "da",
+      "ta",
+      "base"
+    ],
+    "stressIndex": 0,
+    "translation": "Datenbank",
+    "example": "The database holds every record since 1994.",
+    "exampleDe": "Die Datenbank enthält jeden Datensatz seit 1994.",
+    "note": "Britisch /ˈdeɪ.tə/ mit langem „a“ in der ersten Silbe."
+  },
+  {
+    "id": "l07-w013",
+    "level": 7,
+    "term": "device",
+    "pos": "noun",
+    "ipaGb": "dɪˈvaɪs",
+    "syllables": [
+      "de",
+      "vice"
+    ],
+    "stressIndex": 1,
+    "translation": "Gerät",
+    "example": "The app runs on almost any device.",
+    "exampleDe": "Die App läuft auf fast jedem Gerät."
+  },
+  {
+    "id": "l07-w014",
+    "level": 7,
+    "term": "digital",
+    "pos": "adjective",
+    "ipaGb": "ˈdɪdʒ.ɪ.təl",
+    "syllables": [
+      "dig",
+      "i",
+      "tal"
+    ],
+    "stressIndex": 0,
+    "translation": "digital",
+    "example": "The archive went fully digital last year.",
+    "exampleDe": "Das Archiv wurde im vergangenen Jahr vollständig digital.",
+    "note": "Beginnt mit /dɪdʒ/, nicht mit einem harten /ɡ/."
+  },
+  {
+    "id": "l07-w015",
+    "level": 7,
+    "term": "encryption",
+    "pos": "noun",
+    "ipaGb": "ɪnˈkrɪp.ʃən",
+    "syllables": [
+      "en",
+      "cryp",
+      "tion"
+    ],
+    "stressIndex": 1,
+    "translation": "Verschlüsselung",
+    "example": "End-to-end encryption protects the message in transit.",
+    "exampleDe": "Ende-zu-Ende-Verschlüsselung schützt die Nachricht auf dem Weg."
+  },
+  {
+    "id": "l07-w016",
+    "level": 7,
+    "term": "engine",
+    "pos": "noun",
+    "ipaGb": "ˈen.dʒɪn",
+    "syllables": [
+      "en",
+      "gine"
+    ],
+    "stressIndex": 0,
+    "translation": "Maschine, Suchmaschine",
+    "example": "No search engine indexed the page.",
+    "exampleDe": "Keine Suchmaschine hatte die Seite erfasst.",
+    "note": "Endung /dʒɪn/, nicht /ɡaɪn/."
+  },
+  {
+    "id": "l07-w017",
+    "level": 7,
+    "term": "feature",
+    "pos": "noun",
+    "ipaGb": "ˈfiː.tʃər",
+    "syllables": [
+      "fea",
+      "ture"
+    ],
+    "stressIndex": 0,
+    "translation": "Funktion, Merkmal",
+    "example": "The best feature is the offline mode.",
+    "exampleDe": "Die beste Funktion ist der Offline-Modus."
+  },
+  {
+    "id": "l07-w018",
+    "level": 7,
+    "term": "firmware",
+    "pos": "noun",
+    "ipaGb": "ˈfɜːm.weər",
+    "syllables": [
+      "firm",
+      "ware"
+    ],
+    "stressIndex": 0,
+    "translation": "Firmware",
+    "example": "A firmware update fixed the battery problem.",
+    "exampleDe": "Ein Firmware-Update behob das Akkuproblem."
+  },
+  {
+    "id": "l07-w019",
+    "level": 7,
+    "term": "glitch",
+    "pos": "noun",
+    "ipaGb": "ˈɡlɪtʃ",
+    "syllables": [
+      "glitch"
+    ],
+    "stressIndex": 0,
+    "translation": "Störung, kleiner Fehler",
+    "example": "A glitch in the display shows the wrong date.",
+    "exampleDe": "Eine Störung in der Anzeige zeigt das falsche Datum."
+  },
+  {
+    "id": "l07-w020",
+    "level": 7,
+    "term": "hardware",
+    "pos": "noun",
+    "ipaGb": "ˈhɑːd.weər",
+    "syllables": [
+      "hard",
+      "ware"
+    ],
+    "stressIndex": 0,
+    "translation": "Hardware",
+    "example": "The software is fine; the hardware is the bottleneck.",
+    "exampleDe": "Die Software ist in Ordnung, die Hardware ist der Engpass."
+  },
+  {
+    "id": "l07-w021",
+    "level": 7,
+    "term": "innovation",
+    "pos": "noun",
+    "ipaGb": "ˌɪn.əˈveɪ.ʃən",
+    "syllables": [
+      "in",
+      "no",
+      "va",
+      "tion"
+    ],
+    "stressIndex": 2,
+    "translation": "Innovation, Neuerung",
+    "example": "The real innovation was making it cheap.",
+    "exampleDe": "Die eigentliche Neuerung war, es billig zu machen."
+  },
+  {
+    "id": "l07-w022",
+    "level": 7,
+    "term": "interface",
+    "pos": "noun",
+    "ipaGb": "ˈɪn.tə.feɪs",
+    "syllables": [
+      "in",
+      "ter",
+      "face"
+    ],
+    "stressIndex": 0,
+    "translation": "Benutzeroberfläche, Schnittstelle",
+    "example": "The interface hides too many important settings.",
+    "exampleDe": "Die Benutzeroberfläche versteckt zu viele wichtige Einstellungen."
+  },
+  {
+    "id": "l07-w023",
+    "level": 7,
+    "term": "journalism",
+    "pos": "noun",
+    "ipaGb": "ˈdʒɜː.nə.lɪ.zəm",
+    "syllables": [
+      "jour",
+      "na",
+      "li",
+      "sm"
+    ],
+    "stressIndex": 0,
+    "translation": "Journalismus",
+    "example": "Local journalism has almost disappeared here.",
+    "exampleDe": "Der Lokaljournalismus ist hier fast verschwunden."
+  },
+  {
+    "id": "l07-w024",
+    "level": 7,
+    "term": "misinformation",
+    "pos": "noun",
+    "ipaGb": "ˌmɪs.ɪn.fəˈmeɪ.ʃən",
+    "syllables": [
+      "mis",
+      "in",
+      "for",
+      "ma",
+      "tion"
+    ],
+    "stressIndex": 3,
+    "translation": "Falschinformation",
+    "example": "Misinformation spreads faster than the correction.",
+    "exampleDe": "Falschinformation verbreitet sich schneller als die Richtigstellung."
+  },
+  {
+    "id": "l07-w025",
+    "level": 7,
+    "term": "network",
+    "pos": "noun",
+    "ipaGb": "ˈnet.wɜːk",
+    "syllables": [
+      "net",
+      "work"
+    ],
+    "stressIndex": 0,
+    "translation": "Netzwerk",
+    "example": "The whole network went down for two hours.",
+    "exampleDe": "Das gesamte Netzwerk fiel für zwei Stunden aus."
+  },
+  {
+    "id": "l07-w026",
+    "level": 7,
+    "term": "obsolete",
+    "pos": "adjective",
+    "ipaGb": "ˈɒb.səl.iːt",
+    "syllables": [
+      "ob",
+      "so",
+      "lete"
+    ],
+    "stressIndex": 0,
+    "translation": "veraltet, überholt",
+    "example": "The format became obsolete within five years.",
+    "exampleDe": "Das Format war binnen fünf Jahren veraltet."
+  },
+  {
+    "id": "l07-w027",
+    "level": 7,
+    "term": "outage",
+    "pos": "noun",
+    "ipaGb": "ˈaʊ.tɪdʒ",
+    "syllables": [
+      "ou",
+      "tage"
+    ],
+    "stressIndex": 0,
+    "translation": "Ausfall, Störung",
+    "example": "The outage affected users across three countries.",
+    "exampleDe": "Der Ausfall betraf Nutzer in drei Ländern."
+  },
+  {
+    "id": "l07-w028",
+    "level": 7,
+    "term": "password",
+    "pos": "noun",
+    "ipaGb": "ˈpɑːs.wɜːd",
+    "syllables": [
+      "pass",
+      "word"
+    ],
+    "stressIndex": 0,
+    "translation": "Passwort",
+    "example": "Change the password if you used it elsewhere.",
+    "exampleDe": "Ändere das Passwort, falls du es anderswo verwendet hast."
+  },
+  {
+    "id": "l07-w029",
+    "level": 7,
+    "term": "platform",
+    "pos": "noun",
+    "ipaGb": "ˈplæt.fɔːm",
+    "syllables": [
+      "plat",
+      "form"
+    ],
+    "stressIndex": 0,
+    "translation": "Plattform",
+    "example": "Each platform has its own rules about advertising.",
+    "exampleDe": "Jede Plattform hat eigene Regeln für Werbung."
+  },
+  {
+    "id": "l07-w030",
+    "level": 7,
+    "term": "prototype",
+    "pos": "noun",
+    "ipaGb": "ˈprəʊ.tə.taɪp",
+    "syllables": [
+      "pro",
+      "to",
+      "type"
+    ],
+    "stressIndex": 0,
+    "translation": "Prototyp",
+    "example": "The prototype worked, but nobody could afford it.",
+    "exampleDe": "Der Prototyp funktionierte, aber niemand konnte ihn sich leisten."
+  },
+  {
+    "id": "l07-w031",
+    "level": 7,
+    "term": "publisher",
+    "pos": "noun",
+    "ipaGb": "ˈpʌb.lɪ.ʃər",
+    "syllables": [
+      "pub",
+      "li",
+      "sher"
+    ],
+    "stressIndex": 0,
+    "translation": "Verlag, Herausgeber",
+    "example": "The publisher refused to print a correction.",
+    "exampleDe": "Der Verlag weigerte sich, eine Richtigstellung zu drucken."
+  },
+  {
+    "id": "l07-w032",
+    "level": 7,
+    "term": "reliability",
+    "pos": "noun",
+    "ipaGb": "rɪˌlaɪ.əˈbɪl.ə.ti",
+    "syllables": [
+      "re",
+      "li",
+      "a",
+      "bil",
+      "i",
+      "ty"
+    ],
+    "stressIndex": 3,
+    "translation": "Zuverlässigkeit",
+    "example": "Reliability matters more than raw speed here.",
+    "exampleDe": "Zuverlässigkeit zählt hier mehr als reine Geschwindigkeit."
+  },
+  {
+    "id": "l07-w033",
+    "level": 7,
+    "term": "retrieve",
+    "pos": "verb",
+    "ipaGb": "rɪˈtriːv",
+    "syllables": [
+      "re",
+      "trieve"
+    ],
+    "stressIndex": 1,
+    "translation": "abrufen, wiederherstellen",
+    "example": "We managed to retrieve the file from a backup.",
+    "exampleDe": "Wir konnten die Datei aus einer Sicherung wiederherstellen."
+  },
+  {
+    "id": "l07-w034",
+    "level": 7,
+    "term": "server",
+    "pos": "noun",
+    "ipaGb": "ˈsɜː.vər",
+    "syllables": [
+      "ser",
+      "ver"
+    ],
+    "stressIndex": 0,
+    "translation": "Server",
+    "example": "The server is located in a different country.",
+    "exampleDe": "Der Server steht in einem anderen Land."
+  },
+  {
+    "id": "l07-w035",
+    "level": 7,
+    "term": "software",
+    "pos": "noun",
+    "ipaGb": "ˈsɒft.weər",
+    "syllables": [
+      "soft",
+      "ware"
+    ],
+    "stressIndex": 0,
+    "translation": "Software",
+    "example": "The software is free, the support is not.",
+    "exampleDe": "Die Software ist kostenlos, der Support nicht."
+  },
+  {
+    "id": "l07-w036",
+    "level": 7,
+    "term": "subscription",
+    "pos": "noun",
+    "ipaGb": "səbˈskrɪp.ʃən",
+    "syllables": [
+      "sub",
+      "scrip",
+      "tion"
+    ],
+    "stressIndex": 1,
+    "translation": "Abonnement",
+    "example": "Cancel the subscription before the trial ends.",
+    "exampleDe": "Kündige das Abonnement, bevor die Testphase endet."
+  },
+  {
+    "id": "l07-w037",
+    "level": 7,
+    "term": "latency",
+    "pos": "noun",
+    "ipaGb": "ˈleɪ.tən.si",
+    "syllables": [
+      "la",
+      "ten",
+      "cy"
+    ],
+    "stressIndex": 0,
+    "translation": "Verzögerung, Latenz",
+    "example": "High latency makes the game unplayable.",
+    "exampleDe": "Hohe Latenz macht das Spiel unspielbar.",
+    "note": "Erste Silbe mit langem /eɪ/ wie in „late“."
+  },
+  {
+    "id": "l07-w038",
+    "level": 7,
+    "term": "transmit",
+    "pos": "verb",
+    "ipaGb": "trænzˈmɪt",
+    "syllables": [
+      "trans",
+      "mit"
+    ],
+    "stressIndex": 1,
+    "translation": "übertragen, senden",
+    "example": "The sensors transmit a reading every ten seconds.",
+    "exampleDe": "Die Sensoren übertragen alle zehn Sekunden einen Messwert."
+  },
+  {
+    "id": "l07-w039",
+    "level": 7,
+    "term": "upgrade",
+    "pos": "noun",
+    "ipaGb": "ˈʌp.ɡreɪd",
+    "syllables": [
+      "up",
+      "grade"
+    ],
+    "stressIndex": 0,
+    "translation": "Verbesserung, Aufrüstung",
+    "example": "The upgrade broke two of our older plugins.",
+    "exampleDe": "Das Upgrade machte zwei unserer älteren Erweiterungen kaputt.",
+    "note": "Als Nomen vorn betont, als Verb meist hinten."
+  },
+  {
+    "id": "l07-w040",
+    "level": 7,
+    "term": "virtual",
+    "pos": "adjective",
+    "ipaGb": "ˈvɜː.tʃu.əl",
+    "syllables": [
+      "vir",
+      "tu",
+      "al"
+    ],
+    "stressIndex": 0,
+    "translation": "virtuell",
+    "example": "The whole conference was virtual this year.",
+    "exampleDe": "Die gesamte Konferenz war dieses Jahr virtuell."
+  },
+  {
+    "id": "l07-w041",
+    "level": 7,
+    "term": "wireless",
+    "pos": "adjective",
+    "ipaGb": "ˈwaɪə.ləs",
+    "syllables": [
+      "wire",
+      "less"
+    ],
+    "stressIndex": 0,
+    "translation": "drahtlos",
+    "example": "The wireless connection drops in the back room.",
+    "exampleDe": "Die drahtlose Verbindung bricht im hinteren Zimmer ab."
+  },
+  {
+    "id": "l07-w042",
+    "level": 7,
+    "term": "automation",
+    "pos": "noun",
+    "ipaGb": "ˌɔː.təˈmeɪ.ʃən",
+    "syllables": [
+      "au",
+      "to",
+      "ma",
+      "tion"
+    ],
+    "stressIndex": 2,
+    "translation": "Automatisierung",
+    "example": "Automation removed the most tedious part of the job.",
+    "exampleDe": "Automatisierung nahm den ödesten Teil der Arbeit weg."
+  },
+  {
+    "id": "l07-w043",
+    "level": 7,
+    "term": "censorship",
+    "pos": "noun",
+    "ipaGb": "ˈsen.sə.ʃɪp",
+    "syllables": [
+      "cen",
+      "sor",
+      "ship"
+    ],
+    "stressIndex": 0,
+    "translation": "Zensur",
+    "example": "The law was criticised as censorship by the press.",
+    "exampleDe": "Das Gesetz wurde von der Presse als Zensur kritisiert."
+  },
+  {
+    "id": "l07-w044",
+    "level": 7,
+    "term": "anonymous",
+    "pos": "adjective",
+    "ipaGb": "əˈnɒn.ɪ.məs",
+    "syllables": [
+      "a",
+      "non",
+      "y",
+      "mous"
+    ],
+    "stressIndex": 1,
+    "translation": "anonym",
+    "example": "The tip came from an anonymous account.",
+    "exampleDe": "Der Hinweis kam von einem anonymen Konto.",
+    "note": "Betonung auf der zweiten Silbe — anders als im deutschen „anonym“."
+  },
+  {
+    "id": "l07-w045",
+    "level": 7,
+    "term": "malfunction",
+    "pos": "noun",
+    "ipaGb": "ˌmælˈfʌŋk.ʃən",
+    "syllables": [
+      "mal",
+      "func",
+      "tion"
+    ],
+    "stressIndex": 1,
+    "translation": "Fehlfunktion",
+    "example": "A malfunction in the cooling system stopped production.",
+    "exampleDe": "Eine Fehlfunktion im Kühlsystem stoppte die Produktion."
+  },
+  {
+    "id": "l07-w046",
+    "level": 7,
+    "term": "streaming",
+    "pos": "noun",
+    "ipaGb": "ˈstriː.mɪŋ",
+    "syllables": [
+      "strea",
+      "ming"
+    ],
+    "stressIndex": 0,
+    "translation": "Streaming",
+    "example": "Streaming now accounts for most of their income.",
+    "exampleDe": "Streaming macht heute den Großteil ihrer Einnahmen aus."
+  },
+  {
+    "id": "l07-w047",
+    "level": 7,
+    "term": "bias",
+    "pos": "noun",
+    "ipaGb": "ˈbaɪ.əs",
+    "syllables": [
+      "bi",
+      "as"
+    ],
+    "stressIndex": 0,
+    "translation": "Voreingenommenheit, Verzerrung",
+    "example": "The study found a clear bias in the sample.",
+    "exampleDe": "Die Studie fand eine klare Verzerrung in der Stichprobe."
+  },
+  {
+    "id": "l07-w048",
+    "level": 7,
+    "term": "coverage",
+    "pos": "noun",
+    "ipaGb": "ˈkʌv.ər.ɪdʒ",
+    "syllables": [
+      "cov",
+      "er",
+      "age"
+    ],
+    "stressIndex": 0,
+    "translation": "Berichterstattung, Abdeckung",
+    "example": "Coverage of the trial filled the front pages.",
+    "exampleDe": "Die Berichterstattung über den Prozess füllte die Titelseiten."
+  },
+  {
+    "id": "l07-w049",
+    "level": 7,
+    "term": "headline",
+    "pos": "noun",
+    "ipaGb": "ˈhed.laɪn",
+    "syllables": [
+      "head",
+      "line"
+    ],
+    "stressIndex": 0,
+    "translation": "Schlagzeile",
+    "example": "The headline said far more than the article did.",
+    "exampleDe": "Die Schlagzeile sagte weit mehr aus als der Artikel."
+  },
+  {
+    "id": "l07-w050",
+    "level": 7,
+    "term": "archive",
+    "pos": "noun",
+    "ipaGb": "ˈɑː.kaɪv",
+    "syllables": [
+      "ar",
+      "chive"
+    ],
+    "stressIndex": 0,
+    "translation": "Archiv",
+    "example": "The archive is open to researchers on request.",
+    "exampleDe": "Das Archiv steht Forschenden auf Anfrage offen.",
+    "note": "Mit /k/ in der Mitte und /aɪv/ am Ende."
+  }
+]

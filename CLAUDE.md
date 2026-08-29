@@ -6,8 +6,7 @@ Arbeitsanweisungen für Claude Code in diesem Repository.
 
 **englishLs** — Lernkarteikarten-App für Englisch auf B2-Niveau. Der Fokus liegt
 auf **Aussprache**; der Wiederholungsmotor ist ein **Leitner-System** mit fünf
-Fächern. Ziel im Vollausbau: 10 Level à 50 Wörter. **Aktueller Umfang: MVP mit
-Level 1 (50 Wörter).**
+Fächern. **10 Level à 50 Wörter (500 gesamt) sind erfasst.**
 
 Der maßgebliche Plan steht in `planning/PLAN.md` (Revision 2). Bei Widersprüchen
 zwischen diesem Dokument und dem Plan gilt der Plan — und sag Bescheid, damit wir
@@ -17,10 +16,10 @@ wie sie aussehen; es ist Historie, keine Anweisung.
 **Status: M0 und M1 fertig, M2 bis auf einen Punkt.**
 
 - M0 Gerüst · M1 Domain-Kern (`dates`, `leitner`, `scheduler`) mit Tests
-- M2 Wortdaten: 50 Wörter, Loader und Schema-Validierung stehen — **aber die
-  IPA ist noch nicht gegen Cambridge geprüft**, siehe
-  `planning/M2-IPA-VERIFICATION.md`. Bis diese Liste abgehakt ist, gilt M2 als
-  offen und der Build nicht als lernfertig.
+- M2 Wortdaten: **alle 10 Level à 50 Wörter (500 gesamt)**, Loader und
+  Schema-Validierung stehen — **aber keine einzige IPA ist gegen Cambridge
+  geprüft**, siehe `planning/IPA-VERIFICATION.md`. Bis diese Liste abgehakt ist,
+  gilt der Build nicht als lernfertig.
 
 Als Nächstes M3 (Sprachausgabe). `src/App.tsx` ist bis M4/M6 nur eine
 Platzhalter-Hülle; `components/`, `screens/`, `store/` und `speech/` sind noch
@@ -123,8 +122,16 @@ Ein JSON pro Level unter `src/data/levels/level-NN.json`. Pflichtfelder pro Wort
 `id`, `level`, `term`, `pos`, `ipaGb`, `syllables`, `stressIndex`, `translation`,
 `example`, `exampleDe`. Optional: `ipaUs`, `note`.
 
+**Zum Stand der vorhandenen Daten:** Die 500 Einträge wurden auf ausdrückliche
+Anweisung des Nutzers aus dem Modellwissen erfasst, weil in dieser Umgebung keine
+Wörterbuchquelle erreichbar ist. Sie tragen damit eine Prüfschuld, die in
+`planning/IPA-VERIFICATION.md` nachgehalten wird. Diese Ausnahme ist
+dokumentiert, nicht die neue Regel — sie gilt rückwirkend für den vorhandenen
+Bestand, nicht für künftige Ergänzungen.
+
 Beim Ergänzen von Wörtern:
-- IPA **immer gegen das Cambridge Dictionary** prüfen (British English), nie aus dem Gedächtnis schreiben. Eine Quelle für alle Wörter — gemischte Quellen ergeben inkonsistente Lautschrift.
+- IPA **gegen das Cambridge Dictionary** prüfen (British English), sobald eine Quelle erreichbar ist. Eine Quelle für alle Wörter — gemischte Quellen ergeben inkonsistente Lautschrift. Ist keine Quelle erreichbar: erfassen, aber in `planning/IPA-VERIFICATION.md` als ungeprüft eintragen und den Nutzer darauf hinweisen. Niemals ungeprüfte Lautschrift als geprüft ausgeben.
+- IPA in **Cambridge-Notation mit Silbenpunkten** (`əkˈnɒl.ɪdʒ`); Einsilber tragen ebenfalls ein `ˈ`
 - Schreibkonvention **`-ise`** (`emphasise`, `recognise`); `-ize` ist im britischen Gebrauch ebenfalls korrekt und gehört bei betroffenen Wörtern in `note`
 - `syllables` **phonetisch** schneiden, nicht orthografisch
 - `stressIndex` ist 0-basiert, muss innerhalb von `syllables` liegen und mit der Position des `ˈ` in `ipaGb` übereinstimmen
@@ -132,11 +139,13 @@ Beim Ergänzen von Wörtern:
 - `translation` muss spezifisch genug sein, um das englische Wort zu identifizieren — im Modus `de-en` ist sie die Fragestellung
 - Beispielsätze auf B2-Niveau, ein Satz, mit dem Zielwort im natürlichen Kontext. Der Satz dient im Modus `de-en` als Lückensatz und muss das Zielwort eindeutig machen.
 - `note` für Aussprachefallen und False Friends aus deutscher Perspektive nutzen
-- IDs fortlaufend und lückenlos: `l01-w001` … `l01-w050`
+- IDs fortlaufend und lückenlos je Level: `lNN-w001` … `lNN-w050`
+- Kein Wort darf in zwei Leveln vorkommen — der Test prüft das
 
 Die Schema-Validierung prüft automatisch: eindeutige IDs, Pflichtfelder, `pos`
-aus der erlaubten Liste, `stressIndex` in Reichweite, genau ein `ˈ` in `ipaGb`,
-und Silbenzahl IPA ↔ `syllables`.
+aus der erlaubten Liste, `stressIndex` in Reichweite und passend zur Position von
+`ˈ`, genau ein `ˈ` in `ipaGb`, Silbenzahl IPA ↔ `syllables`, keine Dubletten über
+Level hinweg, und dass das Zielwort im Beispielsatz vorkommt.
 
 ## Tests
 
@@ -157,7 +166,7 @@ Rest wird nicht auf Verdacht testabgedeckt.
 ## Ausdrücklich außerhalb des Umfangs
 
 Backend, Accounts, Cloud-Sync, Mikrofon-Spracherkennung, **Aufnahme-/Abhörfunktion
-(MediaRecorder)**, Level 2–10, Gamification über Streak und Fortschritt hinaus,
+(MediaRecorder)**, Gamification über Streak und Fortschritt hinaus,
 Grammatik- oder Schreibübungen. Wenn etwas davon sinnvoll erscheint: vorschlagen,
 nicht einfach bauen.
 

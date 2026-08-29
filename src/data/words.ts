@@ -1,5 +1,14 @@
 import type { Pos, Word } from '../domain/types';
 import level01 from './levels/level-01.json';
+import level02 from './levels/level-02.json';
+import level03 from './levels/level-03.json';
+import level04 from './levels/level-04.json';
+import level05 from './levels/level-05.json';
+import level06 from './levels/level-06.json';
+import level07 from './levels/level-07.json';
+import level08 from './levels/level-08.json';
+import level09 from './levels/level-09.json';
+import level10 from './levels/level-10.json';
 
 /**
  * Loading and validating the word data.
@@ -220,6 +229,15 @@ export function formatIssues(issues: readonly ValidationIssue[]): string {
 
 const LEVEL_FILES: Readonly<Record<number, unknown>> = {
   1: level01,
+  2: level02,
+  3: level03,
+  4: level04,
+  5: level05,
+  6: level06,
+  7: level07,
+  8: level08,
+  9: level09,
+  10: level10,
 };
 
 const cache = new Map<number, Word[]>();

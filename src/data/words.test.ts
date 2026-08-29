@@ -1,4 +1,3 @@
-import level01 from './levels/level-01.json';
 import {
   POS_VALUES,
   availableLevels,
@@ -176,55 +175,77 @@ describe('formatIssues', () => {
   });
 });
 
-describe('level 1 word data', () => {
-  it('passes validation', () => {
-    expect(formatIssues(validateLevel(level01, 1))).toBe('');
+describe('word data', () => {
+  const levels = availableLevels();
+
+  it('ships all ten levels', () => {
+    expect(levels).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   });
 
-  it('holds exactly 50 words', () => {
-    expect(level01).toHaveLength(50);
+  it.each(availableLevels())('level %i passes validation', (level) => {
+    expect(formatIssues(validateLevel(getLevel(level), level))).toBe('');
   });
 
-  it('loads through getLevel', () => {
-    expect(getLevel(1)).toHaveLength(50);
+  it.each(availableLevels())('level %i holds exactly 50 words', (level) => {
+    expect(getLevel(level)).toHaveLength(50);
   });
 
   it('throws for a level that ships no data', () => {
-    expect(() => getLevel(2)).toThrow(/No word data/);
+    expect(() => getLevel(11)).toThrow(/No word data/);
   });
 
-  it('reports which levels ship data', () => {
-    expect(availableLevels()).toEqual([1]);
-  });
+  it('has no duplicate terms across levels', () => {
+    const seen = new Map<string, string>();
+    const duplicates: string[] = [];
 
-  it('has no duplicate terms', () => {
-    const terms = level01.map((word) => word.term);
+    for (const level of levels) {
+      for (const word of getLevel(level)) {
+        const term = word.term.toLowerCase();
+        const first = seen.get(term);
 
-    expect(new Set(terms).size).toBe(terms.length);
+        if (first) duplicates.push(`${word.id} repeats ${term} from ${first}`);
+        else seen.set(term, word.id);
+      }
+    }
+
+    expect(duplicates).toEqual([]);
   });
 
   it('uses each example sentence to contain its own target word', () => {
     // In de-en mode the sentence becomes the gap that disambiguates the prompt,
     // so the term has to actually appear in it.
-    const missing = level01
+    const missing = levels
+      .flatMap((level) => getLevel(level))
       .filter((word) => !word.example.toLowerCase().includes(word.term.toLowerCase()))
-      .map((word) => word.term);
+      .map((word) => word.id);
 
     expect(missing).toEqual([]);
   });
 
   it('keeps the British -ise spelling convention', () => {
-    const wrongSpelling = level01
-      .filter((word) => /i[sz]e$/.test(word.term) && word.term.endsWith('ize'))
+    const wrongSpelling = levels
+      .flatMap((level) => getLevel(level))
+      .filter((word) => word.term.endsWith('ize'))
       .map((word) => word.term);
 
     expect(wrongSpelling).toEqual([]);
   });
 
   it('gives every word a German translation and example', () => {
-    for (const word of level01) {
-      expect(word.translation.length).toBeGreaterThan(2);
-      expect(word.exampleDe.length).toBeGreaterThan(10);
+    for (const level of levels) {
+      for (const word of getLevel(level)) {
+        expect(word.translation.length).toBeGreaterThan(2);
+        expect(word.exampleDe.length).toBeGreaterThan(10);
+      }
+    }
+  });
+
+  it('marks stress inside the syllables it lists', () => {
+    for (const level of levels) {
+      for (const word of getLevel(level)) {
+        expect(word.stressIndex).toBeLessThan(word.syllables.length);
+        expect(parseIpa(word.ipaGb).stressIndex).toBe(word.stressIndex);
+      }
     }
   });
 });

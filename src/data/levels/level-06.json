@@ -1,0 +1,812 @@
+[
+  {
+    "id": "l06-w001",
+    "level": 6,
+    "term": "abundant",
+    "pos": "adjective",
+    "ipaGb": "əˈbʌn.dənt",
+    "syllables": [
+      "a",
+      "bun",
+      "dant"
+    ],
+    "stressIndex": 1,
+    "translation": "reichlich vorhanden",
+    "example": "Rainfall is abundant on the western slopes.",
+    "exampleDe": "Niederschlag ist an den Westhängen reichlich vorhanden."
+  },
+  {
+    "id": "l06-w002",
+    "level": 6,
+    "term": "agriculture",
+    "pos": "noun",
+    "ipaGb": "ˈæɡ.rɪ.kʌl.tʃər",
+    "syllables": [
+      "ag",
+      "ri",
+      "cul",
+      "ture"
+    ],
+    "stressIndex": 0,
+    "translation": "Landwirtschaft",
+    "example": "Agriculture uses most of the region's water.",
+    "exampleDe": "Die Landwirtschaft verbraucht den Großteil des Wassers der Region."
+  },
+  {
+    "id": "l06-w003",
+    "level": 6,
+    "term": "atmosphere",
+    "pos": "noun",
+    "ipaGb": "ˈæt.mə.sfɪər",
+    "syllables": [
+      "at",
+      "mo",
+      "sphere"
+    ],
+    "stressIndex": 0,
+    "translation": "Atmosphäre, Lufthülle",
+    "example": "Carbon dioxide stays in the atmosphere for centuries.",
+    "exampleDe": "Kohlendioxid bleibt jahrhundertelang in der Atmosphäre.",
+    "note": "Betonung ganz vorn — anders als im deutschen „Atmosphäre“."
+  },
+  {
+    "id": "l06-w004",
+    "level": 6,
+    "term": "biodiversity",
+    "pos": "noun",
+    "ipaGb": "ˌbaɪ.əʊ.daɪˈvɜː.sə.ti",
+    "syllables": [
+      "bi",
+      "o",
+      "di",
+      "ver",
+      "si",
+      "ty"
+    ],
+    "stressIndex": 3,
+    "translation": "Artenvielfalt",
+    "example": "Hedgerows are important for local biodiversity.",
+    "exampleDe": "Hecken sind wichtig für die örtliche Artenvielfalt."
+  },
+  {
+    "id": "l06-w005",
+    "level": 6,
+    "term": "climate",
+    "pos": "noun",
+    "ipaGb": "ˈklaɪ.mət",
+    "syllables": [
+      "cli",
+      "mate"
+    ],
+    "stressIndex": 0,
+    "translation": "Klima",
+    "example": "The climate here has become noticeably drier.",
+    "exampleDe": "Das Klima hier ist spürbar trockener geworden.",
+    "note": "Erste Silbe mit /aɪ/, Endung mit schwachem /ət/."
+  },
+  {
+    "id": "l06-w006",
+    "level": 6,
+    "term": "conservation",
+    "pos": "noun",
+    "ipaGb": "ˌkɒn.səˈveɪ.ʃən",
+    "syllables": [
+      "con",
+      "ser",
+      "va",
+      "tion"
+    ],
+    "stressIndex": 2,
+    "translation": "Naturschutz, Erhaltung",
+    "example": "Conservation work has brought the birds back.",
+    "exampleDe": "Naturschutzarbeit hat die Vögel zurückgebracht."
+  },
+  {
+    "id": "l06-w007",
+    "level": 6,
+    "term": "contaminate",
+    "pos": "verb",
+    "ipaGb": "kənˈtæm.ɪ.neɪt",
+    "syllables": [
+      "con",
+      "tam",
+      "i",
+      "nate"
+    ],
+    "stressIndex": 1,
+    "translation": "verunreinigen, verseuchen",
+    "example": "The leak could contaminate the groundwater.",
+    "exampleDe": "Das Leck könnte das Grundwasser verunreinigen."
+  },
+  {
+    "id": "l06-w008",
+    "level": 6,
+    "term": "deforestation",
+    "pos": "noun",
+    "ipaGb": "diːˌfɒr.ɪˈsteɪ.ʃən",
+    "syllables": [
+      "de",
+      "for",
+      "es",
+      "ta",
+      "tion"
+    ],
+    "stressIndex": 3,
+    "translation": "Abholzung",
+    "example": "Deforestation has slowed but not stopped.",
+    "exampleDe": "Die Abholzung hat sich verlangsamt, aber nicht aufgehört."
+  },
+  {
+    "id": "l06-w009",
+    "level": 6,
+    "term": "drought",
+    "pos": "noun",
+    "ipaGb": "ˈdraʊt",
+    "syllables": [
+      "drought"
+    ],
+    "stressIndex": 0,
+    "translation": "Dürre",
+    "example": "The drought lasted through the whole summer.",
+    "exampleDe": "Die Dürre hielt den ganzen Sommer über an.",
+    "note": "Reimt auf „out“ — das „gh“ bleibt stumm."
+  },
+  {
+    "id": "l06-w010",
+    "level": 6,
+    "term": "ecosystem",
+    "pos": "noun",
+    "ipaGb": "ˈiː.kəʊˌsɪs.təm",
+    "syllables": [
+      "e",
+      "co",
+      "sys",
+      "tem"
+    ],
+    "stressIndex": 0,
+    "translation": "Ökosystem",
+    "example": "A single species can hold the whole ecosystem together.",
+    "exampleDe": "Eine einzige Art kann das ganze Ökosystem zusammenhalten."
+  },
+  {
+    "id": "l06-w011",
+    "level": 6,
+    "term": "emission",
+    "pos": "noun",
+    "ipaGb": "iˈmɪʃ.ən",
+    "syllables": [
+      "e",
+      "mis",
+      "sion"
+    ],
+    "stressIndex": 1,
+    "translation": "Emission, Ausstoß",
+    "example": "Every emission target was missed by a wide margin.",
+    "exampleDe": "Jedes Emissionsziel wurde deutlich verfehlt."
+  },
+  {
+    "id": "l06-w012",
+    "level": 6,
+    "term": "endangered",
+    "pos": "adjective",
+    "ipaGb": "ɪnˈdeɪn.dʒəd",
+    "syllables": [
+      "en",
+      "dan",
+      "gered"
+    ],
+    "stressIndex": 1,
+    "translation": "gefährdet, vom Aussterben bedroht",
+    "example": "The otter is no longer an endangered species here.",
+    "exampleDe": "Der Otter ist hier keine bedrohte Art mehr."
+  },
+  {
+    "id": "l06-w013",
+    "level": 6,
+    "term": "erosion",
+    "pos": "noun",
+    "ipaGb": "iˈrəʊ.ʒən",
+    "syllables": [
+      "e",
+      "ro",
+      "sion"
+    ],
+    "stressIndex": 1,
+    "translation": "Erosion, Abtragung",
+    "example": "Coastal erosion threatens the footpath.",
+    "exampleDe": "Küstenerosion bedroht den Fußweg.",
+    "note": "Mittelsilbe mit stimmhaftem /ʒ/."
+  },
+  {
+    "id": "l06-w014",
+    "level": 6,
+    "term": "extinct",
+    "pos": "adjective",
+    "ipaGb": "ɪkˈstɪŋkt",
+    "syllables": [
+      "ex",
+      "tinct"
+    ],
+    "stressIndex": 1,
+    "translation": "ausgestorben",
+    "example": "The bird has been extinct on the island since 1920.",
+    "exampleDe": "Der Vogel ist auf der Insel seit 1920 ausgestorben."
+  },
+  {
+    "id": "l06-w015",
+    "level": 6,
+    "term": "fertile",
+    "pos": "adjective",
+    "ipaGb": "ˈfɜː.taɪl",
+    "syllables": [
+      "fer",
+      "tile"
+    ],
+    "stressIndex": 0,
+    "translation": "fruchtbar",
+    "example": "The valley floor is unusually fertile.",
+    "exampleDe": "Der Talboden ist ungewöhnlich fruchtbar.",
+    "note": "Britisch mit /aɪl/ am Ende, amerikanisch meist /əl/."
+  },
+  {
+    "id": "l06-w016",
+    "level": 6,
+    "term": "flourish",
+    "pos": "verb",
+    "ipaGb": "ˈflʌr.ɪʃ",
+    "syllables": [
+      "flour",
+      "ish"
+    ],
+    "stressIndex": 0,
+    "translation": "gedeihen, blühen",
+    "example": "Wild flowers flourish where the grass is left uncut.",
+    "exampleDe": "Wildblumen gedeihen dort, wo das Gras ungemäht bleibt.",
+    "note": "Erste Silbe mit /ʌ/, nicht wie „flour“ (Mehl)."
+  },
+  {
+    "id": "l06-w017",
+    "level": 6,
+    "term": "fossil",
+    "pos": "noun",
+    "ipaGb": "ˈfɒs.əl",
+    "syllables": [
+      "fos",
+      "sil"
+    ],
+    "stressIndex": 0,
+    "translation": "Fossil",
+    "example": "The cliff is famous for a fossil found in 1811.",
+    "exampleDe": "Die Klippe ist für ein 1811 gefundenes Fossil berühmt."
+  },
+  {
+    "id": "l06-w018",
+    "level": 6,
+    "term": "glacier",
+    "pos": "noun",
+    "ipaGb": "ˈɡlæs.i.ər",
+    "syllables": [
+      "gla",
+      "ci",
+      "er"
+    ],
+    "stressIndex": 0,
+    "translation": "Gletscher",
+    "example": "The glacier has retreated by half a kilometre.",
+    "exampleDe": "Der Gletscher ist um einen halben Kilometer zurückgegangen.",
+    "note": "Britisch mit kurzem /æ/ in der ersten Silbe."
+  },
+  {
+    "id": "l06-w019",
+    "level": 6,
+    "term": "habitat",
+    "pos": "noun",
+    "ipaGb": "ˈhæb.ɪ.tæt",
+    "syllables": [
+      "hab",
+      "i",
+      "tat"
+    ],
+    "stressIndex": 0,
+    "translation": "Lebensraum",
+    "example": "Draining the marsh destroyed the habitat.",
+    "exampleDe": "Die Trockenlegung des Moors zerstörte den Lebensraum."
+  },
+  {
+    "id": "l06-w020",
+    "level": 6,
+    "term": "hazardous",
+    "pos": "adjective",
+    "ipaGb": "ˈhæz.ə.dəs",
+    "syllables": [
+      "haz",
+      "ar",
+      "dous"
+    ],
+    "stressIndex": 0,
+    "translation": "gefährlich, gesundheitsschädlich",
+    "example": "Hazardous waste must be stored separately.",
+    "exampleDe": "Gefährliche Abfälle müssen getrennt gelagert werden."
+  },
+  {
+    "id": "l06-w021",
+    "level": 6,
+    "term": "hemisphere",
+    "pos": "noun",
+    "ipaGb": "ˈhem.ɪ.sfɪər",
+    "syllables": [
+      "hem",
+      "i",
+      "sphere"
+    ],
+    "stressIndex": 0,
+    "translation": "Hemisphäre, Erdhalbkugel",
+    "example": "The storm season starts later in this hemisphere.",
+    "exampleDe": "Die Sturmsaison beginnt auf dieser Erdhalbkugel später."
+  },
+  {
+    "id": "l06-w022",
+    "level": 6,
+    "term": "irrigation",
+    "pos": "noun",
+    "ipaGb": "ˌɪr.ɪˈɡeɪ.ʃən",
+    "syllables": [
+      "ir",
+      "ri",
+      "ga",
+      "tion"
+    ],
+    "stressIndex": 2,
+    "translation": "Bewässerung",
+    "example": "Modern irrigation cut water use by a third.",
+    "exampleDe": "Moderne Bewässerung senkte den Wasserverbrauch um ein Drittel."
+  },
+  {
+    "id": "l06-w023",
+    "level": 6,
+    "term": "landfill",
+    "pos": "noun",
+    "ipaGb": "ˈlænd.fɪl",
+    "syllables": [
+      "land",
+      "fill"
+    ],
+    "stressIndex": 0,
+    "translation": "Mülldeponie",
+    "example": "Less than a tenth now goes to landfill.",
+    "exampleDe": "Weniger als ein Zehntel landet heute auf der Deponie."
+  },
+  {
+    "id": "l06-w024",
+    "level": 6,
+    "term": "livestock",
+    "pos": "noun",
+    "ipaGb": "ˈlaɪv.stɒk",
+    "syllables": [
+      "live",
+      "stock"
+    ],
+    "stressIndex": 0,
+    "translation": "Vieh, Nutztiere",
+    "example": "Livestock farming dominates the northern valleys.",
+    "exampleDe": "Die Viehhaltung prägt die nördlichen Täler.",
+    "note": "Erste Silbe mit /aɪ/ wie in „alive“."
+  },
+  {
+    "id": "l06-w025",
+    "level": 6,
+    "term": "marine",
+    "pos": "adjective",
+    "ipaGb": "məˈriːn",
+    "syllables": [
+      "ma",
+      "rine"
+    ],
+    "stressIndex": 1,
+    "translation": "Meeres-, marin",
+    "example": "The bay was declared a marine reserve.",
+    "exampleDe": "Die Bucht wurde zum Meeresschutzgebiet erklärt.",
+    "note": "Betonung hinten, Endung mit langem /iːn/."
+  },
+  {
+    "id": "l06-w026",
+    "level": 6,
+    "term": "meadow",
+    "pos": "noun",
+    "ipaGb": "ˈmed.əʊ",
+    "syllables": [
+      "mea",
+      "dow"
+    ],
+    "stressIndex": 0,
+    "translation": "Wiese",
+    "example": "The meadow is cut only once a year.",
+    "exampleDe": "Die Wiese wird nur einmal im Jahr gemäht.",
+    "note": "Erste Silbe mit kurzem /e/, nicht /iː/."
+  },
+  {
+    "id": "l06-w027",
+    "level": 6,
+    "term": "moisture",
+    "pos": "noun",
+    "ipaGb": "ˈmɔɪs.tʃər",
+    "syllables": [
+      "mois",
+      "ture"
+    ],
+    "stressIndex": 0,
+    "translation": "Feuchtigkeit",
+    "example": "Moss holds moisture long after the rain stops.",
+    "exampleDe": "Moos hält Feuchtigkeit lange nach dem Regen."
+  },
+  {
+    "id": "l06-w028",
+    "level": 6,
+    "term": "nutrient",
+    "pos": "noun",
+    "ipaGb": "ˈnjuː.tri.ənt",
+    "syllables": [
+      "nu",
+      "tri",
+      "ent"
+    ],
+    "stressIndex": 0,
+    "translation": "Nährstoff",
+    "example": "The soil lost every nutrient within two seasons.",
+    "exampleDe": "Der Boden verlor innerhalb von zwei Saisons jeden Nährstoff."
+  },
+  {
+    "id": "l06-w029",
+    "level": 6,
+    "term": "organic",
+    "pos": "adjective",
+    "ipaGb": "ɔːˈɡæn.ɪk",
+    "syllables": [
+      "or",
+      "gan",
+      "ic"
+    ],
+    "stressIndex": 1,
+    "translation": "biologisch, ökologisch angebaut",
+    "example": "Organic farming covers a fifth of the land here.",
+    "exampleDe": "Ökologischer Landbau nimmt hier ein Fünftel der Fläche ein."
+  },
+  {
+    "id": "l06-w030",
+    "level": 6,
+    "term": "pesticide",
+    "pos": "noun",
+    "ipaGb": "ˈpes.tɪ.saɪd",
+    "syllables": [
+      "pes",
+      "ti",
+      "cide"
+    ],
+    "stressIndex": 0,
+    "translation": "Pestizid",
+    "example": "The pesticide was banned across Europe in 2018.",
+    "exampleDe": "Das Pestizid wurde 2018 europaweit verboten."
+  },
+  {
+    "id": "l06-w031",
+    "level": 6,
+    "term": "pollution",
+    "pos": "noun",
+    "ipaGb": "pəˈluː.ʃən",
+    "syllables": [
+      "pol",
+      "lu",
+      "tion"
+    ],
+    "stressIndex": 1,
+    "translation": "Verschmutzung",
+    "example": "Air pollution drops sharply at the weekend.",
+    "exampleDe": "Die Luftverschmutzung sinkt am Wochenende deutlich."
+  },
+  {
+    "id": "l06-w032",
+    "level": 6,
+    "term": "preserve",
+    "pos": "verb",
+    "ipaGb": "prɪˈzɜːv",
+    "syllables": [
+      "pre",
+      "serve"
+    ],
+    "stressIndex": 1,
+    "translation": "erhalten, bewahren",
+    "example": "The trust works to preserve ancient woodland.",
+    "exampleDe": "Die Stiftung arbeitet daran, alte Wälder zu erhalten."
+  },
+  {
+    "id": "l06-w033",
+    "level": 6,
+    "term": "recycle",
+    "pos": "verb",
+    "ipaGb": "ˌriːˈsaɪ.kəl",
+    "syllables": [
+      "re",
+      "cy",
+      "cle"
+    ],
+    "stressIndex": 1,
+    "translation": "wiederverwerten",
+    "example": "Households now recycle more than they discard.",
+    "exampleDe": "Haushalte verwerten heute mehr, als sie wegwerfen."
+  },
+  {
+    "id": "l06-w034",
+    "level": 6,
+    "term": "renewable",
+    "pos": "adjective",
+    "ipaGb": "rɪˈnjuː.ə.bəl",
+    "syllables": [
+      "re",
+      "new",
+      "a",
+      "ble"
+    ],
+    "stressIndex": 1,
+    "translation": "erneuerbar",
+    "example": "Renewable energy covered half the demand last year.",
+    "exampleDe": "Erneuerbare Energie deckte im Vorjahr die Hälfte des Bedarfs."
+  },
+  {
+    "id": "l06-w035",
+    "level": 6,
+    "term": "reservoir",
+    "pos": "noun",
+    "ipaGb": "ˈrez.ə.vwɑːr",
+    "syllables": [
+      "res",
+      "er",
+      "voir"
+    ],
+    "stressIndex": 0,
+    "translation": "Stausee, Reservoir",
+    "example": "The reservoir fell to a quarter of its capacity.",
+    "exampleDe": "Der Stausee sank auf ein Viertel seines Fassungsvermögens.",
+    "note": "Endung französisch /vwɑːr/, das „r“ dazwischen bleibt stumm."
+  },
+  {
+    "id": "l06-w036",
+    "level": 6,
+    "term": "sanctuary",
+    "pos": "noun",
+    "ipaGb": "ˈsæŋk.tʃu.ər.i",
+    "syllables": [
+      "sanc",
+      "tu",
+      "ar",
+      "y"
+    ],
+    "stressIndex": 0,
+    "translation": "Schutzgebiet, Zufluchtsort",
+    "example": "The island became a sanctuary for seabirds.",
+    "exampleDe": "Die Insel wurde zum Schutzgebiet für Seevögel."
+  },
+  {
+    "id": "l06-w037",
+    "level": 6,
+    "term": "scarce",
+    "pos": "adjective",
+    "ipaGb": "ˈskeəs",
+    "syllables": [
+      "scarce"
+    ],
+    "stressIndex": 0,
+    "translation": "knapp, rar",
+    "example": "Fresh water is scarce in the dry months.",
+    "exampleDe": "Süßwasser ist in den Trockenmonaten knapp."
+  },
+  {
+    "id": "l06-w038",
+    "level": 6,
+    "term": "sediment",
+    "pos": "noun",
+    "ipaGb": "ˈsed.ɪ.mənt",
+    "syllables": [
+      "sed",
+      "i",
+      "ment"
+    ],
+    "stressIndex": 0,
+    "translation": "Sediment, Ablagerung",
+    "example": "Sediment from the fields clouds the river.",
+    "exampleDe": "Sediment von den Feldern trübt den Fluss."
+  },
+  {
+    "id": "l06-w039",
+    "level": 6,
+    "term": "shrink",
+    "pos": "verb",
+    "ipaGb": "ˈʃrɪŋk",
+    "syllables": [
+      "shrink"
+    ],
+    "stressIndex": 0,
+    "translation": "schrumpfen",
+    "example": "The lakes shrink a little further every decade.",
+    "exampleDe": "Die Seen schrumpfen mit jedem Jahrzehnt ein Stück weiter."
+  },
+  {
+    "id": "l06-w040",
+    "level": 6,
+    "term": "species",
+    "pos": "noun",
+    "ipaGb": "ˈspiː.ʃiːz",
+    "syllables": [
+      "spe",
+      "cies"
+    ],
+    "stressIndex": 0,
+    "translation": "Art, Spezies",
+    "example": "This species nests only on bare rock.",
+    "exampleDe": "Diese Art nistet ausschließlich auf nacktem Fels.",
+    "note": "Singular und Plural sind gleich; gesprochen /ˈspiː.ʃiːz/."
+  },
+  {
+    "id": "l06-w041",
+    "level": 6,
+    "term": "sustainable",
+    "pos": "adjective",
+    "ipaGb": "səˈsteɪ.nə.bəl",
+    "syllables": [
+      "sus",
+      "tai",
+      "na",
+      "ble"
+    ],
+    "stressIndex": 1,
+    "translation": "nachhaltig",
+    "example": "They wanted a sustainable solution, not a quick fix.",
+    "exampleDe": "Sie wollten eine nachhaltige Lösung, keine schnelle Notlösung."
+  },
+  {
+    "id": "l06-w042",
+    "level": 6,
+    "term": "temperate",
+    "pos": "adjective",
+    "ipaGb": "ˈtem.pər.ət",
+    "syllables": [
+      "tem",
+      "per",
+      "ate"
+    ],
+    "stressIndex": 0,
+    "translation": "gemäßigt",
+    "example": "Britain has a temperate maritime climate.",
+    "exampleDe": "Großbritannien hat ein gemäßigtes Seeklima.",
+    "note": "Endung mit schwachem /ət/, nicht /eɪt/."
+  },
+  {
+    "id": "l06-w043",
+    "level": 6,
+    "term": "terrain",
+    "pos": "noun",
+    "ipaGb": "təˈreɪn",
+    "syllables": [
+      "ter",
+      "rain"
+    ],
+    "stressIndex": 1,
+    "translation": "Gelände, Terrain",
+    "example": "The terrain is too steep for machinery.",
+    "exampleDe": "Das Gelände ist für Maschinen zu steil."
+  },
+  {
+    "id": "l06-w044",
+    "level": 6,
+    "term": "pristine",
+    "pos": "adjective",
+    "ipaGb": "ˈprɪs.tiːn",
+    "syllables": [
+      "pris",
+      "tine"
+    ],
+    "stressIndex": 0,
+    "translation": "unberührt, makellos",
+    "example": "The upper valley is still pristine woodland.",
+    "exampleDe": "Das obere Tal ist noch unberührter Wald.",
+    "note": "Endung mit langem /tiːn/, Betonung vorn."
+  },
+  {
+    "id": "l06-w045",
+    "level": 6,
+    "term": "toxic",
+    "pos": "adjective",
+    "ipaGb": "ˈtɒk.sɪk",
+    "syllables": [
+      "tox",
+      "ic"
+    ],
+    "stressIndex": 0,
+    "translation": "giftig",
+    "example": "The algae release a toxic substance in warm water.",
+    "exampleDe": "Die Algen setzen in warmem Wasser einen giftigen Stoff frei."
+  },
+  {
+    "id": "l06-w046",
+    "level": 6,
+    "term": "tributary",
+    "pos": "noun",
+    "ipaGb": "ˈtrɪb.jə.tər.i",
+    "syllables": [
+      "trib",
+      "u",
+      "tar",
+      "y"
+    ],
+    "stressIndex": 0,
+    "translation": "Nebenfluss",
+    "example": "A small tributary joins the river below the bridge.",
+    "exampleDe": "Ein kleiner Nebenfluss mündet unterhalb der Brücke in den Fluss."
+  },
+  {
+    "id": "l06-w047",
+    "level": 6,
+    "term": "vegetation",
+    "pos": "noun",
+    "ipaGb": "ˌvedʒ.əˈteɪ.ʃən",
+    "syllables": [
+      "veg",
+      "e",
+      "ta",
+      "tion"
+    ],
+    "stressIndex": 2,
+    "translation": "Vegetation, Pflanzenwuchs",
+    "example": "Vegetation returned within three years of the fire.",
+    "exampleDe": "Die Vegetation kehrte binnen drei Jahren nach dem Brand zurück."
+  },
+  {
+    "id": "l06-w048",
+    "level": 6,
+    "term": "wilderness",
+    "pos": "noun",
+    "ipaGb": "ˈwɪl.də.nəs",
+    "syllables": [
+      "wil",
+      "der",
+      "ness"
+    ],
+    "stressIndex": 0,
+    "translation": "Wildnis",
+    "example": "Only a narrow strip of wilderness remains.",
+    "exampleDe": "Nur ein schmaler Streifen Wildnis ist geblieben.",
+    "note": "Erste Silbe mit kurzem /ɪ/ wie in „will“."
+  },
+  {
+    "id": "l06-w049",
+    "level": 6,
+    "term": "wildlife",
+    "pos": "noun",
+    "ipaGb": "ˈwaɪld.laɪf",
+    "syllables": [
+      "wild",
+      "life"
+    ],
+    "stressIndex": 0,
+    "translation": "Tierwelt, wildlebende Tiere",
+    "example": "The new hedges brought wildlife back to the farm.",
+    "exampleDe": "Die neuen Hecken brachten die Tierwelt zurück auf den Hof."
+  },
+  {
+    "id": "l06-w050",
+    "level": 6,
+    "term": "catastrophe",
+    "pos": "noun",
+    "ipaGb": "kəˈtæs.trə.fi",
+    "syllables": [
+      "ca",
+      "tas",
+      "tro",
+      "phe"
+    ],
+    "stressIndex": 1,
+    "translation": "Katastrophe",
+    "example": "The flood was the worst catastrophe in living memory.",
+    "exampleDe": "Die Flut war die schlimmste Katastrophe seit Menschengedenken.",
+    "note": "Vier Silben mit Betonung auf der zweiten; die Endung klingt wie /fi/."
+  }
+]

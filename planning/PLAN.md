@@ -2,11 +2,12 @@
 
 **Lernkarteikarten-App für Englisch B2 — Fokus Aussprache, Motor: Leitner-System**
 
-Status: **Planungsphase.** Es existiert noch kein Code. Dieses Dokument ist die
-Grundlage für die Umsetzung des MVP (Level 1, 50 Wörter).
+Status: **M0–M2 umgesetzt** (Gerüst, Domain-Kern, Wortdaten für alle zehn Level).
+Als Nächstes M3. Die Lautschrift steht unter Prüfvorbehalt, siehe §13.2.
 
-Revision 2 — die Befunde aus `planning/REVIEW.md` sind eingearbeitet. Wo der
-Review eine Entscheidung offengelassen hat, steht sie jetzt in §2.
+Revision 3 — die Befunde aus `planning/REVIEW.md` sind eingearbeitet (Revision 2),
+und auf Nutzerentscheidung sind **alle zehn Level mit Wortdaten befüllt**, obwohl
+das MVP ursprünglich nur Level 1 vorsah.
 
 ---
 
@@ -18,8 +19,8 @@ vorne: Man produziert das englische Wort selbst, spricht es aus und prüft danac
 gegen Hörbeispiel (TTS), IPA-Lautschrift, Silbentrennung mit markierter Betonung
 und Beispielsatz. Wiederholt wird nach dem **Leitner-System** (5 Fächer): Was
 sitzt, wandert nach hinten und kommt seltener; was hakt, fällt zurück. Der volle
-Ausbau sind 10 Level à 50 Wörter (500 Wörter); das MVP liefert **Level 1
-vollständig** und die Level-Architektur so, dass 2–10 reines Datenhinzufügen sind.
+Ausbau sind 10 Level à 50 Wörter (500 Wörter); **alle zehn sind inzwischen
+erfasst**, ihre Lautschrift steht aber noch unter Prüfvorbehalt (§13.2).
 
 ## 2. Getroffene Entscheidungen
 
@@ -30,7 +31,9 @@ vollständig** und die Level-Architektur so, dass 2–10 reines Datenhinzufügen
 | Aussprache-Prüfung | Hören + **Selbstbewertung**, IPA sichtbar | Funktioniert in jedem Browser zuverlässig; Spracherkennung ist bei Nicht-Muttersprachlern zu ungenau, um den Lernfortschritt zu steuern. **Bekannte Schwäche, siehe §13.1** |
 | **Abfragerichtung** | **DE → EN als Standard**, am Sessionstart auf EN → DE umschaltbar | Produktive Richtung ist die eigentliche Lernarbeit; die Wahl pro Session hält beide Modi verfügbar, ohne zwei Fortschrittsstände zu erzeugen |
 | **Aufnahme-Funktion** | **Nicht im MVP** | Bewusst zurückgestellt; bleibt der stärkste Kandidat für v2 (§14) |
-| Kartendaten | Wort, IPA, Wortart, DE-Übersetzung, Beispielsatz (+ Silben/Betonung) | B2-tauglich und für 50 Wörter handkuratierbar in guter Qualität |
+| **Umfang der Wortdaten** | **Alle 10 Level (500 Wörter) erfasst** | Nutzerentscheidung. Ursprünglich sollte nur Level 1 ins MVP; die Architektur trug die Erweiterung ohne Codeänderung |
+| **IPA-Herkunft** | **Modellwissen statt Cambridge**, Prüfschuld dokumentiert | Nutzerentscheidung, nachdem sich zeigte, dass in dieser Umgebung keine Wörterbuchquelle erreichbar ist. Risiko in §13.2 |
+| Kartendaten | Wort, IPA, Wortart, DE-Übersetzung, Beispielsatz (+ Silben/Betonung) | B2-tauglich und handkuratierbar |
 | Sprachniveau UI | Deutsch | Muttersprache des Nutzers |
 | Aussprachevariante | **British English (en-GB)** als Standard, US umschaltbar | Eine Variante muss führen, sonst ist die IPA inkonsistent |
 | **IPA-Referenzquelle** | **Cambridge Dictionary**, verbindlich für alle Wörter | Eine feste Quelle statt Gedächtnis; lernerorientiert, GB und US getrennt ausgewiesen |
@@ -41,7 +44,6 @@ vollständig** und die Level-Architektur so, dass 2–10 reines Datenhinzufügen
 - Kein Backend, keine Accounts, kein Cloud-Sync, keine Mehrgeräte-Synchronisation
 - Keine automatische Spracherkennung per Mikrofon
 - **Keine Aufnahme-/Abhörfunktion** (zurückgestellt, siehe §14)
-- Level 2–10 werden **nicht** befüllt (Architektur ja, Daten nein)
 - Keine Gamification über Streak + Fortschritt hinaus (keine Punkte, kein Shop)
 - Keine Grammatik-, Hör- oder Schreibübungen — nur Vokabel + Aussprache
 - Keine Internationalisierung der Oberfläche (fest Deutsch)
@@ -76,7 +78,7 @@ interface Word {
   level: number;         // 1..10
   term: string;          // "acknowledge"
   pos: Pos;              // genau EIN Wert, siehe Kurationsregeln
-  ipaGb: string;         // "əkˈnɒlɪdʒ" — Quelle: Cambridge
+  ipaGb: string;         // "əkˈnɒl.ɪdʒ" — Cambridge-Notation mit Silbenpunkten
   ipaUs?: string;        // "əkˈnɑːlɪdʒ" (nur wenn abweichend)
   syllables: string[];   // ["ac", "knowl", "edge"] — phonetisch geschnitten
   stressIndex: number;   // 1 → zweite Silbe ist betont (0-basiert)
@@ -367,7 +369,13 @@ Architekturregel: `domain/` ist frei von React, Browser-APIs und Storage — rei
 Funktionen, direkt testbar. Alles Unreine (Zeit, Zufall, Sprachausgabe,
 Persistenz) wird von außen hineingereicht.
 
-## 10. Wortliste Level 1 (50 Wörter) — zur Abnahme
+## 10. Wortlisten — zur Abnahme
+
+Alle zehn Level sind befüllt (500 Wörter). Die vollständigen Listen samt erfasster
+Lautschrift stehen in `planning/IPA-VERIFICATION.md`; unten steht Level 1
+exemplarisch mit den Auswahlkriterien, die für alle Level gelten.
+
+### Level 1 (50 Wörter)
 
 **Auswahlkriterien:** hochfrequenter B2-Kernwortschatz, und jedes Wort trägt
 zusätzlich einen Aussprachewert — verschobene Betonung, Schwa-Reduktion, stumme
@@ -429,11 +437,21 @@ geprüft; die Spalte unten nennt die Falle, nicht die endgültige Lautschrift.
 | 49 | thorough | adj | `/ˈθʌrə/` — `th` + stummes Ende |
 | 50 | vulnerable | adj | `/ˈvʌlnərəbl/` |
 
-**Level-Themen:** Level 1 ist bewusst kein Thema, sondern das **Grundlagen-Level**
-(hochfrequenter B2-Kernwortschatz). Ab Level 2 wird thematisch gegliedert:
-2 Arbeit & Beruf · 3 Bildung & Lernen · 4 Gefühle & Persönlichkeit ·
-5 Gesellschaft & Politik · 6 Umwelt & Natur · 7 Technologie & Medien ·
-8 Gesundheit & Körper · 9 Reisen & Kultur · 10 Wirtschaft & Geld
+### Level-Themen
+
+Level 1 ist bewusst kein Thema, sondern das **Grundlagen-Level** (hochfrequenter
+B2-Kernwortschatz). Ab Level 2 wird thematisch gegliedert:
+
+| Level | Thema | Level | Thema |
+|---|---|---|---|
+| 1 | Grundlagen (B2-Kernwortschatz) | 6 | Umwelt & Natur |
+| 2 | Arbeit & Beruf | 7 | Technologie & Medien |
+| 3 | Bildung & Lernen | 8 | Gesundheit & Körper |
+| 4 | Gefühle & Persönlichkeit | 9 | Reisen & Kultur |
+| 5 | Gesellschaft & Politik | 10 | Wirtschaft & Geld |
+
+Kein Wort kommt in zwei Leveln vor — die Testsuite prüft das über alle 500
+Einträge.
 
 ## 11. Umsetzung in Meilensteinen
 
@@ -444,7 +462,7 @@ Zuschnitt des MVP verhandelbar zu machen.
 |---|---|---|---|---|
 | M0 | Gerüst | S | Vite + TS + React, Vitest, Ordnerstruktur, CSS-Tokens | `npm run dev` und `npm test` laufen |
 | M1 | Domain-Kern | M | `types.ts`, `leitner.ts`, `scheduler.ts`, `dates.ts` + Unit-Tests | Fachlogik, Wiederholungsdeckel und Session-Auswahl vollständig getestet, kein UI-Bezug |
-| M2 | Wortdaten ⟂ | **L** | 50 Wörter Level 1 gegen Cambridge kuratiert, Loader + Schema-Validierung | Validierungstest grün, 50 eindeutige IDs, **IPA gegen Cambridge geprüft** — offen, siehe `planning/M2-IPA-VERIFICATION.md` |
+| M2 | Wortdaten ⟂ | **L** | 500 Wörter in 10 Leveln, Loader + Schema-Validierung | Validierungstest grün, IDs lückenlos, keine Dubletten — **IPA-Prüfung gegen Cambridge offen**, siehe `planning/IPA-VERIFICATION.md` |
 | M3 | Sprachausgabe | M | `tts.ts` mit Stimmenwahl, Tempo, `localService`, Fallback-Hinweis | Wort & Satz hörbar, Verhalten ohne EN-Stimme und offline sauber |
 | M4 | Karten-Flow | **L** | `Flashcard` mit **beiden Richtungen**, `PronunciationPanel`, `RatingBar`, `SessionSetup`, Session-Screen | Eine Session in beiden Richtungen durchspielbar |
 | M5 | Persistenz | M | Zustand-Stores, localStorage, Schema-Version, Tagesbeginn 04:00 | Fortschritt überlebt Reload und Browser-Neustart |
@@ -456,8 +474,8 @@ Zuschnitt des MVP verhandelbar zu machen.
 technisch blockiert sie nichts. Fehler darin sind besonders teuer, weil die App
 dann eine *falsche Aussprache als Ziel* vorsetzt. Sie kann sofort beginnen.
 
-Nach M7 ist das MVP fertig und benutzbar. **M8 (später, nach Freigabe):** Level
-2–10 befüllen und die Freischaltregel scharf stellen. Die ursprünglich
+Nach M7 ist das MVP fertig und benutzbar. **M8 (später, nach Freigabe):** die
+Freischaltregel für Level 2–10 scharf stellen — die Daten liegen bereits vor. Die ursprünglich
 angedachte Schwelle „80 % von Level N in Fach ≥ 4" ist vor M8 zu prüfen: Der
 schnellste Weg in Fach 4 dauert bei den Intervallen 0/1/3 mindestens vier Tage,
 für 40 von 50 Wörtern realistisch zwei bis drei Wochen. So lange gar nichts
@@ -466,7 +484,8 @@ alle Wörter aus N mindestens einmal in Fach ≥ 2 standen.
 
 ## 12. Abnahmekriterien MVP
 
-- [ ] 50 Wörter Level 1 vollständig kuratiert, IPA gegen Cambridge geprüft
+- [ ] 500 Wörter in 10 Leveln vollständig kuratiert
+- [ ] **IPA gegen Cambridge geprüft** — offen, siehe `planning/IPA-VERIFICATION.md`
 - [ ] Schema-Validierung grün, inklusive Betonungs-Gegenprüfung IPA ↔ `stressIndex`
 - [ ] Session in **beiden Richtungen** spielbar, DE → EN ist vorausgewählt
 - [ ] Im Modus DE → EN verrät die Vorderseite die Antwort nicht (kein Ton, kein Wort)
@@ -481,7 +500,7 @@ alle Wörter aus N mindestens einmal in Fach ≥ 2 standen.
 - [ ] Session mit 20 Karten auf dem Handy vollständig per Daumen bedienbar
 - [ ] App ist installierbar; **Kartenlernen, IPA und Fortschritt funktionieren offline vollständig, Sprachausgabe offline nur mit lokal installierter Stimme**
 - [ ] Domain-Logik hat Unit-Tests; `npm test` ist grün
-- [ ] Level 2–10 sind sichtbar als gesperrt, ohne Fehler beim Antippen
+- [ ] Level 2–10 sind sichtbar und ihr Sperrzustand ist eindeutig, ohne Fehler beim Antippen
 
 ## 13. Risiken & Gegenmaßnahmen
 
@@ -510,7 +529,24 @@ anhören — ist bewusst auf v2 verschoben (§14). Wer die eigene Aufnahme
 bleiben. Sollte sich im Gebrauch zeigen, dass Wörter „durchrutschen", ist das
 der erste Hebel.
 
-### 13.2 Technische Risiken
+### 13.2 Offenes Risiko: ungeprüfte Lautschrift
+
+Alle 500 Transkriptionen stammen aus dem Modellwissen, weil in der
+Entwicklungsumgebung keine Wörterbuchquelle erreichbar war (Cambridge, Oxford,
+Wiktionary und `api.dictionaryapi.dev` antworten über den Proxy mit 403). Der
+Nutzer hat nach ausdrücklichem Hinweis entschieden, so zu verfahren.
+
+Die Schema-Validierung prüft **innere Konsistenz** — Silbenzahl, Betonungsposition,
+Dubletten, Lückensatz. Sie kann **Richtigkeit nicht prüfen**: Eine durchgehend
+falsche Transkription besteht alle Tests. In einer Aussprache-App bedeutet ein
+IPA-Fehler, dass der Lernende ein *falsches Ziel* einübt und es über das
+Leitner-System auch noch festigt.
+
+`planning/IPA-VERIFICATION.md` hält die Prüfschuld wortweise nach und markiert die
+20 Einträge, bei denen Variante oder Silbenschnitt strittig sind. Solange die
+Liste offen ist, gilt kein Build als lernfertig.
+
+### 13.3 Technische Risiken
 
 | Risiko | Gegenmaßnahme |
 |---|---|
@@ -528,7 +564,7 @@ der erste Hebel.
 ## 14. Spätere Ausbaustufen (nicht im MVP)
 
 - **Aufnehmen & Vergleichen (MediaRecorder)** — stärkster Kandidat, direkte Gegenmaßnahme zu §13.1: eigene Aufnahme unmittelbar hinter der TTS-Ausgabe anhören. Browser-nativ, kein Backend, kein Netz.
-- Level 2–10 samt Themen und Freischaltlogik
+- Freischaltlogik für Level 2–10 (die Wortdaten liegen bereits vor)
 - Getrennte Leitner-Pfade je Abfragerichtung, falls sich die Vermischung als störend erweist
 - Mikrofon-Assist: Web Speech Recognition als **optionaler** Hinweisgeber, niemals als alleiniger Bewerter
 - Sync des Fortschritts über Geräte hinweg

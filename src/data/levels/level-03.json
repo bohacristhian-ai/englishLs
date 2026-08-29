@@ -1,0 +1,832 @@
+[
+  {
+    "id": "l03-w001",
+    "level": 3,
+    "term": "academic",
+    "pos": "adjective",
+    "ipaGb": "ˌæk.əˈdem.ɪk",
+    "syllables": [
+      "ac",
+      "a",
+      "dem",
+      "ic"
+    ],
+    "stressIndex": 2,
+    "translation": "akademisch, wissenschaftlich",
+    "example": "Her academic record was strong enough for a scholarship.",
+    "exampleDe": "Ihre akademischen Leistungen reichten für ein Stipendium.",
+    "note": "Betonung auf der dritten Silbe — anders als im deutschen „akademisch“."
+  },
+  {
+    "id": "l03-w002",
+    "level": 3,
+    "term": "analyse",
+    "pos": "verb",
+    "ipaGb": "ˈæn.əl.aɪz",
+    "syllables": [
+      "an",
+      "al",
+      "yse"
+    ],
+    "stressIndex": 0,
+    "translation": "analysieren, untersuchen",
+    "example": "We need to analyse the results before drawing conclusions.",
+    "exampleDe": "Wir müssen die Ergebnisse analysieren, bevor wir Schlüsse ziehen.",
+    "note": "Betonung vorn. Die Schreibweise „analyze“ ist amerikanisch."
+  },
+  {
+    "id": "l03-w003",
+    "level": 3,
+    "term": "assessment",
+    "pos": "noun",
+    "ipaGb": "əˈses.mənt",
+    "syllables": [
+      "as",
+      "sess",
+      "ment"
+    ],
+    "stressIndex": 1,
+    "translation": "Beurteilung, Bewertung",
+    "example": "The final assessment counts for half of the grade.",
+    "exampleDe": "Die Abschlussbewertung zählt die Hälfte der Note."
+  },
+  {
+    "id": "l03-w004",
+    "level": 3,
+    "term": "assignment",
+    "pos": "noun",
+    "ipaGb": "əˈsaɪn.mənt",
+    "syllables": [
+      "as",
+      "sign",
+      "ment"
+    ],
+    "stressIndex": 1,
+    "translation": "Aufgabe, Hausarbeit",
+    "example": "The assignment has to be handed in by Friday.",
+    "exampleDe": "Die Hausarbeit muss bis Freitag abgegeben werden.",
+    "note": "Das „g“ bleibt stumm, wie in „sign“."
+  },
+  {
+    "id": "l03-w005",
+    "level": 3,
+    "term": "attentive",
+    "pos": "adjective",
+    "ipaGb": "əˈten.tɪv",
+    "syllables": [
+      "at",
+      "ten",
+      "tive"
+    ],
+    "stressIndex": 1,
+    "translation": "aufmerksam",
+    "example": "The class was unusually attentive that morning.",
+    "exampleDe": "Die Klasse war an jenem Morgen ungewöhnlich aufmerksam."
+  },
+  {
+    "id": "l03-w006",
+    "level": 3,
+    "term": "cognitive",
+    "pos": "adjective",
+    "ipaGb": "ˈkɒɡ.nə.tɪv",
+    "syllables": [
+      "cog",
+      "ni",
+      "tive"
+    ],
+    "stressIndex": 0,
+    "translation": "kognitiv, das Denken betreffend",
+    "example": "Sleep has a direct effect on cognitive performance.",
+    "exampleDe": "Schlaf wirkt sich direkt auf die kognitive Leistung aus."
+  },
+  {
+    "id": "l03-w007",
+    "level": 3,
+    "term": "comprehension",
+    "pos": "noun",
+    "ipaGb": "ˌkɒm.prɪˈhen.ʃən",
+    "syllables": [
+      "com",
+      "pre",
+      "hen",
+      "sion"
+    ],
+    "stressIndex": 2,
+    "translation": "Verständnis, Verstehen",
+    "example": "The test measures reading comprehension, not speed.",
+    "exampleDe": "Der Test misst das Leseverständnis, nicht die Geschwindigkeit."
+  },
+  {
+    "id": "l03-w008",
+    "level": 3,
+    "term": "concentrate",
+    "pos": "verb",
+    "ipaGb": "ˈkɒn.sən.treɪt",
+    "syllables": [
+      "con",
+      "cen",
+      "trate"
+    ],
+    "stressIndex": 0,
+    "translation": "sich konzentrieren",
+    "example": "It is hard to concentrate with the window open.",
+    "exampleDe": "Bei offenem Fenster ist es schwer, sich zu konzentrieren.",
+    "note": "Betonung vorn — anders als im deutschen „konzentrieren“."
+  },
+  {
+    "id": "l03-w009",
+    "level": 3,
+    "term": "curriculum",
+    "pos": "noun",
+    "ipaGb": "kəˈrɪk.jə.ləm",
+    "syllables": [
+      "cur",
+      "ric",
+      "u",
+      "lum"
+    ],
+    "stressIndex": 1,
+    "translation": "Lehrplan",
+    "example": "Coding was added to the curriculum three years ago.",
+    "exampleDe": "Programmieren kam vor drei Jahren in den Lehrplan."
+  },
+  {
+    "id": "l03-w010",
+    "level": 3,
+    "term": "criterion",
+    "pos": "noun",
+    "ipaGb": "kraɪˈtɪə.ri.ən",
+    "syllables": [
+      "cri",
+      "te",
+      "ri",
+      "on"
+    ],
+    "stressIndex": 1,
+    "translation": "Kriterium, Maßstab",
+    "example": "Cost was not the only criterion for the decision.",
+    "exampleDe": "Die Kosten waren nicht das einzige Kriterium für die Entscheidung.",
+    "note": "Plural ist „criteria“ — im Singular niemals „criteria“ sagen."
+  },
+  {
+    "id": "l03-w011",
+    "level": 3,
+    "term": "degree",
+    "pos": "noun",
+    "ipaGb": "dɪˈɡriː",
+    "syllables": [
+      "de",
+      "gree"
+    ],
+    "stressIndex": 1,
+    "translation": "Hochschulabschluss, Grad",
+    "example": "She finished her degree in only three years.",
+    "exampleDe": "Sie schloss ihr Studium in nur drei Jahren ab."
+  },
+  {
+    "id": "l03-w012",
+    "level": 3,
+    "term": "dissertation",
+    "pos": "noun",
+    "ipaGb": "ˌdɪs.əˈteɪ.ʃən",
+    "syllables": [
+      "dis",
+      "ser",
+      "ta",
+      "tion"
+    ],
+    "stressIndex": 2,
+    "translation": "Abschlussarbeit, Dissertation",
+    "example": "His dissertation dealt with medieval trade routes.",
+    "exampleDe": "Seine Abschlussarbeit behandelte mittelalterliche Handelswege."
+  },
+  {
+    "id": "l03-w013",
+    "level": 3,
+    "term": "distinction",
+    "pos": "noun",
+    "ipaGb": "dɪˈstɪŋk.ʃən",
+    "syllables": [
+      "dis",
+      "tinc",
+      "tion"
+    ],
+    "stressIndex": 1,
+    "translation": "Unterscheidung, Auszeichnung",
+    "example": "He draws a clear distinction between fact and opinion.",
+    "exampleDe": "Er unterscheidet klar zwischen Tatsache und Meinung."
+  },
+  {
+    "id": "l03-w014",
+    "level": 3,
+    "term": "educate",
+    "pos": "verb",
+    "ipaGb": "ˈed.jʊ.keɪt",
+    "syllables": [
+      "ed",
+      "u",
+      "cate"
+    ],
+    "stressIndex": 0,
+    "translation": "ausbilden, unterrichten",
+    "example": "The campaign aims to educate people about food waste.",
+    "exampleDe": "Die Kampagne will Menschen über Lebensmittelverschwendung aufklären."
+  },
+  {
+    "id": "l03-w015",
+    "level": 3,
+    "term": "elaborate",
+    "pos": "adjective",
+    "ipaGb": "ɪˈlæb.ər.ət",
+    "syllables": [
+      "e",
+      "lab",
+      "or",
+      "ate"
+    ],
+    "stressIndex": 1,
+    "translation": "ausführlich, kunstvoll",
+    "example": "She gave an elaborate explanation of the whole process.",
+    "exampleDe": "Sie gab eine ausführliche Erklärung des gesamten Vorgangs.",
+    "note": "Als Adjektiv endet es auf /ət/, als Verb („ausführen“) auf /eɪt/."
+  },
+  {
+    "id": "l03-w016",
+    "level": 3,
+    "term": "emphasis",
+    "pos": "noun",
+    "ipaGb": "ˈem.fə.sɪs",
+    "syllables": [
+      "em",
+      "pha",
+      "sis"
+    ],
+    "stressIndex": 0,
+    "translation": "Betonung, Schwerpunkt",
+    "example": "This course puts great emphasis on speaking.",
+    "exampleDe": "Dieser Kurs legt großen Wert auf das Sprechen.",
+    "note": "Endung /sɪs/ mit stimmlosem s, nicht /zɪs/."
+  },
+  {
+    "id": "l03-w017",
+    "level": 3,
+    "term": "evaluate",
+    "pos": "verb",
+    "ipaGb": "ɪˈvæl.ju.eɪt",
+    "syllables": [
+      "e",
+      "val",
+      "u",
+      "ate"
+    ],
+    "stressIndex": 1,
+    "translation": "bewerten, einschätzen",
+    "example": "Teachers evaluate each project against the same criteria.",
+    "exampleDe": "Lehrkräfte bewerten jedes Projekt nach denselben Kriterien."
+  },
+  {
+    "id": "l03-w018",
+    "level": 3,
+    "term": "insight",
+    "pos": "noun",
+    "ipaGb": "ˈɪn.saɪt",
+    "syllables": [
+      "in",
+      "sight"
+    ],
+    "stressIndex": 0,
+    "translation": "Einblick, Erkenntnis",
+    "example": "The interviews gave us real insight into how learners think.",
+    "exampleDe": "Die Interviews gaben uns echten Einblick in das Denken der Lernenden."
+  },
+  {
+    "id": "l03-w019",
+    "level": 3,
+    "term": "faculty",
+    "pos": "noun",
+    "ipaGb": "ˈfæk.əl.ti",
+    "syllables": [
+      "fac",
+      "ul",
+      "ty"
+    ],
+    "stressIndex": 0,
+    "translation": "Fakultät, Lehrkörper",
+    "example": "The faculty voted against the proposed changes.",
+    "exampleDe": "Die Fakultät stimmte gegen die vorgeschlagenen Änderungen."
+  },
+  {
+    "id": "l03-w020",
+    "level": 3,
+    "term": "fluent",
+    "pos": "adjective",
+    "ipaGb": "ˈfluː.ənt",
+    "syllables": [
+      "flu",
+      "ent"
+    ],
+    "stressIndex": 0,
+    "translation": "fließend",
+    "example": "After two years abroad she was fluent in Spanish.",
+    "exampleDe": "Nach zwei Jahren im Ausland sprach sie fließend Spanisch."
+  },
+  {
+    "id": "l03-w021",
+    "level": 3,
+    "term": "graduate",
+    "pos": "verb",
+    "ipaGb": "ˈɡrædʒ.u.eɪt",
+    "syllables": [
+      "grad",
+      "u",
+      "ate"
+    ],
+    "stressIndex": 0,
+    "translation": "einen Abschluss machen",
+    "example": "They graduate in June and start work in September.",
+    "exampleDe": "Sie machen im Juni ihren Abschluss und fangen im September an.",
+    "note": "Als Verb endet es auf /eɪt/, als Nomen („Absolvent“) auf /ət/."
+  },
+  {
+    "id": "l03-w022",
+    "level": 3,
+    "term": "hypothesis",
+    "pos": "noun",
+    "ipaGb": "haɪˈpɒθ.ə.sɪs",
+    "syllables": [
+      "hy",
+      "poth",
+      "e",
+      "sis"
+    ],
+    "stressIndex": 1,
+    "translation": "Hypothese, Annahme",
+    "example": "The data did not support their original hypothesis.",
+    "exampleDe": "Die Daten stützten ihre ursprüngliche Hypothese nicht.",
+    "note": "Betonung auf der zweiten Silbe, mit stimmlosem /θ/."
+  },
+  {
+    "id": "l03-w023",
+    "level": 3,
+    "term": "intuitive",
+    "pos": "adjective",
+    "ipaGb": "ɪnˈtjuː.ɪ.tɪv",
+    "syllables": [
+      "in",
+      "tu",
+      "i",
+      "tive"
+    ],
+    "stressIndex": 1,
+    "translation": "intuitiv, eingängig",
+    "example": "The software is powerful but not exactly intuitive.",
+    "exampleDe": "Die Software ist leistungsfähig, aber nicht gerade eingängig."
+  },
+  {
+    "id": "l03-w024",
+    "level": 3,
+    "term": "lecture",
+    "pos": "noun",
+    "ipaGb": "ˈlek.tʃər",
+    "syllables": [
+      "lec",
+      "ture"
+    ],
+    "stressIndex": 0,
+    "translation": "Vorlesung",
+    "example": "The lecture was recorded for students who were ill.",
+    "exampleDe": "Die Vorlesung wurde für kranke Studierende aufgezeichnet."
+  },
+  {
+    "id": "l03-w025",
+    "level": 3,
+    "term": "literacy",
+    "pos": "noun",
+    "ipaGb": "ˈlɪt.ər.ə.si",
+    "syllables": [
+      "lit",
+      "er",
+      "a",
+      "cy"
+    ],
+    "stressIndex": 0,
+    "translation": "Lese- und Schreibfähigkeit",
+    "example": "Digital literacy is now taught from year five.",
+    "exampleDe": "Digitale Kompetenz wird jetzt ab der fünften Klasse unterrichtet."
+  },
+  {
+    "id": "l03-w026",
+    "level": 3,
+    "term": "memorise",
+    "pos": "verb",
+    "ipaGb": "ˈmem.ər.aɪz",
+    "syllables": [
+      "mem",
+      "or",
+      "ise"
+    ],
+    "stressIndex": 0,
+    "translation": "auswendig lernen",
+    "example": "Trying to memorise the list without context never works.",
+    "exampleDe": "Die Liste ohne Zusammenhang auswendig zu lernen funktioniert nie.",
+    "note": "Die Schreibweise „memorize“ ist im britischen Englisch ebenfalls korrekt."
+  },
+  {
+    "id": "l03-w027",
+    "level": 3,
+    "term": "methodology",
+    "pos": "noun",
+    "ipaGb": "ˌmeθ.əˈdɒl.ə.dʒi",
+    "syllables": [
+      "meth",
+      "o",
+      "dol",
+      "o",
+      "gy"
+    ],
+    "stressIndex": 2,
+    "translation": "Methodik, Vorgehensweise",
+    "example": "The paper explains its methodology in the second chapter.",
+    "exampleDe": "Die Arbeit erläutert ihre Methodik im zweiten Kapitel."
+  },
+  {
+    "id": "l03-w028",
+    "level": 3,
+    "term": "motivation",
+    "pos": "noun",
+    "ipaGb": "ˌməʊ.tɪˈveɪ.ʃən",
+    "syllables": [
+      "mo",
+      "ti",
+      "va",
+      "tion"
+    ],
+    "stressIndex": 2,
+    "translation": "Motivation, Antrieb",
+    "example": "His motivation dropped after the third failed attempt.",
+    "exampleDe": "Seine Motivation sank nach dem dritten Fehlversuch."
+  },
+  {
+    "id": "l03-w029",
+    "level": 3,
+    "term": "numerous",
+    "pos": "adjective",
+    "ipaGb": "ˈnjuː.mər.əs",
+    "syllables": [
+      "nu",
+      "mer",
+      "ous"
+    ],
+    "stressIndex": 0,
+    "translation": "zahlreich",
+    "example": "There are numerous ways to solve this problem.",
+    "exampleDe": "Es gibt zahlreiche Wege, dieses Problem zu lösen."
+  },
+  {
+    "id": "l03-w030",
+    "level": 3,
+    "term": "outcome",
+    "pos": "noun",
+    "ipaGb": "ˈaʊt.kʌm",
+    "syllables": [
+      "out",
+      "come"
+    ],
+    "stressIndex": 0,
+    "translation": "Ergebnis, Resultat",
+    "example": "Nobody expected that outcome from such a small change.",
+    "exampleDe": "Niemand erwartete dieses Ergebnis von einer so kleinen Änderung."
+  },
+  {
+    "id": "l03-w031",
+    "level": 3,
+    "term": "participate",
+    "pos": "verb",
+    "ipaGb": "pɑːˈtɪs.ɪ.peɪt",
+    "syllables": [
+      "par",
+      "tic",
+      "i",
+      "pate"
+    ],
+    "stressIndex": 1,
+    "translation": "teilnehmen, mitmachen",
+    "example": "Students who participate regularly do better in the exam.",
+    "exampleDe": "Studierende, die regelmäßig teilnehmen, schneiden in der Prüfung besser ab."
+  },
+  {
+    "id": "l03-w032",
+    "level": 3,
+    "term": "pedagogy",
+    "pos": "noun",
+    "ipaGb": "ˈped.ə.ɡɒdʒ.i",
+    "syllables": [
+      "ped",
+      "a",
+      "gog",
+      "y"
+    ],
+    "stressIndex": 0,
+    "translation": "Pädagogik, Lehrmethodik",
+    "example": "Her pedagogy relies on questions rather than lectures.",
+    "exampleDe": "Ihre Pädagogik setzt auf Fragen statt auf Vorträge."
+  },
+  {
+    "id": "l03-w033",
+    "level": 3,
+    "term": "plagiarism",
+    "pos": "noun",
+    "ipaGb": "ˈpleɪ.dʒər.ɪ.zəm",
+    "syllables": [
+      "pla",
+      "gia",
+      "ri",
+      "sm"
+    ],
+    "stressIndex": 0,
+    "translation": "Plagiat",
+    "example": "The university treats plagiarism as a serious offence.",
+    "exampleDe": "Die Universität behandelt Plagiate als schweres Vergehen."
+  },
+  {
+    "id": "l03-w034",
+    "level": 3,
+    "term": "postgraduate",
+    "pos": "adjective",
+    "ipaGb": "ˌpəʊstˈɡrædʒ.u.ət",
+    "syllables": [
+      "post",
+      "grad",
+      "u",
+      "ate"
+    ],
+    "stressIndex": 1,
+    "translation": "weiterführend, Aufbau-",
+    "example": "She applied for a postgraduate course in Edinburgh.",
+    "exampleDe": "Sie bewarb sich für einen Aufbaustudiengang in Edinburgh."
+  },
+  {
+    "id": "l03-w035",
+    "level": 3,
+    "term": "primary",
+    "pos": "adjective",
+    "ipaGb": "ˈpraɪ.mər.i",
+    "syllables": [
+      "pri",
+      "ma",
+      "ry"
+    ],
+    "stressIndex": 0,
+    "translation": "grundlegend, Grund-",
+    "example": "Our primary aim is to make the material clearer.",
+    "exampleDe": "Unser vorrangiges Ziel ist es, das Material verständlicher zu machen.",
+    "note": "Erste Silbe mit /aɪ/ — nicht wie das deutsche „primär“."
+  },
+  {
+    "id": "l03-w036",
+    "level": 3,
+    "term": "profound",
+    "pos": "adjective",
+    "ipaGb": "prəˈfaʊnd",
+    "syllables": [
+      "pro",
+      "found"
+    ],
+    "stressIndex": 1,
+    "translation": "tiefgreifend, tiefgründig",
+    "example": "The book had a profound effect on how she taught.",
+    "exampleDe": "Das Buch hatte einen tiefgreifenden Einfluss auf ihren Unterricht."
+  },
+  {
+    "id": "l03-w037",
+    "level": 3,
+    "term": "pursue",
+    "pos": "verb",
+    "ipaGb": "pəˈsjuː",
+    "syllables": [
+      "pur",
+      "sue"
+    ],
+    "stressIndex": 1,
+    "translation": "verfolgen, anstreben",
+    "example": "He decided to pursue a career in research.",
+    "exampleDe": "Er beschloss, eine Laufbahn in der Forschung anzustreben."
+  },
+  {
+    "id": "l03-w038",
+    "level": 3,
+    "term": "questionnaire",
+    "pos": "noun",
+    "ipaGb": "ˌkwes.tʃəˈneər",
+    "syllables": [
+      "ques",
+      "tion",
+      "naire"
+    ],
+    "stressIndex": 2,
+    "translation": "Fragebogen",
+    "example": "Please return the questionnaire by the end of the week.",
+    "exampleDe": "Bitte geben Sie den Fragebogen bis Ende der Woche zurück.",
+    "note": "Betonung ganz hinten, das Wort stammt aus dem Französischen."
+  },
+  {
+    "id": "l03-w039",
+    "level": 3,
+    "term": "relevant",
+    "pos": "adjective",
+    "ipaGb": "ˈrel.ə.vənt",
+    "syllables": [
+      "rel",
+      "e",
+      "vant"
+    ],
+    "stressIndex": 0,
+    "translation": "relevant, einschlägig",
+    "example": "Only relevant sources belong in the bibliography.",
+    "exampleDe": "Nur einschlägige Quellen gehören in das Literaturverzeichnis."
+  },
+  {
+    "id": "l03-w040",
+    "level": 3,
+    "term": "research",
+    "pos": "noun",
+    "ipaGb": "rɪˈsɜːtʃ",
+    "syllables": [
+      "re",
+      "search"
+    ],
+    "stressIndex": 1,
+    "translation": "Forschung, Untersuchung",
+    "example": "Her research focuses on how children learn grammar.",
+    "exampleDe": "Ihre Forschung befasst sich damit, wie Kinder Grammatik lernen.",
+    "note": "Britisch meist hinten betont, amerikanisch häufig vorn."
+  },
+  {
+    "id": "l03-w041",
+    "level": 3,
+    "term": "revision",
+    "pos": "noun",
+    "ipaGb": "rɪˈvɪʒ.ən",
+    "syllables": [
+      "re",
+      "vi",
+      "sion"
+    ],
+    "stressIndex": 1,
+    "translation": "Wiederholung, Prüfungsvorbereitung",
+    "example": "She spent the whole weekend on revision.",
+    "exampleDe": "Sie verbrachte das ganze Wochenende mit Prüfungsvorbereitung.",
+    "note": "Mittelsilbe mit stimmhaftem /ʒ/ wie in „vision“."
+  },
+  {
+    "id": "l03-w042",
+    "level": 3,
+    "term": "scholarship",
+    "pos": "noun",
+    "ipaGb": "ˈskɒl.ə.ʃɪp",
+    "syllables": [
+      "schol",
+      "ar",
+      "ship"
+    ],
+    "stressIndex": 0,
+    "translation": "Stipendium",
+    "example": "The scholarship covers tuition but not living costs.",
+    "exampleDe": "Das Stipendium deckt die Studiengebühren, aber nicht die Lebenshaltung."
+  },
+  {
+    "id": "l03-w043",
+    "level": 3,
+    "term": "seminar",
+    "pos": "noun",
+    "ipaGb": "ˈsem.ɪ.nɑːr",
+    "syllables": [
+      "sem",
+      "i",
+      "nar"
+    ],
+    "stressIndex": 0,
+    "translation": "Seminar",
+    "example": "The seminar is limited to twelve participants.",
+    "exampleDe": "Das Seminar ist auf zwölf Teilnehmende begrenzt.",
+    "note": "Betonung vorn — anders als im deutschen „Seminar“."
+  },
+  {
+    "id": "l03-w044",
+    "level": 3,
+    "term": "supervise",
+    "pos": "verb",
+    "ipaGb": "ˈsuː.pə.vaɪz",
+    "syllables": [
+      "su",
+      "per",
+      "vise"
+    ],
+    "stressIndex": 0,
+    "translation": "betreuen, beaufsichtigen",
+    "example": "Two professors supervise her thesis.",
+    "exampleDe": "Zwei Professoren betreuen ihre Abschlussarbeit."
+  },
+  {
+    "id": "l03-w045",
+    "level": 3,
+    "term": "syllabus",
+    "pos": "noun",
+    "ipaGb": "ˈsɪl.ə.bəs",
+    "syllables": [
+      "syl",
+      "la",
+      "bus"
+    ],
+    "stressIndex": 0,
+    "translation": "Lehrplan, Stoffplan",
+    "example": "The syllabus lists every text we have to read.",
+    "exampleDe": "Der Stoffplan führt jeden Text auf, den wir lesen müssen."
+  },
+  {
+    "id": "l03-w046",
+    "level": 3,
+    "term": "theoretical",
+    "pos": "adjective",
+    "ipaGb": "ˌθiː.əˈret.ɪ.kəl",
+    "syllables": [
+      "the",
+      "o",
+      "ret",
+      "i",
+      "cal"
+    ],
+    "stressIndex": 2,
+    "translation": "theoretisch",
+    "example": "The objection is theoretical and has never occurred.",
+    "exampleDe": "Der Einwand ist theoretisch und ist nie eingetreten.",
+    "note": "Beginnt mit stimmlosem /θ/, nicht mit /t/."
+  },
+  {
+    "id": "l03-w047",
+    "level": 3,
+    "term": "thesis",
+    "pos": "noun",
+    "ipaGb": "ˈθiː.sɪs",
+    "syllables": [
+      "the",
+      "sis"
+    ],
+    "stressIndex": 0,
+    "translation": "These, Abschlussarbeit",
+    "example": "He defended his thesis in front of four examiners.",
+    "exampleDe": "Er verteidigte seine Arbeit vor vier Prüfern."
+  },
+  {
+    "id": "l03-w048",
+    "level": 3,
+    "term": "tuition",
+    "pos": "noun",
+    "ipaGb": "tjuːˈɪʃ.ən",
+    "syllables": [
+      "tu",
+      "i",
+      "tion"
+    ],
+    "stressIndex": 1,
+    "translation": "Unterricht, Studiengebühren",
+    "example": "Private tuition helped him catch up in maths.",
+    "exampleDe": "Nachhilfeunterricht half ihm, in Mathe aufzuholen."
+  },
+  {
+    "id": "l03-w049",
+    "level": 3,
+    "term": "undergraduate",
+    "pos": "noun",
+    "ipaGb": "ˌʌn.dəˈɡrædʒ.u.ət",
+    "syllables": [
+      "un",
+      "der",
+      "grad",
+      "u",
+      "ate"
+    ],
+    "stressIndex": 2,
+    "translation": "Studierender im Grundstudium",
+    "example": "As an undergraduate she worked in the library.",
+    "exampleDe": "Im Grundstudium arbeitete sie in der Bibliothek."
+  },
+  {
+    "id": "l03-w050",
+    "level": 3,
+    "term": "vocabulary",
+    "pos": "noun",
+    "ipaGb": "vəˈkæb.jə.lər.i",
+    "syllables": [
+      "vo",
+      "cab",
+      "u",
+      "lar",
+      "y"
+    ],
+    "stressIndex": 1,
+    "translation": "Wortschatz",
+    "example": "Reading widely is the fastest way to build vocabulary.",
+    "exampleDe": "Viel zu lesen ist der schnellste Weg, Wortschatz aufzubauen."
+  }
+]
