@@ -13,17 +13,21 @@ zwischen diesem Dokument und dem Plan gilt der Plan — und sag Bescheid, damit 
 es angleichen. `planning/REVIEW.md` hält fest, warum einzelne Regeln so aussehen,
 wie sie aussehen; es ist Historie, keine Anweisung.
 
-**Status: M0 und M1 fertig, M2 bis auf einen Punkt.**
+**Status: M0, M1, M3 fertig; M2 bis auf die IPA-Prüfung.**
 
 - M0 Gerüst · M1 Domain-Kern (`dates`, `leitner`, `scheduler`) mit Tests
 - M2 Wortdaten: **alle 10 Level à 50 Wörter (500 gesamt)**, Loader und
   Schema-Validierung stehen — **aber keine einzige IPA ist gegen Cambridge
   geprüft**, siehe `planning/IPA-VERIFICATION.md`. Bis diese Liste abgehakt ist,
   gilt der Build nicht als lernfertig.
+- M3 Sprachausgabe: `speech/tts.ts` mit Stimmenwahl, Offline-Verhalten und Tests
 
-Als Nächstes M3 (Sprachausgabe). `src/App.tsx` ist bis M4/M6 nur eine
-Platzhalter-Hülle; `components/`, `screens/`, `store/` und `speech/` sind noch
-leer.
+Als Nächstes M4 (Karten-Flow). `src/App.tsx` ist bis M4/M6 nur eine
+Platzhalter-Hülle; `components/`, `screens/` und `store/` sind noch leer.
+
+**Alle 10 Level sind freigeschaltet** — auf Nutzerwunsch, damit der Wortbestand
+durchgesehen und geprüft werden kann. Die fortschrittsabhängige Freischaltung ist
+damit vom Tisch, nicht nur vertagt.
 
 ## Sprache
 

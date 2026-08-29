@@ -2,8 +2,9 @@
 
 **Lernkarteikarten-App für Englisch B2 — Fokus Aussprache, Motor: Leitner-System**
 
-Status: **M0–M2 umgesetzt** (Gerüst, Domain-Kern, Wortdaten für alle zehn Level).
-Als Nächstes M3. Die Lautschrift steht unter Prüfvorbehalt, siehe §13.2.
+Status: **M0–M3 umgesetzt** (Gerüst, Domain-Kern, Wortdaten für alle zehn Level,
+Sprachausgabe). Als Nächstes M4. Die Lautschrift steht unter Prüfvorbehalt,
+siehe §13.2.
 
 Revision 3 — die Befunde aus `planning/REVIEW.md` sind eingearbeitet (Revision 2),
 und auf Nutzerentscheidung sind **alle zehn Level mit Wortdaten befüllt**, obwohl
@@ -33,6 +34,7 @@ erfasst**, ihre Lautschrift steht aber noch unter Prüfvorbehalt (§13.2).
 | **Aufnahme-Funktion** | **Nicht im MVP** | Bewusst zurückgestellt; bleibt der stärkste Kandidat für v2 (§14) |
 | **Umfang der Wortdaten** | **Alle 10 Level (500 Wörter) erfasst** | Nutzerentscheidung. Ursprünglich sollte nur Level 1 ins MVP; die Architektur trug die Erweiterung ohne Codeänderung |
 | **IPA-Herkunft** | **Modellwissen statt Cambridge**, Prüfschuld dokumentiert | Nutzerentscheidung, nachdem sich zeigte, dass in dieser Umgebung keine Wörterbuchquelle erreichbar ist. Risiko in §13.2 |
+| **Level-Freischaltung** | **Alle 10 Level von Anfang an offen** | Nutzerentscheidung: Der Wortbestand soll durchgesehen und geprüft werden können. Eine fortschrittsabhängige Freischaltung entfällt damit ganz |
 | Kartendaten | Wort, IPA, Wortart, DE-Übersetzung, Beispielsatz (+ Silben/Betonung) | B2-tauglich und handkuratierbar |
 | Sprachniveau UI | Deutsch | Muttersprache des Nutzers |
 | Aussprachevariante | **British English (en-GB)** als Standard, US umschaltbar | Eine Variante muss führen, sonst ist die IPA inkonsistent |
@@ -165,9 +167,9 @@ nicht, sieht das im Fach nicht getrennt. Dafür bleibt es bei einer
 Fälligkeitsrechnung und einer Statistik. Getrennte Pfade sind ein v2-Thema, falls
 sich die Vermischung im Gebrauch als störend erweist.
 
-`unlockedLevels` wird im MVP fest mit `[1]` initialisiert und von keinem Code
-fortgeschrieben — das Feld wird bewusst vorgehalten, damit die Freischaltung
-später ohne Schema-Migration greifen kann.
+`unlockedLevels` wird mit **allen zehn Leveln** initialisiert. Das Feld bleibt im
+Schema, damit eine spätere Freischaltlogik ohne Migration greifen könnte, hat
+aber im aktuellen Stand keinen einschränkenden Effekt mehr.
 
 ### 5.3 Kartenrichtung
 
@@ -474,8 +476,8 @@ Zuschnitt des MVP verhandelbar zu machen.
 technisch blockiert sie nichts. Fehler darin sind besonders teuer, weil die App
 dann eine *falsche Aussprache als Ziel* vorsetzt. Sie kann sofort beginnen.
 
-Nach M7 ist das MVP fertig und benutzbar. **M8 (später, nach Freigabe):** die
-Freischaltregel für Level 2–10 scharf stellen — die Daten liegen bereits vor. Die ursprünglich
+Nach M7 ist das MVP fertig und benutzbar. Ein M8 für die Level-Freischaltung
+entfällt: Die Daten liegen vor und alle Level sind offen. Die ursprünglich
 angedachte Schwelle „80 % von Level N in Fach ≥ 4" ist vor M8 zu prüfen: Der
 schnellste Weg in Fach 4 dauert bei den Intervallen 0/1/3 mindestens vier Tage,
 für 40 von 50 Wörtern realistisch zwei bis drei Wochen. So lange gar nichts
@@ -500,7 +502,7 @@ alle Wörter aus N mindestens einmal in Fach ≥ 2 standen.
 - [ ] Session mit 20 Karten auf dem Handy vollständig per Daumen bedienbar
 - [ ] App ist installierbar; **Kartenlernen, IPA und Fortschritt funktionieren offline vollständig, Sprachausgabe offline nur mit lokal installierter Stimme**
 - [ ] Domain-Logik hat Unit-Tests; `npm test` ist grün
-- [ ] Level 2–10 sind sichtbar und ihr Sperrzustand ist eindeutig, ohne Fehler beim Antippen
+- [ ] Alle 10 Level sind erreichbar und durchblätterbar
 
 ## 13. Risiken & Gegenmaßnahmen
 
@@ -564,7 +566,6 @@ Liste offen ist, gilt kein Build als lernfertig.
 ## 14. Spätere Ausbaustufen (nicht im MVP)
 
 - **Aufnehmen & Vergleichen (MediaRecorder)** — stärkster Kandidat, direkte Gegenmaßnahme zu §13.1: eigene Aufnahme unmittelbar hinter der TTS-Ausgabe anhören. Browser-nativ, kein Backend, kein Netz.
-- Freischaltlogik für Level 2–10 (die Wortdaten liegen bereits vor)
 - Getrennte Leitner-Pfade je Abfragerichtung, falls sich die Vermischung als störend erweist
 - Mikrofon-Assist: Web Speech Recognition als **optionaler** Hinweisgeber, niemals als alleiniger Bewerter
 - Sync des Fortschritts über Geräte hinweg
