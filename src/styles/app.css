@@ -353,3 +353,95 @@ button {
   margin-top: var(--space-4);
   font-size: var(--text-lg);
 }
+
+/* --- Pronunciation check ---------------------------------------------- */
+
+.check {
+  margin-top: var(--space-5);
+}
+
+.check__button {
+  width: 100%;
+  padding: var(--space-3);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.check__button:disabled {
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+.check__hint,
+.check__error {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.check__error {
+  color: var(--color-again);
+}
+
+.check__verdict {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border-left: 3px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-raised);
+}
+
+.check__verdict--good { border-left-color: var(--color-sure); }
+.check__verdict--fair { border-left-color: var(--color-unsure); }
+.check__verdict--poor,
+.check__verdict--wrong-word { border-left-color: var(--color-again); }
+
+.check__headline {
+  font-weight: 600;
+}
+
+.check__detail {
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+}
+
+.check__weak {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.check__weak li {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+}
+
+.check__syllable {
+  font-family: var(--font-ipa);
+  font-size: var(--text-md);
+}
+
+.check__score {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.check__score--low {
+  color: var(--color-again);
+  font-weight: 700;
+}
+
+.check__note {
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}

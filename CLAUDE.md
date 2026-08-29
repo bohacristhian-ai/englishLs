@@ -13,7 +13,7 @@ zwischen diesem Dokument und dem Plan gilt der Plan — und sag Bescheid, damit 
 es angleichen. `planning/REVIEW.md` hält fest, warum einzelne Regeln so aussehen,
 wie sie aussehen; es ist Historie, keine Anweisung.
 
-**Status: M0, M1, M3, M4 fertig; M2 bis auf die IPA-Prüfung.**
+**Status: M0, M1, M3, M4, M4b fertig; M2 bis auf die IPA-Prüfung.**
 
 - M0 Gerüst · M1 Domain-Kern (`dates`, `leitner`, `scheduler`) mit Tests
 - M2 Wortdaten: **alle 10 Level à 50 Wörter (500 gesamt)**, Loader und
@@ -23,6 +23,8 @@ wie sie aussehen; es ist Historie, keine Anweisung.
 - M3 Sprachausgabe: `speech/tts.ts` mit Stimmenwahl, Offline-Verhalten und Tests
 - M4 Karten-Flow: beide Abfragerichtungen, Aussprache-Panel, Bewertung,
   Sessionsteuerung und Tastaturbedienung
+- M4b Ausspracheprüfung: Mikrofon-Check gegen Azure Pronunciation Assessment,
+  hinter der Schnittstelle `speech/assessment.ts`
 
 Als Nächstes M5 (Persistenz) — der Fortschritt liegt derzeit nur im
 Arbeitsspeicher und ist nach einem Reload weg. `store/` ist noch leer.
@@ -171,10 +173,30 @@ Rest wird nicht auf Verdacht testabgedeckt.
 
 ## Ausdrücklich außerhalb des Umfangs
 
-Backend, Accounts, Cloud-Sync, Mikrofon-Spracherkennung, **Aufnahme-/Abhörfunktion
-(MediaRecorder)**, Gamification über Streak und Fortschritt hinaus,
+Backend, Accounts, Cloud-Sync, Gamification über Streak und Fortschritt hinaus,
 Grammatik- oder Schreibübungen. Wenn etwas davon sinnvoll erscheint: vorschlagen,
 nicht einfach bauen.
+
+## Ausspracheprüfung
+
+Die Bewertung läuft über die Schnittstelle `src/speech/assessment.ts`
+(`PronunciationAssessor`). Azure ist **ein Adapter** dahinter, kein
+Querschnittsthema — Komponenten kennen nur die Schnittstelle. Ein Gerätemodell,
+ein Schlüssel pro Nutzer oder ein Anbieterwechsel bleiben damit ein
+Adaptertausch.
+
+Regeln:
+- **Die Maschine informiert, der Nutzer entscheidet.** Der Score steuert das
+  Leitner-Fach *nicht*; die Bewertungsknöpfe bleiben die einzige Eingabe. Das
+  umzustellen ist eine Einbahnstraße und braucht eine ausdrückliche Entscheidung.
+- Ohne Schlüssel in der `.env` verschwindet der Knopf rückstandsfrei
+  (`isAvailable()`), statt zu scheitern. Vite entfernt das SDK dann komplett aus
+  dem Build.
+- Das SDK wird **dynamisch** importiert — es ist ~370 kB und gehört nicht in den
+  Startpfad.
+- Azures TypeScript-Typen decken die Phonem-Ebene nicht ab. Das rohe JSON wird
+  in `parseAzureResult` ausgelesen; diese Funktion ist rein und getestet, damit
+  eine Formatänderung als roter Test auffällt und nicht als leeres Panel.
 
 ## Bekannte Schwäche
 

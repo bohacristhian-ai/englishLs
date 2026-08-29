@@ -12,6 +12,7 @@ import {
   startSession,
 } from '../domain/scheduler';
 import type { CardState, Direction, Rating, Word } from '../domain/types';
+import { AzurePronunciationAssessor } from '../speech/azureAssessor';
 import { speak } from '../speech/tts';
 import type { SessionResult } from './Summary';
 
@@ -26,6 +27,9 @@ interface SessionProps {
 }
 
 const EMPTY_TALLY: SessionResult = { presented: 0, again: 0, unsure: 0, sure: 0 };
+
+// Stateless, so one instance for the whole session is enough.
+const assessor = new AzurePronunciationAssessor();
 
 export default function Session({
   level,
@@ -168,6 +172,7 @@ export default function Session({
         onPlayWord={playWord}
         onPlaySentence={playSentence}
         speechMessage={speechMessage}
+        assessor={assessor}
       />
     </section>
   );

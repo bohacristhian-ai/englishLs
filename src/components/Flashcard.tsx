@@ -1,7 +1,9 @@
+import PronunciationCheck from './PronunciationCheck';
 import PronunciationPanel from './PronunciationPanel';
 import RatingBar from './RatingBar';
 import { gapSentence, posLabel } from '../domain/text';
 import { RATE_NORMAL, RATE_SLOW } from '../speech/tts';
+import type { PronunciationAssessor } from '../speech/assessment';
 import type { Direction, Rating, Word } from '../domain/types';
 
 interface FlashcardProps {
@@ -13,6 +15,7 @@ interface FlashcardProps {
   onPlayWord: (rate: number) => void;
   onPlaySentence: () => void;
   speechMessage?: string | null;
+  assessor: PronunciationAssessor;
 }
 
 export default function Flashcard({
@@ -24,6 +27,7 @@ export default function Flashcard({
   onPlayWord,
   onPlaySentence,
   speechMessage,
+  assessor,
 }: FlashcardProps) {
   return (
     <article className="card">
@@ -42,6 +46,8 @@ export default function Flashcard({
           />
 
           {direction === 'en-de' && <p className="card__translation">{word.translation}</p>}
+
+          <PronunciationCheck term={word.term} assessor={assessor} />
 
           <RatingBar onRate={onRate} />
         </>
