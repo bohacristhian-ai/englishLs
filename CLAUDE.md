@@ -13,7 +13,7 @@ zwischen diesem Dokument und dem Plan gilt der Plan — und sag Bescheid, damit 
 es angleichen. `planning/REVIEW.md` hält fest, warum einzelne Regeln so aussehen,
 wie sie aussehen; es ist Historie, keine Anweisung.
 
-**Status: M0, M1, M3, M4, M4b, M5 fertig; M2 bis auf die IPA-Prüfung.**
+**Status: M0, M1, M3, M4, M4b, M5, M7 fertig; M2 bis auf die IPA-Prüfung.**
 
 - M0 Gerüst · M1 Domain-Kern (`dates`, `leitner`, `scheduler`) mit Tests
 - M2 Wortdaten: **alle 10 Level à 50 Wörter (500 gesamt)**, Loader und
@@ -27,8 +27,10 @@ wie sie aussehen; es ist Historie, keine Anweisung.
   hinter der Schnittstelle `speech/assessment.ts`
 - M5 Persistenz: Fortschritt und Einstellungen in localStorage, Streak,
   Tageshistorie, Migration bei kaputtem Speicher
+- M7 PWA: Manifest, Service Worker, Icons — installierbar und offline nutzbar
 
-Als Nächstes M7 (PWA, aufs Handy installierbar) und M6 (Rahmen-Screens).
+Als Nächstes M6 (Rahmen-Screens: Home mit „nichts fällig", Statistik,
+Einstellungen, Export/Import).
 
 **Alle 10 Level sind freigeschaltet** — auf Nutzerwunsch, damit der Wortbestand
 durchgesehen und geprüft werden kann. Die fortschrittsabhängige Freischaltung ist

@@ -2,8 +2,8 @@
 
 **Lernkarteikarten-App für Englisch B2 — Fokus Aussprache, Motor: Leitner-System**
 
-Status: **M0–M5 umgesetzt** (Gerüst, Domain-Kern, Wortdaten für alle zehn Level,
-Sprachausgabe, Karten-Flow, Persistenz). Als Nächstes M7 und M6. Die Lautschrift steht unter Prüfvorbehalt,
+Status: **M0–M5 und M7 umgesetzt** (Gerüst, Domain-Kern, Wortdaten für alle zehn
+Level, Sprachausgabe, Karten-Flow, Persistenz, PWA). Als Nächstes M6. Die Lautschrift steht unter Prüfvorbehalt,
 siehe §13.2.
 
 Revision 3 — die Befunde aus `planning/REVIEW.md` sind eingearbeitet (Revision 2),
