@@ -15,6 +15,8 @@ Lernkarteikarten-App für Englisch auf B2-Niveau. Der Fokus liegt auf der
 - **Sprachausgabe** über die Web Speech API, mit Normal- und Langsam-Tempo
 - **Ausspracheprüfung** per Mikrofon gegen Azure Pronunciation Assessment —
   optional, nur mit hinterlegtem Schlüssel
+- **Installierbar als App** und offline nutzbar; alle 500 Wörter liegen nach dem
+  ersten Besuch auf dem Gerät
 
 ## Stand
 
@@ -26,9 +28,9 @@ Lernkarteikarten-App für Englisch auf B2-Niveau. Der Fokus liegt auf der
 | M3 Sprachausgabe | fertig |
 | M4 Karten-Flow | fertig |
 | M4b Ausspracheprüfung | fertig |
-| M5 Persistenz | offen — Fortschritt überlebt derzeit keinen Reload |
+| M5 Persistenz | fertig |
+| M7 PWA | fertig — installierbar, offline nutzbar |
 | M6 Rahmen-Screens | offen |
-| M7 PWA & Feinschliff | offen |
 
 > **Wichtige Einschränkung:** Keine der 500 Lautschriften ist gegen das Cambridge
 > Dictionary geprüft. Sie stammen aus Modellwissen, weil in der
