@@ -4,13 +4,14 @@ import type { AssessOptions, PronunciationAssessor, WordAssessment } from './ass
 /**
  * Azure adapter for the pronunciation assessment port.
  *
- * The SDK is loaded lazily: it is around 1.5 MB, and the app has to stay fully
+ * The SDK is loaded lazily: it is around 370 kB, and the app has to stay fully
  * usable without it — no key configured, no microphone, or simply offline.
  *
- * Everything expensive is set up once per session rather than per word. A
- * fresh recogniser costs a full websocket handshake (TCP, TLS, upgrade, auth)
- * before a single sound is sent, and paying that on every card is most of the
- * wait the learner feels between speaking and seeing a score.
+ * A recogniser is used for exactly one recognition and then closed, but the
+ * *next* one is built and connected in the background while the learner is
+ * reading the result and rating the card. That keeps the websocket handshake
+ * (TCP, TLS, upgrade, auth) off the path the learner waits on without ever
+ * reusing a recogniser whose connection the service has already closed.
  */
 
 const KEY = import.meta.env.VITE_AZURE_SPEECH_KEY;
@@ -41,13 +42,17 @@ const ASSESSMENT_CONFIG = {
 type SpeechSdk = typeof import('microsoft-cognitiveservices-speech-sdk');
 type Recognizer = InstanceType<SpeechSdk['SpeechRecognizer']>;
 
-interface Live {
+interface Attempt {
   sdk: SpeechSdk;
   recognizer: Recognizer;
 }
 
+/** The connection died before anything was said — safe to redo unseen. */
+export class ConnectionLostError extends AssessmentError {}
+
 export class AzurePronunciationAssessor implements PronunciationAssessor {
-  private live: Promise<Live> | null = null;
+  private ready: Promise<Attempt> | null = null;
+  private closed = false;
 
   isAvailable(): boolean {
     return hasCredentials() && typeof navigator !== 'undefined' && Boolean(navigator.mediaDevices);
@@ -61,43 +66,84 @@ export class AzurePronunciationAssessor implements PronunciationAssessor {
   async prepare(): Promise<void> {
     if (!this.isAvailable()) return;
 
+    this.closed = false;
+
     try {
-      await this.connect();
+      await this.warm();
     } catch {
-      this.live = null;
+      this.ready = null;
     }
   }
 
   async assess(referenceText: string, options: AssessOptions = {}): Promise<WordAssessment> {
-    const { sdk, recognizer } = await this.connect();
+    let heardSpeech = false;
 
-    const assessmentConfig = sdk.PronunciationAssessmentConfig.fromJSON(
-      JSON.stringify({ ...ASSESSMENT_CONFIG, referenceText }),
-    );
-    assessmentConfig.applyTo(recognizer);
+    try {
+      return await this.run(referenceText, {
+        onSpeechEnd: () => {
+          heardSpeech = true;
+          options.onSpeechEnd?.();
+        },
+      });
+    } catch (caught) {
+      // A connection the service closed while the learner was still thinking
+      // fails before a single sound is sent. Redoing that is invisible; redoing
+      // it after they have spoken would ask them to say the word twice.
+      if (heardSpeech || !(caught instanceof ConnectionLostError)) throw caught;
 
-    const raw = await recogniseOnce(sdk, recognizer, options);
-
-    return parseAzureResult(JSON.parse(raw));
+      return await this.run(referenceText, options);
+    }
   }
 
-  /** Ends the session and hands the connection back. */
+  /** Ends the session and hands the prepared connection back. */
   dispose(): void {
-    const pending = this.live;
+    const pending = this.ready;
 
-    this.live = null;
+    this.closed = true;
+    this.ready = null;
     void pending?.then(({ recognizer }) => recognizer.close()).catch(() => undefined);
   }
 
-  private connect(): Promise<Live> {
-    // One in-flight creation, shared: pressing the button during the warm-up
-    // must join it rather than open a second connection.
-    this.live ??= this.create();
+  private async run(referenceText: string, options: AssessOptions): Promise<WordAssessment> {
+    const { sdk, recognizer } = await this.take();
 
-    return this.live;
+    try {
+      const assessmentConfig = sdk.PronunciationAssessmentConfig.fromJSON(
+        JSON.stringify({ ...ASSESSMENT_CONFIG, referenceText }),
+      );
+      assessmentConfig.applyTo(recognizer);
+
+      return parseAzureResult(JSON.parse(await recogniseOnce(sdk, recognizer, options)));
+    } finally {
+      // A throw in here would replace the real failure with a teardown detail.
+      try {
+        recognizer.close();
+      } catch {
+        // Already gone — which is exactly the state we wanted.
+      }
+
+      // Build the replacement now, while the learner reads the result: by the
+      // time they reach the next card its connection is already standing.
+      if (!this.closed) void this.warm().catch(() => undefined);
+    }
   }
 
-  private async create(): Promise<Live> {
+  /** Hands over the prepared recogniser and leaves none behind. */
+  private take(): Promise<Attempt> {
+    const next = this.ready ?? this.create();
+
+    this.ready = null;
+
+    return next;
+  }
+
+  private warm(): Promise<Attempt> {
+    this.ready ??= this.create();
+
+    return this.ready;
+  }
+
+  private async create(): Promise<Attempt> {
     if (!KEY || !REGION) {
       throw new AssessmentError('Kein Azure-Schlüssel hinterlegt.');
     }
@@ -115,8 +161,8 @@ export class AzurePronunciationAssessor implements PronunciationAssessor {
     const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
 
     // Without this the handshake happens on the first recognition, in full
-    // view of the learner. The microphone itself is not held open: the SDK
-    // acquires and releases it around each recognition.
+    // view of the learner. The microphone is not held open by it: the SDK
+    // acquires and releases the device around each recognition.
     sdk.Connection.fromRecognizer(recognizer).openConnection();
 
     return { sdk, recognizer };
@@ -129,21 +175,10 @@ function recogniseOnce(
   options: AssessOptions,
 ): Promise<string> {
   return new Promise((resolve, reject) => {
-    let settled = false;
-
-    recognizer.speechEndDetected = () => {
-      if (!settled) options.onSpeechEnd?.();
-    };
-
-    const finish = (): void => {
-      settled = true;
-      recognizer.speechEndDetected = () => undefined;
-    };
+    recognizer.speechEndDetected = () => options.onSpeechEnd?.();
 
     recognizer.recognizeOnceAsync(
       (result) => {
-        finish();
-
         if (result.reason === sdk.ResultReason.NoMatch) {
           reject(new AssessmentError('Nichts verstanden — bitte noch einmal.'));
 
@@ -152,8 +187,14 @@ function recogniseOnce(
 
         if (result.reason === sdk.ResultReason.Canceled) {
           const details = sdk.CancellationDetails.fromResult(result);
+          const isError = details.reason === sdk.CancellationReason.Error;
+          const raw = isError ? details.errorDetails : '';
 
-          reject(new AssessmentError(cancellationMessage(sdk, details)));
+          reject(
+            isConnectionLost(raw)
+              ? new ConnectionLostError(connectionMessage())
+              : new AssessmentError(cancellationMessage(isError, raw)),
+          );
 
           return;
         }
@@ -162,12 +203,27 @@ function recogniseOnce(
           result.properties.getProperty(sdk.PropertyId.SpeechServiceResponse_JsonResult, '{}'),
         );
       },
-      (error: string) => {
-        finish();
-        reject(new AssessmentError(microphoneMessage(error)));
-      },
+      (error: string) =>
+        reject(
+          isConnectionLost(error)
+            ? new ConnectionLostError(connectionMessage())
+            : new AssessmentError(microphoneMessage(error)),
+        ),
     );
   });
+}
+
+/**
+ * The service closes an idle websocket, and a recogniser whose connection is
+ * gone reports it in an English sentence about socket state. It says nothing
+ * the learner can act on — it is ours to retry, not theirs to read.
+ */
+export function isConnectionLost(raw: string): boolean {
+  return /Disconnected state|connection is closed|websocket|1006/i.test(raw);
+}
+
+function connectionMessage(): string {
+  return 'Die Verbindung zum Dienst wurde unterbrochen. Bitte noch einmal.';
 }
 
 /**
@@ -193,15 +249,20 @@ export function microphoneMessage(raw: string): string {
   return `Die Aufnahme ist fehlgeschlagen: ${raw}`;
 }
 
-function cancellationMessage(
-  sdk: SpeechSdk,
-  details: ReturnType<SpeechSdk['CancellationDetails']['fromResult']>,
-): string {
-  if (details.reason === sdk.CancellationReason.Error) {
-    // The overwhelmingly common causes: a wrong key, an exhausted free tier,
-    // or a denied microphone. Naming them beats echoing an opaque code.
-    return `Bewertung abgebrochen: ${details.errorDetails}`;
+export function cancellationMessage(isError: boolean, raw: string): string {
+  if (!isError) return 'Bewertung abgebrochen.';
+
+  // Quota first: an exhausted free tier also mentions the subscription, and
+  // sending the learner to check a key that is perfectly fine wastes their time.
+  if (/quota|429|too many requests/i.test(raw)) {
+    return 'Das Kontingent des Dienstes ist aufgebraucht.';
   }
 
-  return 'Bewertung abgebrochen.';
+  if (/401|403|Forbidden|Unauthorized|invalid subscription key/i.test(raw)) {
+    return 'Der Azure-Schlüssel wurde abgelehnt.';
+  }
+
+  // An unknown cause stays attached: swallowing it would make a new failure
+  // impossible to diagnose from a screenshot.
+  return `Bewertung abgebrochen: ${raw}`;
 }

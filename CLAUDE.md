@@ -219,11 +219,20 @@ Regeln:
 - Das SDK wird **dynamisch** importiert — es ist ~370 kB und gehört nicht in den
   Startpfad. Geladen wird es beim **Sessionstart** über `prepare()`, nicht beim
   ersten Knopfdruck; dort steht der Lernende sonst davor und wartet.
-- **Recognizer und Verbindung leben pro Session, nicht pro Wort.** Ein frischer
-  Recognizer kostet den vollen Websocket-Handshake vor dem ersten Laut.
-  `prepare()` öffnet die Verbindung vorab, `dispose()` gibt sie beim Verlassen
-  der Session frei. Das Mikrofon bleibt dabei *nicht* offen — das SDK holt und
-  gibt es um jede Aufnahme herum.
+- **Ein Recognizer pro Aufnahme — aber im Voraus gebaut.** Einen Recognizer über
+  mehrere Aufnahmen wiederzuverwenden scheitert: Der Dienst schließt die
+  Verbindung nach der Aufnahme, die nächste endet in „Cannot send on connection
+  that is in Disconnected state". Stattdessen wird der verbrauchte Recognizer
+  geschlossen und der nächste sofort im Hintergrund verbunden, während der
+  Lernende das Ergebnis liest — der Handshake liegt damit nicht auf dem Weg, auf
+  den gewartet wird. `prepare()` baut den ersten, `dispose()` gibt den
+  bereitstehenden frei. Das Mikrofon bleibt dabei *nicht* offen — das SDK holt
+  und gibt es um jede Aufnahme herum.
+- Stirbt die vorgewärmte Verbindung doch (Leerlauf, während der Lernende
+  überlegt), wirft der Adapter `ConnectionLostError` und `assess` versucht es
+  **einmal** unsichtbar erneut. Das ist nur zulässig, solange noch nichts
+  gesprochen wurde (`onSpeechEnd` kam nicht) — sonst würde man den Lernenden
+  bitten, dasselbe Wort zweimal zu sagen.
 - `Speech_SegmentationSilenceTimeoutMs` steht auf 300 ms statt der 500 ms des
   Dienstes: hier wird ein einzelnes Wort gesprochen, nicht ein Satz. Der
   gültige Bereich ist 100–5000 ms; deutlich tiefer zerlegt ein Wort in zwei
