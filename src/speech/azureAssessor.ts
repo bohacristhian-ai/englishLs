@@ -84,9 +84,32 @@ function recogniseOnce(
           result.properties.getProperty(sdk.PropertyId.SpeechServiceResponse_JsonResult, '{}'),
         );
       },
-      (error: string) => reject(new AssessmentError(error)),
+      (error: string) => reject(new AssessmentError(microphoneMessage(error))),
     );
   });
+}
+
+/**
+ * Turns the SDK's raw English error into something the learner can act on.
+ *
+ * Left alone it puts a sentence like "NotFoundError: Requested device not
+ * found" into a German interface — technically true and useless: it names a
+ * DOM exception rather than the thing to do about it.
+ */
+export function microphoneMessage(raw: string): string {
+  if (/NotAllowedError|PermissionDenied|denied/i.test(raw)) {
+    return 'Kein Zugriff auf das Mikrofon. Gib es in den Browsereinstellungen frei.';
+  }
+
+  if (/NotFoundError|DevicesNotFound|device not found/i.test(raw)) {
+    return 'Kein Mikrofon gefunden.';
+  }
+
+  if (/NotReadableError|TrackStartError/i.test(raw)) {
+    return 'Das Mikrofon ist gerade von einem anderen Programm belegt.';
+  }
+
+  return `Die Aufnahme ist fehlgeschlagen: ${raw}`;
 }
 
 function cancellationMessage(

@@ -377,10 +377,29 @@ button {
   font-weight: 600;
 }
 
+.check__button--primary {
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+
+/* Once speaking is the way through the card, revealing is the way out — it
+   must stay reachable without competing with the microphone. */
+.card__reveal--secondary {
+  margin-top: var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  background: none;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
 .check__button:disabled {
   border-color: var(--color-border);
   color: var(--color-text-muted);
   cursor: default;
+}
+
+.check__button--primary:disabled {
+  background-color: var(--color-surface-raised);
 }
 
 .check__hint,

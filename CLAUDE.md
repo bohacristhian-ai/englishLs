@@ -131,8 +131,9 @@ Zwei Modi, am Sessionstart wählbar: **`de-en` (Standard, produktiv)** und
 es gibt **einen `CardState` pro Wort, nicht pro Richtung**.
 
 Im Modus `de-en` darf die Vorderseite die Antwort nicht verraten: kein englisches
-Wort, **kein Ton**, keine IPA. Die Eindeutigkeit stellt der Beispielsatz mit
-Lücke her.
+Wort, **kein Ton**, keine IPA, **und kein Ergebnis der Ausspracheprüfung** — das
+nennt die erkannten Silben. Die Eindeutigkeit stellt der Beispielsatz mit Lücke
+her.
 
 ## Wortdaten
 
@@ -196,6 +197,14 @@ ein Schlüssel pro Nutzer oder ein Anbieterwechsel bleiben damit ein
 Adaptertausch.
 
 Regeln:
+- **Der Mikrofonknopf steht auf der Vorderseite, und die Aufnahme deckt die Karte
+  auf.** Lautes Aussprechen ist die Arbeit; eine Karte, die sich ohne sie umdrehen
+  lässt, lädt zum zu schnellen Umdrehen ein. „Auflösen" bleibt als Ausweg für
+  laute Umgebung oder fehlendes Mikrofon, tritt aber optisch zurück. Eine
+  **fehlgeschlagene** Aufnahme deckt nicht auf — kein Versuch, keine Antwort.
+- **Das Ergebnis erscheint erst nach dem Aufdecken**, nie auf der Vorderseite.
+  Deshalb bleibt `PronunciationCheck` über das Aufdecken hinweg montiert und wird
+  per `key={word.id}` erst beim nächsten Wort zurückgesetzt.
 - **Die Maschine informiert, der Nutzer entscheidet.** Der Score steuert das
   Leitner-Fach *nicht*; die Bewertungsknöpfe bleiben die einzige Eingabe. Das
   umzustellen ist eine Einbahnstraße und braucht eine ausdrückliche Entscheidung.
@@ -204,6 +213,9 @@ Regeln:
   dem Build.
 - Das SDK wird **dynamisch** importiert — es ist ~370 kB und gehört nicht in den
   Startpfad.
+- Fehlermeldungen des SDK sind rohes Englisch und nennen DOM-Ausnahmen statt
+  Abhilfen. `microphoneMessage` übersetzt die häufigen Fälle; unbekannte Ursachen
+  bleiben angehängt, statt verschluckt zu werden.
 - Azures TypeScript-Typen decken die Phonem-Ebene nicht ab. Das rohe JSON wird
   in `parseAzureResult` ausgelesen; diese Funktion ist rein und getestet, damit
   eine Formatänderung als roter Test auffällt und nicht als leeres Panel.
