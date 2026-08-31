@@ -29,6 +29,10 @@ export default function Flashcard({
   speechMessage,
   assessor,
 }: FlashcardProps) {
+  // With a microphone available, speaking is the way through the card and
+  // "Auflösen" steps back to being the way out for a noisy room.
+  const speakFirst = assessor.isAvailable();
+
   return (
     <article className="card">
       {revealed ? (
@@ -46,23 +50,36 @@ export default function Flashcard({
           />
 
           {direction === 'en-de' && <p className="card__translation">{word.translation}</p>}
-
-          <PronunciationCheck term={word.term} assessor={assessor} />
-
-          <RatingBar onRate={onRate} />
         </>
+      ) : direction === 'de-en' ? (
+        <FrontDeEn word={word} speakFirst={speakFirst} />
       ) : (
-        <>
-          {direction === 'de-en' ? (
-            <FrontDeEn word={word} />
-          ) : (
-            <FrontEnDe word={word} onPlayWord={onPlayWord} />
-          )}
+        <FrontEnDe word={word} onPlayWord={onPlayWord} speakFirst={speakFirst} />
+      )}
 
-          <button type="button" className="card__reveal" onClick={onReveal}>
-            Auflösen
-          </button>
-        </>
+      {/*
+        Stays mounted across the reveal — the recording happens on the front and
+        its verdict is shown on the back, so unmounting here would throw the
+        attempt away. The key resets it for the next word instead.
+      */}
+      <PronunciationCheck
+        key={word.id}
+        term={word.term}
+        assessor={assessor}
+        revealed={revealed}
+        onRecorded={onReveal}
+      />
+
+      {revealed ? (
+        <RatingBar onRate={onRate} />
+      ) : (
+        <button
+          type="button"
+          className={speakFirst ? 'card__reveal card__reveal--secondary' : 'card__reveal'}
+          onClick={onReveal}
+        >
+          Auflösen
+        </button>
       )}
     </article>
   );
@@ -73,7 +90,7 @@ export default function Flashcard({
  * no transcription and — importantly — no audio, since any of those would hand
  * over the answer.
  */
-function FrontDeEn({ word }: { word: Word }) {
+function FrontDeEn({ word, speakFirst }: { word: Word; speakFirst: boolean }) {
   return (
     <>
       <h2 className="card__prompt">{word.translation}</h2>
@@ -81,13 +98,24 @@ function FrontDeEn({ word }: { word: Word }) {
       <p className="card__gap" lang="en">
         {gapSentence(word.example, word.term)}
       </p>
-      <p className="card__hint">Sprich das englische Wort laut aus.</p>
+      <p className="card__hint">
+        Sprich das englische Wort laut aus.
+        {speakFirst && ' Die Aufnahme deckt die Karte auf.'}
+      </p>
     </>
   );
 }
 
 /** Receptive direction: the word is shown and may be heard before revealing. */
-function FrontEnDe({ word, onPlayWord }: { word: Word; onPlayWord: (rate: number) => void }) {
+function FrontEnDe({
+  word,
+  onPlayWord,
+  speakFirst,
+}: {
+  word: Word;
+  onPlayWord: (rate: number) => void;
+  speakFirst: boolean;
+}) {
   return (
     <>
       <h2 className="card__term" lang="en">
@@ -104,7 +132,10 @@ function FrontEnDe({ word, onPlayWord }: { word: Word; onPlayWord: (rate: number
         </button>
       </div>
 
-      <p className="card__hint">Sprich das Wort laut nach.</p>
+      <p className="card__hint">
+        Sprich das Wort laut nach.
+        {speakFirst && ' Die Aufnahme deckt die Karte auf.'}
+      </p>
     </>
   );
 }

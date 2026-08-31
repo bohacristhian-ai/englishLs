@@ -14,7 +14,8 @@ Lernkarteikarten-App für Englisch auf B2-Niveau. Der Fokus liegt auf der
   EN → DE (rezeptiv)
 - **Sprachausgabe** über die Web Speech API, mit Normal- und Langsam-Tempo
 - **Ausspracheprüfung** per Mikrofon gegen Azure Pronunciation Assessment —
-  optional, nur mit hinterlegtem Schlüssel
+  optional, nur mit hinterlegtem Schlüssel. Der Knopf steht auf der *Vorderseite*:
+  die Aufnahme deckt die Karte auf, das Ergebnis erscheint danach
 - **Installierbar als App** und offline nutzbar; alle 500 Wörter liegen nach dem
   ersten Besuch auf dem Gerät
 - **Statistik** über Fächerverteilung, Streak und die letzten Lerntage

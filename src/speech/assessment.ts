@@ -31,11 +31,28 @@ export interface WordAssessment {
   phonemes: PhonemeScore[];
 }
 
+export interface AssessOptions {
+  /**
+   * Fires when the service has decided the speaking is over. From here on the
+   * learner is waiting on the network, not being listened to — and a panel
+   * that still says "listening" invites them to keep talking into nothing.
+   */
+  onSpeechEnd?: () => void;
+}
+
 export interface PronunciationAssessor {
   /** False when no credentials are configured — the UI hides the button then. */
   isAvailable(): boolean;
+  /**
+   * Optional warm-up before the first press: loading the provider's SDK and
+   * opening its connection costs seconds, and paying that while the learner
+   * waits is the difference between usable and annoying.
+   */
+  prepare?(): Promise<void>;
   /** Records from the microphone and grades against `referenceText`. */
-  assess(referenceText: string): Promise<WordAssessment>;
+  assess(referenceText: string, options?: AssessOptions): Promise<WordAssessment>;
+  /** Releases whatever `prepare` set up. Called when the session ends. */
+  dispose?(): void;
 }
 
 export class AssessmentError extends Error {}

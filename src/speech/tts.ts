@@ -190,8 +190,29 @@ export interface SpeakOptions {
   onError?: (reason: string) => void;
 }
 
+/**
+ * Chrome garbage-collects an utterance that nothing else references and cuts
+ * the audio off mid-word. That is an engine bug, not misuse of the API, and
+ * holding on to the running utterance is the established workaround.
+ */
+let running: SpeechSynthesisUtterance | null = null;
+
+/**
+ * Chrome also drops or truncates an utterance queued in the same tick as a
+ * `cancel()`. Cancelling therefore happens only when something is genuinely
+ * still speaking, and the queue gets a moment to settle afterwards.
+ */
+const CANCEL_SETTLE_MS = 80;
+
 export function cancel(): void {
-  if (isSupported()) globalThis.speechSynthesis.cancel();
+  if (!isSupported()) return;
+
+  running = null;
+  globalThis.speechSynthesis.cancel();
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 /**
@@ -217,16 +238,31 @@ export async function speak(text: string, options: SpeakOptions = {}): Promise<v
     return;
   }
 
-  // Overlapping utterances queue up and read the previous card over the new one.
-  cancel();
+  const synth = globalThis.speechSynthesis;
+
+  // Overlapping utterances queue up and read the previous card over the new
+  // one — but cancelling an idle queue is the truncation bug, not a fix for it.
+  if (synth.speaking || synth.pending) {
+    cancel();
+    await delay(CANCEL_SETTLE_MS);
+  }
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.voice = voice;
   utterance.lang = voice.lang;
   utterance.rate = rate;
 
-  utterance.addEventListener('end', () => onEnd?.());
+  const release = (): void => {
+    if (running === utterance) running = null;
+  };
+
+  utterance.addEventListener('end', () => {
+    release();
+    onEnd?.();
+  });
   utterance.addEventListener('error', (event) => {
+    release();
+
     // Cancelling on a card change fires 'error' with reason 'interrupted' —
     // that is normal operation, not a failure worth showing the user.
     if (event.error === 'interrupted' || event.error === 'canceled') return;
@@ -234,5 +270,6 @@ export async function speak(text: string, options: SpeakOptions = {}): Promise<v
     onError?.(`Sprachausgabe fehlgeschlagen (${event.error}).`);
   });
 
-  globalThis.speechSynthesis.speak(utterance);
+  running = utterance;
+  synth.speak(utterance);
 }

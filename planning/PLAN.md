@@ -306,11 +306,19 @@ Schrift, darunter die Aussprache-Notiz, falls vorhanden.
 Vorderseite:  Deutsche Bedeutung · Wortart
               Beispielsatz mit Lücke:  "She refused to ______ her mistake."
               ↓ (Nutzer produziert das Wort und spricht es laut)
-              [Auflösen]
+              [🎤 Aussprechen]   ← Hauptweg, die Aufnahme deckt auf
+              [Auflösen]         ← Ausweg ohne Mikrofon
 Rückseite:    Wort · IPA groß · Silben mit Betonung · Notiz
               [🔊 Anhören] [🐢 Langsam] · Beispielsatz [🔊] · DE-Satz
               [Nochmal]  [Unsicher]  [Sicher]
 ```
+
+Der Mikrofonknopf steht **auf der Vorderseite**, und eine gelungene Aufnahme
+deckt die Karte auf. Ohne das bleibt das laute Aussprechen freiwillig, und die
+Karte lässt sich umdrehen, bevor überhaupt etwas produziert wurde — genau das
+Verhalten, gegen das die produktive Richtung gebaut ist. Das *Ergebnis* der
+Prüfung erscheint erst auf der Rückseite: es nennt das erkannte Wort und die
+schwächste Silbe und wäre auf der Vorderseite die Antwort.
 
 Die **Lücke im Beispielsatz** ist nicht Deko, sondern löst ein echtes Problem der
 produktiven Richtung: „anerkennen, einräumen" passt auf `acknowledge`, `admit`
@@ -322,7 +330,8 @@ dass wir zusätzliche Daten brauchen — `example` liegt ohnehin vor.
 ```
 Vorderseite:  Wort groß · Wortart · [🔊 Anhören] [🐢 Langsam]
               ↓ (Nutzer spricht laut nach)
-              [Auflösen]
+              [🎤 Aussprechen]   ← Hauptweg, die Aufnahme deckt auf
+              [Auflösen]         ← Ausweg ohne Mikrofon
 Rückseite:    IPA groß · Silben mit Betonung · Notiz
               DE-Übersetzung · Beispielsatz [🔊] · DE-Satz
               [Nochmal]  [Unsicher]  [Sicher]

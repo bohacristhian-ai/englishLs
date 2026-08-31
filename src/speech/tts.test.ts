@@ -4,7 +4,9 @@ import {
   hasLocalEnglishVoice,
   isEnglish,
   isLocalEnglish,
+  resetVoiceCache,
   selectVoice,
+  speak,
 } from './tts';
 import type { VoiceLike } from './tts';
 
@@ -121,5 +123,152 @@ describe('selectVoice while offline', () => {
 
   it('falls back to a network voice when nothing local exists', () => {
     expect(selectVoice([GB_NETWORK], offline)).toBe(GB_NETWORK);
+  });
+});
+
+/* --- speak() ---------------------------------------------------------- */
+
+class FakeUtterance extends EventTarget {
+  voice: VoiceLike | null = null;
+  lang = '';
+  rate = 1;
+
+  constructor(public text: string) {
+    super();
+  }
+}
+
+interface Spy {
+  calls: string[];
+  spoken: FakeUtterance[];
+  synth: { speaking: boolean; pending: boolean };
+}
+
+function installSynth(state: { speaking?: boolean; pending?: boolean } = {}): Spy {
+  const calls: string[] = [];
+  const spoken: FakeUtterance[] = [];
+
+  const synth = {
+    speaking: state.speaking ?? false,
+    pending: state.pending ?? false,
+    getVoices: () => [GB_LOCAL],
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    speak(utterance: FakeUtterance) {
+      calls.push('speak');
+      spoken.push(utterance);
+    },
+    cancel() {
+      calls.push('cancel');
+      this.speaking = false;
+      this.pending = false;
+    },
+  };
+
+  vi.stubGlobal('speechSynthesis', synth);
+  vi.stubGlobal('SpeechSynthesisUtterance', FakeUtterance);
+
+  return { calls, spoken, synth };
+}
+
+beforeEach(() => {
+  resetVoiceCache();
+});
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
+
+describe('speak', () => {
+  it('does not cancel an idle queue', async () => {
+    // Chrome truncates or drops an utterance queued in the same tick as a
+    // cancel(), which is what cut the word off on every reveal.
+    const spy = installSynth();
+
+    await speak('acknowledge');
+
+    expect(spy.calls).toEqual(['speak']);
+    expect(spy.spoken[0]?.text).toBe('acknowledge');
+  });
+
+  it('cancels a running utterance before starting the next', async () => {
+    const spy = installSynth({ speaking: true });
+
+    await speak('resilient');
+
+    expect(spy.calls).toEqual(['cancel', 'speak']);
+  });
+
+  it('cancels one that is still queued', async () => {
+    const spy = installSynth({ pending: true });
+
+    await speak('resilient');
+
+    expect(spy.calls).toEqual(['cancel', 'speak']);
+  });
+
+  it('applies voice, language and rate', async () => {
+    const spy = installSynth();
+
+    await speak('acknowledge', { rate: RATE_SLOW });
+
+    expect(spy.spoken[0]?.voice).toBe(GB_LOCAL);
+    expect(spy.spoken[0]?.lang).toBe(GB_LOCAL.lang);
+    expect(spy.spoken[0]?.rate).toBe(RATE_SLOW);
+  });
+
+  it('reports the end of an utterance', async () => {
+    const spy = installSynth();
+    const onEnd = vi.fn();
+
+    await speak('acknowledge', { onEnd });
+    spy.spoken[0]?.dispatchEvent(new Event('end'));
+
+    expect(onEnd).toHaveBeenCalledOnce();
+  });
+
+  it('stays quiet about an interruption, which is normal card handling', async () => {
+    const spy = installSynth();
+    const onError = vi.fn();
+
+    await speak('acknowledge', { onError });
+
+    const interrupted = Object.assign(new Event('error'), { error: 'interrupted' });
+    spy.spoken[0]?.dispatchEvent(interrupted);
+
+    expect(onError).not.toHaveBeenCalled();
+  });
+
+  it('reports a real failure', async () => {
+    const spy = installSynth();
+    const onError = vi.fn();
+
+    await speak('acknowledge', { onError });
+
+    const failed = Object.assign(new Event('error'), { error: 'synthesis-failed' });
+    spy.spoken[0]?.dispatchEvent(failed);
+
+    expect(onError).toHaveBeenCalledWith('Sprachausgabe fehlgeschlagen (synthesis-failed).');
+  });
+
+  it('says so when the device has no English voice at all', async () => {
+    const onError = vi.fn();
+
+    vi.stubGlobal('speechSynthesis', {
+      speaking: false,
+      pending: false,
+      getVoices: () => [GERMAN],
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      speak: () => {},
+      cancel: () => {},
+    });
+    vi.stubGlobal('SpeechSynthesisUtterance', FakeUtterance);
+
+    await speak('acknowledge', { onError });
+
+    expect(onError).toHaveBeenCalledWith(
+      'Auf diesem Gerät ist keine englische Stimme installiert.',
+    );
   });
 });

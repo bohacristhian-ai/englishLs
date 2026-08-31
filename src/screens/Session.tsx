@@ -62,6 +62,14 @@ export default function Session({
 
     return startSession(planned, targetCards);
   });
+  // The session start is the user gesture that lets us pay the setup cost —
+  // SDK, connection — before the learner is standing in front of it.
+  useEffect(() => {
+    void assessor.prepare?.();
+
+    return () => assessor.dispose?.();
+  }, []);
+
   const [revealed, setRevealed] = useState(false);
   const [tally, setTally] = useState<SessionResult>(EMPTY_TALLY);
   const [speechMessage, setSpeechMessage] = useState<string | null>(null);
