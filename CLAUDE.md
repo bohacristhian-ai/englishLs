@@ -78,7 +78,11 @@ Vor jedem Commit: `npm run test:run` **und** `npm run typecheck` müssen grün s
 3. **Die Web Speech API wird nur in `src/speech/tts.ts` angefasst.** Komponenten
    rufen `speechSynthesis` niemals direkt auf. `tts.ts` wertet `localService`
    aus und bevorzugt offline eine lokale Stimme — viele gute EN-Stimmen sind
-   netzgebunden.
+   netzgebunden. Zwei Chrome-Eigenheiten sind dort abgefangen und dürfen nicht
+   „aufgeräumt" werden: `cancel()` nur bei tatsächlich laufender Ausgabe (ein
+   Cancel im selben Tick schneidet die neue Äußerung ab), und eine Referenz auf
+   die laufende `SpeechSynthesisUtterance`, sonst sammelt Chrome sie mitten im
+   Wort ein.
 4. **Wort-IDs sind unveränderlich.** Der Lernfortschritt referenziert sie. Eine
    ID zu ändern bedeutet, den Fortschritt für dieses Wort zu löschen.
 5. **Datumsarithmetik nur über `src/domain/dates.ts`**, immer auf lokale
