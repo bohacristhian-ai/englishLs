@@ -17,6 +17,8 @@ Lernkarteikarten-App für Englisch auf B2-Niveau. Der Fokus liegt auf der
   optional, nur mit hinterlegtem Schlüssel
 - **Installierbar als App** und offline nutzbar; alle 500 Wörter liegen nach dem
   ersten Besuch auf dem Gerät
+- **Statistik** über Fächerverteilung, Streak und die letzten Lerntage
+- **Export/Import** des Fortschritts als JSON — der Fortschritt liegt nur lokal
 
 ## Stand
 
@@ -29,8 +31,8 @@ Lernkarteikarten-App für Englisch auf B2-Niveau. Der Fokus liegt auf der
 | M4 Karten-Flow | fertig |
 | M4b Ausspracheprüfung | fertig |
 | M5 Persistenz | fertig |
+| M6 Rahmen-Screens | fertig |
 | M7 PWA | fertig — installierbar, offline nutzbar |
-| M6 Rahmen-Screens | offen |
 
 > **Wichtige Einschränkung:** Keine der 500 Lautschriften ist gegen das Cambridge
 > Dictionary geprüft. Sie stammen aus Modellwissen, weil in der

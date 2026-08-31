@@ -1,6 +1,9 @@
 import { createCardState } from './leitner';
 import {
   ALL_LEVELS,
+  ImportError,
+  exportProgress,
+  parseImport,
   HISTORY_LIMIT,
   SCHEMA_VERSION,
   boxCounts,
@@ -193,5 +196,52 @@ describe('migrateProgress', () => {
 
   it('always writes the current schema version', () => {
     expect(migrateProgress({ schemaVersion: 0, cards: {} }).schemaVersion).toBe(SCHEMA_VERSION);
+  });
+});
+
+describe('exportProgress / parseImport', () => {
+  const AT = new Date(2026, 7, 15, 12, 0);
+
+  function withProgress() {
+    return rateWord(emptyProgress(), 'l01-w001', 'sure', TODAY, AT);
+  }
+
+  it('round-trips a progress through a file', () => {
+    const original = withProgress();
+    const restored = parseImport(exportProgress(original, AT));
+
+    expect(restored.cards['l01-w001']?.box).toBe(2);
+  });
+
+  it('writes a readable envelope so the file is identifiable', () => {
+    const payload = JSON.parse(exportProgress(emptyProgress(), AT));
+
+    expect(payload.app).toBe('englishLs');
+    expect(payload.schemaVersion).toBe(SCHEMA_VERSION);
+    expect(payload.exportedAt).toBe(AT.toISOString());
+  });
+
+  it('rejects a file from somewhere else instead of silently wiping progress', () => {
+    expect(() => parseImport('{"app":"anki","progress":{}}')).toThrow(ImportError);
+  });
+
+  it('rejects malformed JSON with a readable message', () => {
+    expect(() => parseImport('nicht json')).toThrow(/JSON/);
+  });
+
+  it('rejects an envelope without progress', () => {
+    expect(() => parseImport('{"app":"englishLs"}')).toThrow(/Fortschritt/);
+  });
+
+  it('salvages a damaged export rather than restoring nothing', () => {
+    const damaged = JSON.stringify({
+      app: 'englishLs',
+      progress: { cards: { good: { wordId: 'good', box: 2, dueOn: TODAY, introducedOn: TODAY, correctStreak: 0, totalCorrect: 0, totalWrong: 0, consolidated: false }, bad: 42 } },
+    });
+
+    const restored = parseImport(damaged);
+
+    expect(restored.cards['good']).toBeDefined();
+    expect(restored.cards['bad']).toBeUndefined();
   });
 });

@@ -88,6 +88,56 @@ export function countIntroducedOn(
   return count;
 }
 
+/** Cards that are due today. New words are counted separately. */
+export function countDue(
+  words: readonly Word[],
+  cards: Readonly<Record<string, CardState>>,
+  today: IsoDate,
+): number {
+  let count = 0;
+
+  for (const word of words) {
+    const card = cards[word.id];
+
+    if (card && isDue(card.dueOn, today)) count += 1;
+  }
+
+  return count;
+}
+
+/** Words never introduced yet, capped by what is still allowed today. */
+export function countAvailableNew(
+  words: readonly Word[],
+  cards: Readonly<Record<string, CardState>>,
+  today: IsoDate,
+  maxNewPerDay: number = DEFAULT_MAX_NEW_PER_DAY,
+): number {
+  const unseen = words.filter((word) => !cards[word.id]).length;
+  const budget = Math.max(0, maxNewPerDay - countIntroducedOn(cards, today));
+
+  return Math.min(unseen, budget);
+}
+
+/**
+ * The next day anything falls due, or null when nothing is scheduled.
+ *
+ * Drives the "nothing due" screen — telling the learner *when* to come back
+ * beats an empty page, which is where habits die.
+ */
+export function nextDueDay(
+  cards: Readonly<Record<string, CardState>>,
+  today: IsoDate,
+): IsoDate | null {
+  let earliest: IsoDate | null = null;
+
+  for (const card of Object.values(cards)) {
+    if (isDue(card.dueOn, today)) continue;
+    if (earliest === null || compareIsoDate(card.dueOn, earliest) < 0) earliest = card.dueOn;
+  }
+
+  return earliest;
+}
+
 export interface SessionState {
   /** Word ids still to be presented; the head is the current card. */
   readonly queue: readonly string[];
