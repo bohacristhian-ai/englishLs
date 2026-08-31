@@ -3,7 +3,10 @@ import {
   DEFAULT_MAX_NEW_PER_DAY,
   DEFAULT_SESSION_SIZE,
   MAX_REPEATS_PER_CARD,
+  countAvailableNew,
+  countDue,
   countIntroducedOn,
+  nextDueDay,
   currentCard,
   isSessionFinished,
   planSession,
@@ -168,6 +171,65 @@ describe('countIntroducedOn', () => {
     );
 
     expect(countIntroducedOn(cards, TODAY)).toBe(2);
+  });
+});
+
+describe('countDue', () => {
+  it('counts only cards whose day has arrived', () => {
+    const cards = progress(
+      seen('l01-w001', { dueOn: TODAY }),
+      seen('l01-w002', { dueOn: '2026-08-10' }),
+      seen('l01-w003', { dueOn: '2026-09-01' }),
+    );
+
+    expect(countDue(words(3), cards, TODAY)).toBe(2);
+  });
+
+  it('does not count words that were never introduced', () => {
+    expect(countDue(words(50), {}, TODAY)).toBe(0);
+  });
+});
+
+describe('countAvailableNew', () => {
+  it('is capped by the daily budget, not by the level size', () => {
+    expect(countAvailableNew(words(50), {}, TODAY, 10)).toBe(10);
+  });
+
+  it('shrinks as new words are introduced during the day', () => {
+    const cards = progress(createCardState('l01-w001', TODAY));
+
+    expect(countAvailableNew(words(50), cards, TODAY, 10)).toBe(9);
+  });
+
+  it('is zero once every word has been seen', () => {
+    const cards = progress(...words(5).map((entry) => seen(entry.id)));
+
+    expect(countAvailableNew(words(5), cards, TODAY, 10)).toBe(0);
+  });
+});
+
+describe('nextDueDay', () => {
+  it('finds the earliest future due day', () => {
+    const cards = progress(
+      seen('l01-w001', { dueOn: '2026-09-01' }),
+      seen('l01-w002', { dueOn: '2026-08-20' }),
+    );
+
+    expect(nextDueDay(cards, TODAY)).toBe('2026-08-20');
+  });
+
+  it('ignores cards that are already due', () => {
+    const cards = progress(
+      seen('l01-w001', { dueOn: TODAY }),
+      seen('l01-w002', { dueOn: '2026-08-20' }),
+    );
+
+    expect(nextDueDay(cards, TODAY)).toBe('2026-08-20');
+  });
+
+  it('returns null when nothing is scheduled ahead', () => {
+    expect(nextDueDay(progress(seen('l01-w001', { dueOn: TODAY })), TODAY)).toBeNull();
+    expect(nextDueDay({}, TODAY)).toBeNull();
   });
 });
 

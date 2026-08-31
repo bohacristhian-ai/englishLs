@@ -199,6 +199,65 @@ export function migrateProgress(raw: unknown): ProgressState {
   };
 }
 
+export interface ExportPayload {
+  app: 'englishLs';
+  schemaVersion: number;
+  exportedAt: string;
+  progress: ProgressState;
+}
+
+/**
+ * Serialises the progress for a file the learner keeps.
+ *
+ * The only insurance against losing everything: browser storage can be cleared
+ * by the user, by the browser under pressure, or — on iOS — by the system.
+ */
+export function exportProgress(progress: ProgressState, now: Date): string {
+  const payload: ExportPayload = {
+    app: 'englishLs',
+    schemaVersion: SCHEMA_VERSION,
+    exportedAt: now.toISOString(),
+    progress,
+  };
+
+  return JSON.stringify(payload, null, 2);
+}
+
+export class ImportError extends Error {}
+
+/**
+ * Reads an exported file back.
+ *
+ * Strict about the envelope and forgiving about the contents: a wrong file
+ * must be rejected loudly, but a slightly damaged export should still restore
+ * whatever is intact rather than nothing at all.
+ */
+export function parseImport(json: string): ProgressState {
+  let parsed: unknown;
+
+  try {
+    parsed = JSON.parse(json);
+  } catch {
+    throw new ImportError('Die Datei ist kein gültiges JSON.');
+  }
+
+  if (typeof parsed !== 'object' || parsed === null) {
+    throw new ImportError('Die Datei enthält keine Sicherung.');
+  }
+
+  const payload = parsed as Record<string, unknown>;
+
+  if (payload['app'] !== 'englishLs') {
+    throw new ImportError('Diese Datei stammt nicht aus englishLs.');
+  }
+
+  if (typeof payload['progress'] !== 'object' || payload['progress'] === null) {
+    throw new ImportError('In der Datei fehlt der Fortschritt.');
+  }
+
+  return migrateProgress(payload['progress']);
+}
+
 function numberOr(value: unknown, fallback: number): number {
   return typeof value === 'number' && Number.isFinite(value) ? value : fallback;
 }

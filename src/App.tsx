@@ -1,65 +1,56 @@
 import { useState } from 'react';
 
+import Home from './screens/Home';
+import type { StartOptions } from './screens/Home';
 import Session from './screens/Session';
-import SessionSetup from './screens/SessionSetup';
+import Settings from './screens/Settings';
+import Stats from './screens/Stats';
 import Summary from './screens/Summary';
 import type { SessionResult } from './screens/Summary';
-import { useProgressStore } from './store/progressStore';
-import { useSettingsStore } from './store/settingsStore';
 
-type View = 'setup' | 'session' | 'summary';
+type View = 'home' | 'session' | 'summary' | 'stats' | 'settings';
 
 export default function App() {
-  const [view, setView] = useState<View>('setup');
+  const [view, setView] = useState<View>('home');
+  const [options, setOptions] = useState<StartOptions | null>(null);
   const [result, setResult] = useState<SessionResult | null>(null);
-
-  const { direction, level, sessionSize, update } = useSettingsStore();
-  const seenWords = useProgressStore((state) => Object.keys(state.cards).length);
-  const streak = useProgressStore((state) => state.streak.current);
 
   return (
     <main className="app">
       <h1 className="app__title">englishLs</h1>
       <p className="app__tagline">Englisch B2 — Aussprache mit Leitner-System</p>
 
-      {view === 'setup' && (
-        <>
-          <p className="app__progress">
-            {seenWords === 0
-              ? 'Noch keine Wörter begonnen.'
-              : `${seenWords} von 500 Wörtern begonnen · Streak ${streak} ${streak === 1 ? 'Tag' : 'Tage'}`}
-          </p>
-
-          <SessionSetup
-            initial={{ level, direction, targetCards: sessionSize }}
-            onStart={(next) => {
-              update({
-                level: next.level,
-                direction: next.direction,
-                sessionSize: next.targetCards,
-              });
-              setView('session');
-            }}
-          />
-        </>
+      {view === 'home' && (
+        <Home
+          onStart={(next) => {
+            setOptions(next);
+            setView('session');
+          }}
+          onShowStats={() => setView('stats')}
+          onShowSettings={() => setView('settings')}
+        />
       )}
 
-      {view === 'session' && (
+      {view === 'session' && options && (
         <Session
-          level={level}
-          direction={direction}
-          targetCards={sessionSize}
+          level={options.level}
+          direction={options.direction}
+          targetCards={options.targetCards}
+          practice={options.practice}
           onFinish={(finished) => {
             setResult(finished);
             setView('summary');
           }}
-          onQuit={() => setView('setup')}
+          onQuit={() => setView('home')}
         />
       )}
 
       {view === 'summary' && result && (
-        <Summary result={result} onRestart={() => setView('setup')} />
+        <Summary result={result} onRestart={() => setView('home')} />
       )}
+
+      {view === 'stats' && <Stats onBack={() => setView('home')} />}
+      {view === 'settings' && <Settings onBack={() => setView('home')} />}
     </main>
   );
 }

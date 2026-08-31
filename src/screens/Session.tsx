@@ -22,6 +22,8 @@ interface SessionProps {
   level: number;
   direction: Direction;
   targetCards: number;
+  /** Practice run: presents cards but writes no progress at all. */
+  practice?: boolean;
   onFinish: (result: SessionResult) => void;
   onQuit: () => void;
 }
@@ -35,24 +37,31 @@ export default function Session({
   level,
   direction,
   targetCards,
+  practice = false,
   onFinish,
   onQuit,
 }: SessionProps) {
   const cards = useProgressStore((state) => state.cards);
   const rate = useProgressStore((state) => state.rate);
   const dayStartHour = useSettingsStore((state) => state.dayStartHour);
+  const autoplay = useSettingsStore((state) => state.autoplay);
+  const accent = useSettingsStore((state) => state.accent);
 
   const words = useMemo(() => getLevel(level), [level]);
   const wordsById = useMemo(() => new Map(words.map((word) => [word.id, word])), [words]);
 
-  const [session, setSession] = useState(() =>
-    startSession(
-      planSession(words, useProgressStore.getState().cards, learningDay(new Date(), dayStartHour), {
-        targetCards,
-      }),
-      targetCards,
-    ),
-  );
+  const [session, setSession] = useState(() => {
+    const planned = practice
+      ? words.slice(0, targetCards).map((entry) => entry.id)
+      : planSession(
+          words,
+          useProgressStore.getState().cards,
+          learningDay(new Date(), dayStartHour),
+          { targetCards },
+        );
+
+    return startSession(planned, targetCards);
+  });
   const [revealed, setRevealed] = useState(false);
   const [tally, setTally] = useState<SessionResult>(EMPTY_TALLY);
   const [speechMessage, setSpeechMessage] = useState<string | null>(null);
@@ -66,27 +75,27 @@ export default function Session({
       if (!word) return;
 
       setSpeechMessage(null);
-      void speak(word.term, { rate, onError: setSpeechMessage });
+      void speak(word.term, { rate, accent, onError: setSpeechMessage });
     },
-    [word],
+    [word, accent],
   );
 
   const playSentence = useCallback(() => {
     if (!word) return;
 
     setSpeechMessage(null);
-    void speak(word.example, { onError: setSpeechMessage });
-  }, [word]);
+    void speak(word.example, { accent, onError: setSpeechMessage });
+  }, [word, accent]);
 
   // Autoplay is unlocked by the tap on "Session starten". In de-en mode it must
   // wait for the reveal — sound on the front would give the answer away.
   useEffect(() => {
-    if (!word) return;
+    if (!word || !autoplay) return;
     if (direction === 'de-en' && !revealed) return;
 
     setSpeechMessage(null);
-    void speak(word.term, { onError: setSpeechMessage });
-  }, [word, direction, revealed]);
+    void speak(word.term, { accent, onError: setSpeechMessage });
+  }, [word, direction, revealed, autoplay, accent]);
 
   const handleRate = useCallback(
     (rating: Rating) => {
@@ -96,7 +105,9 @@ export default function Session({
       const existing = cards[word.id] ?? createCardState(word.id, today);
       const updated = review(existing, rating, today, new Date());
 
-      rate(word.id, rating, today, new Date());
+      // A practice run must leave boxes, streak and history untouched — that is
+      // the whole promise of "ohne Wertung".
+      if (!practice) rate(word.id, rating, today, new Date());
 
       const next = recordAnswer(session, landsInDrillBox(updated));
       const nextTally: SessionResult = {
@@ -112,7 +123,7 @@ export default function Session({
 
       if (isSessionFinished(next)) onFinish(nextTally);
     },
-    [word, cards, rate, dayStartHour, session, tally, onFinish],
+    [word, cards, rate, practice, dayStartHour, session, tally, onFinish],
   );
 
   useEffect(() => {

@@ -2,9 +2,10 @@
 
 **Lernkarteikarten-App für Englisch B2 — Fokus Aussprache, Motor: Leitner-System**
 
-Status: **M0–M5 und M7 umgesetzt** (Gerüst, Domain-Kern, Wortdaten für alle zehn
-Level, Sprachausgabe, Karten-Flow, Persistenz, PWA). Als Nächstes M6. Die Lautschrift steht unter Prüfvorbehalt,
-siehe §13.2.
+Status: **M0–M7 umgesetzt** (Gerüst, Domain-Kern, Wortdaten für alle zehn Level,
+Sprachausgabe, Karten-Flow, Ausspracheprüfung, Persistenz, Rahmen-Screens, PWA).
+Damit ist das MVP funktional vollständig; offen bleibt die IPA-Prüfung — die
+Lautschrift steht unter Prüfvorbehalt, siehe §13.2.
 
 Revision 3 — die Befunde aus `planning/REVIEW.md` sind eingearbeitet (Revision 2),
 und auf Nutzerentscheidung sind **alle zehn Level mit Wortdaten befüllt**, obwohl
@@ -486,23 +487,23 @@ alle Wörter aus N mindestens einmal in Fach ≥ 2 standen.
 
 ## 12. Abnahmekriterien MVP
 
-- [ ] 500 Wörter in 10 Leveln vollständig kuratiert
+- [x] 500 Wörter in 10 Leveln vollständig kuratiert
 - [ ] **IPA gegen Cambridge geprüft** — offen, siehe `planning/IPA-VERIFICATION.md`
-- [ ] Schema-Validierung grün, inklusive Betonungs-Gegenprüfung IPA ↔ `stressIndex`
-- [ ] Session in **beiden Richtungen** spielbar, DE → EN ist vorausgewählt
-- [ ] Im Modus DE → EN verrät die Vorderseite die Antwort nicht (kein Ton, kein Wort)
-- [ ] Wort und Beispielsatz sind hörbar, in normal und langsam
-- [ ] Karte zeigt IPA, Silben und markierte Betonung
-- [ ] Dreistufige Bewertung bewegt Karten korrekt durch die fünf Fächer
-- [ ] Fälligkeiten stimmen nach den Intervallen 0/1/3/7/16 Tage, „gefestigt" nach 30
-- [ ] Eine Session terminiert auch dann, wenn eine Karte wiederholt „Nochmal" bekommt
-- [ ] Zustand „nichts fällig" zeigt nächste Fälligkeit und freien Übungsdurchlauf
-- [ ] Fehlt eine englische Stimme, sagt die App das sichtbar und bleibt bedienbar
-- [ ] Fortschritt überlebt Reload; Export/Import funktioniert; „Zurücksetzen" fragt nach
-- [ ] Session mit 20 Karten auf dem Handy vollständig per Daumen bedienbar
-- [ ] App ist installierbar; **Kartenlernen, IPA und Fortschritt funktionieren offline vollständig, Sprachausgabe offline nur mit lokal installierter Stimme**
-- [ ] Domain-Logik hat Unit-Tests; `npm test` ist grün
-- [ ] Alle 10 Level sind erreichbar und durchblätterbar
+- [x] Schema-Validierung grün, inklusive Betonungs-Gegenprüfung IPA ↔ `stressIndex`
+- [x] Session in **beiden Richtungen** spielbar, DE → EN ist vorausgewählt
+- [x] Im Modus DE → EN verrät die Vorderseite die Antwort nicht (kein Ton, kein Wort)
+- [x] Wort und Beispielsatz sind hörbar, in normal und langsam
+- [x] Karte zeigt IPA, Silben und markierte Betonung
+- [x] Dreistufige Bewertung bewegt Karten korrekt durch die fünf Fächer
+- [x] Fälligkeiten stimmen nach den Intervallen 0/1/3/7/16 Tage, „gefestigt" nach 30
+- [x] Eine Session terminiert auch dann, wenn eine Karte wiederholt „Nochmal" bekommt
+- [x] Zustand „nichts fällig" zeigt nächste Fälligkeit und freien Übungsdurchlauf
+- [x] Fehlt eine englische Stimme, sagt die App das sichtbar und bleibt bedienbar
+- [x] Fortschritt überlebt Reload; Export/Import funktioniert; „Zurücksetzen" fragt nach
+- [x] Session mit 20 Karten auf dem Handy vollständig per Daumen bedienbar
+- [x] App ist installierbar; **Kartenlernen, IPA und Fortschritt funktionieren offline vollständig, Sprachausgabe offline nur mit lokal installierter Stimme**
+- [x] Domain-Logik hat Unit-Tests; `npm test` ist grün
+- [x] Alle 10 Level sind erreichbar und durchblätterbar
 
 ## 13. Risiken & Gegenmaßnahmen
 

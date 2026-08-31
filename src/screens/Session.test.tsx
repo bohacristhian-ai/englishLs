@@ -167,7 +167,9 @@ describe('persistence', () => {
     cleanup();
     render(<App />);
 
-    expect(screen.getByText(/von 500 Wörtern begonnen/)).toBeInTheDocument();
+    // The word is in box 2 and due tomorrow, so it leaves the due count and
+    // takes one slot out of today's budget for new words.
+    expect(screen.getByText(/fällig/)).toHaveTextContent('0 fällig · 9 neu');
   });
 
   it('writes the progress to localStorage', async () => {
@@ -196,7 +198,8 @@ describe('persistence', () => {
   it('starts with an empty progress on a fresh device', () => {
     render(<App />);
 
-    expect(screen.getByText('Noch keine Wörter begonnen.')).toBeInTheDocument();
+    expect(screen.getByText(/fällig/)).toHaveTextContent('0 fällig · 10 neu');
+    expect(screen.getByText('Noch kein Streak')).toBeInTheDocument();
   });
 
   it('remembers the chosen direction for the next session', async () => {
