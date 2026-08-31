@@ -216,7 +216,17 @@ Regeln:
   (`isAvailable()`), statt zu scheitern. Vite entfernt das SDK dann komplett aus
   dem Build.
 - Das SDK wird **dynamisch** importiert — es ist ~370 kB und gehört nicht in den
-  Startpfad.
+  Startpfad. Geladen wird es beim **Sessionstart** über `prepare()`, nicht beim
+  ersten Knopfdruck; dort steht der Lernende sonst davor und wartet.
+- **Recognizer und Verbindung leben pro Session, nicht pro Wort.** Ein frischer
+  Recognizer kostet den vollen Websocket-Handshake vor dem ersten Laut.
+  `prepare()` öffnet die Verbindung vorab, `dispose()` gibt sie beim Verlassen
+  der Session frei. Das Mikrofon bleibt dabei *nicht* offen — das SDK holt und
+  gibt es um jede Aufnahme herum.
+- `Speech_SegmentationSilenceTimeoutMs` steht auf 300 ms statt der 500 ms des
+  Dienstes: hier wird ein einzelnes Wort gesprochen, nicht ein Satz. Der
+  gültige Bereich ist 100–5000 ms; deutlich tiefer zerlegt ein Wort in zwei
+  Ergebnisse, was als „anderes Wort verstanden" ankommt.
 - Fehlermeldungen des SDK sind rohes Englisch und nennen DOM-Ausnahmen statt
   Abhilfen. `microphoneMessage` übersetzt die häufigen Fälle; unbekannte Ursachen
   bleiben angehängt, statt verschluckt zu werden.

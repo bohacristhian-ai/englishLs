@@ -95,6 +95,33 @@ describe('speaking before revealing', () => {
     expect(screen.getByText(`Schwächste Silbe: „${WORD.syllables[0]}“`)).toBeInTheDocument();
   });
 
+  it('stops saying "listening" once the talking is over', async () => {
+    const user = userEvent.setup();
+    let finish: (value: WordAssessment) => void = () => {};
+
+    const slow: PronunciationAssessor = {
+      isAvailable: () => true,
+      assess: (_term, options) =>
+        new Promise((resolve) => {
+          options?.onSpeechEnd?.();
+          finish = resolve;
+        }),
+    };
+
+    render(<Card assessor={slow} />);
+
+    await user.click(screen.getByRole('button', { name: /Aussprechen/ }));
+
+    // Between speaking and the score the learner is waiting on the network —
+    // saying "Hört zu" there invites them to keep talking into nothing.
+    expect(await screen.findByRole('button', { name: /Wertet aus/ })).toBeInTheDocument();
+    expect(screen.getByText('Einen Moment …')).toBeInTheDocument();
+
+    finish(assessment());
+
+    expect(await screen.findByRole('heading', { name: WORD.term })).toBeInTheDocument();
+  });
+
   it('does not reveal when the recording failed', async () => {
     const user = userEvent.setup();
 

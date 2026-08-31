@@ -16,7 +16,9 @@ interface PronunciationCheckProps {
   onRecorded: () => void;
 }
 
-type Phase = 'idle' | 'listening' | 'done' | 'failed';
+type Phase = 'idle' | 'listening' | 'scoring' | 'done' | 'failed';
+
+const BUSY: readonly Phase[] = ['listening', 'scoring'];
 
 /**
  * Microphone check against Azure's pronunciation assessment.
@@ -46,7 +48,9 @@ export default function PronunciationCheck({
     setVerdict(null);
 
     try {
-      const assessment = await assessor.assess(term);
+      const assessment = await assessor.assess(term, {
+        onSpeechEnd: () => setPhase((current) => (current === 'listening' ? 'scoring' : current)),
+      });
 
       setVerdict(summarise(assessment, term));
       setPhase('done');
@@ -71,14 +75,14 @@ export default function PronunciationCheck({
         type="button"
         className={revealed ? 'check__button' : 'check__button check__button--primary'}
         onClick={() => void listen()}
-        disabled={phase === 'listening'}
+        disabled={BUSY.includes(phase)}
       >
         {buttonLabel(phase, revealed, verdict !== null)}
       </button>
 
-      {phase === 'listening' && (
+      {BUSY.includes(phase) && (
         <p className="check__hint" role="status">
-          Sprich das Wort jetzt.
+          {phase === 'listening' ? 'Sprich das Wort jetzt.' : 'Einen Moment …'}
         </p>
       )}
 
@@ -121,6 +125,9 @@ export default function PronunciationCheck({
 
 function buttonLabel(phase: Phase, revealed: boolean, hasVerdict: boolean): string {
   if (phase === 'listening') return '● Hört zu …';
+  // Saying "listening" while the score is being fetched invites the learner to
+  // keep talking into a microphone that has already stopped.
+  if (phase === 'scoring') return '● Wertet aus …';
   if (!revealed) return '🎤 Aussprechen';
 
   return hasVerdict ? '🎤 Nochmal prüfen' : '🎤 Aussprache prüfen';
