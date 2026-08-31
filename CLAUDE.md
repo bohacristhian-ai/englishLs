@@ -214,7 +214,8 @@ Regeln:
   umzustellen ist eine Einbahnstraße und braucht eine ausdrückliche Entscheidung.
 - Ohne Schlüssel in der `.env` verschwindet der Knopf rückstandsfrei
   (`isAvailable()`), statt zu scheitern. Vite entfernt das SDK dann komplett aus
-  dem Build.
+  dem Build. **Die Schlüssel sind lokal und in Vercel eingerichtet** — das ist
+  erledigt und braucht keinen Hinweis mehr bei jeder Änderung.
 - Das SDK wird **dynamisch** importiert — es ist ~370 kB und gehört nicht in den
   Startpfad. Geladen wird es beim **Sessionstart** über `prepare()`, nicht beim
   ersten Knopfdruck; dort steht der Lernende sonst davor und wartet.
